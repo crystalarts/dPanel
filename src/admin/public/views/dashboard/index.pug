@@ -1,0 +1,234 @@
+doctype
+html(lang="pl")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+
+        title Panel Administracyjny
+
+        link(rel='stylesheet', href='/css/index-panel.css')
+        link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css')
+        link(rel='stylesheet', href='https://unpkg.com/leaflet/dist/leaflet.css')
+        link(rel='icon', type='image/png', sizes='32x32', href='/img/icruxlogo.png')
+
+        script(src='https://code.jquery.com/jquery-3.5.1.slim.min.js', integrity='sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj', crossorigin='anonymous', defer)
+        script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js', integrity='sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN', crossorigin='anonymous', defer)
+        script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', integrity='sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV', crossorigin='anonymous', defer)
+    body
+        .navbar
+            .nav-left
+                .name 
+                    span #{namewebsite}
+                .menu
+                    .menuactive(onclick="showMenu()") <i class="fas fa-bars"></i>
+            .nav-right
+                .right-menu 
+                    a(href="/") <i class="fas fa-bell"></i>
+                    a(href="/") <i class="fas fa-question-circle"></i>
+                    a(href="/") <i class="fas fa-cog"></i>
+                .user
+                    img(alt=user.username, src=user.avatarUrl(64))
+                    p.username #{user.username}
+        .flex
+            .sidebar(id="sidebar", style='display: none;')
+                .menu
+                    ul
+                        li
+                            a(href="/logout") <i class="fas fa-sign-out-alt"></i> Wyloguj się
+                                .right <i class="fas fa-arrow-right"></i>
+            .desc-info(id="desc").desc
+                    .box-info
+                        h3(style='color: #fdff85') WAŻNA INFORMACJA 
+                        p Panel administracyjny jest w fazie rozwojowej więc mogą występować błędy bądź niektóre funkcje mogą w ogóle nie działać. W razie problemów proszę o kontakt z administratorem.
+                    .content
+                        h3 STATYSTYKI
+                        .boxing-stats
+                            .box
+                                .box-register 
+                                    .box-reg-info
+                                        .box-reg-left 
+                                            <i class="fas fa-user-friends"></i>
+                                        .box-reg-right
+                                            .title 
+                                                h2 #{reguser}
+                                            .info 
+                                                p Zarejestrowanych kont
+                                    a(href="/")
+                                        .box-reg-detail
+                                            .box-reg-detail-left
+                                                p Szczegóły
+                                            .box-reg-detail-right
+                                                <i class="fas fa-arrow-right"></i>
+                            .box
+                                .box-server
+                                    .box-server-info
+                                        .box-server-left 
+                                            <i class="fas fa-server"></i>
+                                        .box-server-right
+                                            .title 
+                                                h2 #{serverCount}
+                                            .info 
+                                                p Zarejestrowanych serwerów
+                                    a(href="/")
+                                        .box-server-detail
+                                            .box-server-detail-left
+                                                p Szczegóły
+                                            .box-server-detail-right
+                                                <i class="fas fa-arrow-right"></i>
+                            .box
+                                .box-shop 
+                                    .box-shop-info
+                                        .box-shop-left 
+                                            <i class="fas fa-shopping-cart"></i>
+                                        .box-shop-right
+                                            .title 
+                                                h2 #{stats.shop}
+                                            .info 
+                                                p Zarejestrowanych zakupów
+                                    a(href="/")
+                                        .box-shop-detail
+                                            .box-shop-detail-left
+                                                p Szczegóły
+                                            .box-shop-detail-right
+                                                <i class="fas fa-arrow-right"></i>
+                            .box
+                                .box-support 
+                                    .box-support-info
+                                        .box-support-left 
+                                            <i class="fas fa-headset"></i>
+                                        .box-support-right
+                                            .title 
+                                                h2 #{stats.supportcenter}
+                                            .info 
+                                                p Zarejestrowanych zgłoszeń
+                                    a(href="/")
+                                        .box-support-detail
+                                            .box-support-detail-left
+                                                p Szczegóły
+                                            .box-support-detail-right
+                                                <i class="fas fa-arrow-right"></i>
+                        h3 OVERVIEW
+                        .boxing-user
+                            .boxing-stats
+                                .box
+                                    .box-role
+                                        .title 
+                                            h4 TWOJA ROLA W ICRUX.NET
+                                        .box-role-info
+                                            .role 
+                                                p Twoja rola na serwerze to:
+                                            .role-name
+                                                if role === 'Maintainer'
+                                                    p(style='color: #ff9e48') #{role}
+                                                if role === 'Manager'
+                                                    p(style='color: #fa4343') #{role}
+                                                if role === 'Contributor'
+                                                    p(style='color: #8a5bff') #{role}
+                                                if role === 'Moderator'
+                                                    p(style='color: #ff5790') #{role}
+                                                if role === 'Support'
+                                                    p(style='color: #3269ff') #{role}
+                                .box
+                                    .box-join 
+                                        .title 
+                                            h4 TWOJA AKTYWNOŚĆ W ICRUX.NET
+                                        .box-join-info
+                                            .date-info 
+                                                p Zobacz jak mało brakuje Tobie do awansu:
+                                            .date-join 
+                                                p(style='background: linear-gradient(90deg, #7b3eff 0%, #00c4ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;') Uzyskane punkty: #{points.points} / #{points.limitPoints} [#{completion}%]
+                                .box
+                                    .box-join 
+                                        .title 
+                                            h4 KIEDY DOŁĄCZYŁEŚ DO NAS 
+                                        .box-join-info
+                                            .date-info 
+                                                p Twoja obecność u nas trwa od:
+                                            .date-join 
+                                                p(style='color: #16B582') #{dateJoin}
+                                .box
+                                    .box-create 
+                                        .title 
+                                            h4 KIEDY UTWORZYŁEŚ KONTO 
+                                        .box-create-info
+                                            .date-info 
+                                                p Twoja obecność na discordzie trwa od:
+                                            .date-join 
+                                                p(style='color: #16B582') #{dateCreate}
+                        .boxing-stats
+                            .box
+                                h3 LISTA ADMINISTRACJI 
+                                .table
+                                    .content-table
+                                        table 
+                                            thead 
+                                                tr.color1(style='border-bottom: 1px solid #364150;') 
+                                                    th 
+                                                    th Nazwa
+                                                    th Rola
+                                                    th Dołączył na serwer
+                                                    th Aktywność
+                                                    th Wysłane wiadomości
+                                            tbody
+                                                each role in ['Maintainer', 'Manager', 'Contributor', 'Moderator', 'Support']
+                                                    each user in staff
+                                                        if user.roles.includes(role)
+                                                            tr.color2(style='border-bottom: 1px solid #364150;')
+                                                                th
+                                                                    img(src=user.avatar, alt=`Avatar of ${user.username}`, width=50, height=50)
+                                                                th
+                                                                    .flextable(style='display: flex;')
+                                                                        if user.info.status === 'online'
+                                                                            p(style='color: #16B582; margin-right: 5px;') •
+                                                                        else
+                                                                            p(style='color: #ff0000; margin-right: 5px;') •
+                                                                        p #{user.username}
+                                                                th
+                                                                    each role in user.roles
+                                                                        if role === 'Maintainer'
+                                                                            p(style='color: #ff9e48') #{role}
+                                                                        if role === 'Manager'
+                                                                            p(style='color: #fa4343') #{role}
+                                                                        if role === 'Contributor'
+                                                                            p(style='color: #8a5bff') #{role}
+                                                                        if role === 'Moderator'
+                                                                            p(style='color: #ff5790') #{role}
+                                                                        if role === 'Support'
+                                                                            p(style='color: #3269ff') #{role}
+                                                                th #{user.join}
+                                                                th
+                                                                    p Online : #{user.uptime}
+                                                                    p Offline : #{user.uptimeOffline}
+                                                                th #{user.info.message} wiado. • #{user.activity}%
+
+                            .box
+                                h3.statuscloud iCrux Cloud status (beta)
+                                .table
+                                    .content-table
+                                        table 
+                                            thead 
+                                                tr.color1(style='border-bottom: 1px solid #364150;') 
+                                                    th Numer Cloud
+                                                    th Użytkowników
+                                                    th Pojemość osób
+                                                    th Używane zasoby
+                                                    th Przydzielone zasoby
+                                            tbody
+                                                each server in servers
+                                                    tr.color2(style='border-bottom: 1px solid #364150;')
+                                                        th Shard ##{server.serverNumber}
+                                                        th Korzysta #{server.userCount} osób
+                                                        th #{server.userLimit} osób
+                                                        th Zużycie #{server.storageUsedFormatted}
+                                                        th #{server.storageLimitFormatted}
+        .footer
+            p © 2024 iCrux.net. Wszelkie prawa zastrzeżone.
+    script.
+        function showMenu() {
+            var menu = document.getElementById('sidebar');
+            if (menu.style.display === 'none') {
+                menu.style.display = 'block';
+            } else {
+                menu.style.display = 'none';
+            }
+        }

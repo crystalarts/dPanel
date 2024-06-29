@@ -1,0 +1,200 @@
+doctype
+html(lang="pl")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+
+        title iCrux.net - Twoja chmura do przechowywania danych.
+
+        link(rel='stylesheet', href='/css/index.css')
+        link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css')
+        link(rel='stylesheet', href='https://unpkg.com/leaflet/dist/leaflet.css')
+        link(rel='icon', type='image/png', sizes='32x32', href='/img/icruxlogo.png')
+
+        meta(name='theme-color', content='#4657bb')
+        meta(property='og:title', content='iCrux.net - Twoja chmura do przechowywania danych.')
+        meta(property='og:description', content='iCrux.net to usługa przechowywania danych w chmurze, która pozwala przechowywać pliki w chmurze i uzyskiwać do nich dostęp z dowolnego miejsca. Możesz przechowywać zdjęcia, filmy, muzykę, dokumenty i wiele innych. Możesz również udostępniać swoje pliki innym. iCrux.net jest bezpieczny, niezawodny i łatwy w użyciu. Zarejestruj się już dziś i otrzymaj 5 GB darmowego miejsca na przechowywanie.')
+        meta(property='og:type', content='website')
+        meta(property='og:url', content='https://icrux.net/')
+        meta(property='og:site_name', content='iCrux.net')
+
+        script(src='https://code.jquery.com/jquery-3.5.1.slim.min.js', integrity='sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj', crossorigin='anonymous', defer)
+        script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js', integrity='sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN', crossorigin='anonymous', defer)
+        script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', integrity='sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV', crossorigin='anonymous', defer)
+
+        style.
+            *::-webkit-scrollbar {
+                width: 0.3em;
+                height: 0.3em;
+            }
+
+            *::-webkit-scrollbar-thumb {
+                background-color: #426db1;
+                border-radius: 5px;
+            }
+
+            *::-webkit-scrollbar-track {
+                box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+                -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            }
+
+            ::selection {
+                color: #fff;
+                text-shadow: none;
+            }
+
+            ::selection {
+                background: #214d92;
+            }
+    body
+        .navbar-top
+            .container
+                a(href="https://github.com/icruxnet/icrux") Open Source 
+                a(href="/") Documentation 
+                a.last(href="https://discord.gg/krf2n9PrdV") Customer Support
+        .navbar-bottom 
+            .container
+                .logo
+                    span iCrux.net
+                .menu
+                    a(href="/") Cloud
+                    a(href="/") Features
+                    a(href="/") Pricing
+                    a(href="/") Data Centers
+                    a(href="/") About us
+                .login
+                    a.signup(href="https://dash.icrux.net/register") Register
+                    a.login(href="https://dash.icrux.net/login") Sign In
+                    .menus
+                        .menuactive(onclick="showMenu()") <i class="fas fa-bars"></i>
+        .hero
+            .content
+                .info 
+                    p Your cloud storage solution.
+                .title  
+                    h1 The perfect place to store all your photos, files, notes, email and more.
+                    p iCrux.net is a cloud storage service that allows you to store your files in the cloud and access them from anywhere. You can store photos, videos, music, documents, and more. You can also share your files with others. iCrux.net is secure, reliable, and easy to use. Sign up today and get 5GB of free storage.
+                    .buttons
+                        a.start(href="https://dash.icrux.net/register") Get Started
+                        a.support(href="mailto:support@icrux.net") Contact Support
+        .feature-back
+            .feature 
+                .container
+                    .titles
+                        span More than just data storage
+                        h3 One simple solution with lots of functionality.
+                        p Cloud Storage provides a fast, efficient and reliable data system, optimized for minimal latency, and is the default solution for all Cloud Servers. At iCrux, Cloud Storage comes in two versions: our in-house developed, super-fast MaxCrux and high-capacity-focused HDD.
+                    .row
+                        .col-md-4
+                            .icon
+                                i.fas.fa-cloud
+                            .structure
+                                .title
+                                    h2 Cloud Storage
+                                .description
+                                    p Store your files in the cloud and access them from anywhere. You can store photos, videos, music, documents and more.
+                        .col-md-4
+                            .icon
+                                i.fas.fa-lock
+                            .structure
+                                .title
+                                    h2 Security and privacy
+                                .description
+                                    p Your files are secure with iCrux.net. We use encryption to protect your files from unauthorized access. Your files are stored in secure data centers.
+                        .col-md-4
+                            .icon
+                                i.fas.fa-globe
+                            .structure
+                                .title
+                                    h2 Access from anywhere
+                                .description
+                                    p You can access your files from anywhere. You can use our web interface to access your files from any device with an internet connection.
+                        .col-md-4 
+                            .icon
+                                i.fas.fa-share-alt
+                            .structure
+                                .title
+                                    h2 Share files
+                                .description
+                                    p You can share your files with others. You can share files with friends and family. You can also share files with people who do not have an iCrux.net account.
+                        .col-md-4 
+                            .icon
+                                i.fas.fa-sync
+                            .structure
+                                .title
+                                    h2 Sync files
+                                .description
+                                    p You can sync your files across all your devices. You can access your files from your computer, phone, and tablet. Your files are always up to date.
+                        .col-md-4 
+                            .icon
+                                i.fas.fa-cogs
+                            .structure
+                                .title
+                                    h2 Easy to use
+                                .description
+                                    p iCrux.net is easy to use. You can upload files to the cloud with a few clicks. You can organize your files into folders. You can search for files by name or date.
+        .options
+            .head 
+                h2 Choose the right storage solution for your needs
+                p Both Block storage solutions, iCrux+ and iCrux Free, offer their own benefits and ideal use cases.
+            .box-table
+                .title 
+                    span iCrux Free and iCrux+ specifications
+                    p Choosing the right storage solution for your needs.
+                .table
+                    .content-table
+                        table 
+                            thead 
+                                tr.color1 
+                                    th 
+                                    th(style='color: #84d9e4; font-weight: bold;') iCrux Free
+                                    th(style='color: #8e84e4; font-weight: bold;') iCrux+
+                            tbody 
+                                tr.color2 
+                                    th Use case
+                                    th Need to store several files
+                                    th File storage on a larger scale
+                                tr.color1 
+                                    th Capacity Storage
+                                    th 5 GB
+                                    th 50 GB - 12 TB
+                                tr.color2
+                                    th Performance
+                                    th
+                                        | Read 300 IOPS
+                                        br
+                                        | Write 300 IOPS
+                                    th
+                                        | Read 10k IOPS
+                                        br
+                                        | Write 3k IOPS
+                                tr.color1 
+                                    th Automatic Syncing
+                                    th(style='color: #8ce484;') <i class="fas fa-check-circle"></i>
+                                    th(style='color: #8ce484;')  <i class="fas fa-check-circle"></i>
+                                tr.color2 
+                                    th Custom Email Domain
+                                    th(style='color: #e48484;')  <i class="fas fa-times-circle"></i>
+                                    th(style='color: #8ce484;')  <i class="fas fa-check-circle"></i>
+                                tr.color1 
+                                    th Family Sharing
+                                    th(style='color: #e48484;')  <i class="fas fa-times-circle"></i>
+                                    th(style='color: #8ce484;')  <i class="fas fa-check-circle"></i>
+                                tr.color2
+                                    th Price
+                                    th FREE / mo
+                                    th $1 - 60 / mo
+                .buttom
+                    span Cloud Servers can have up to 5 attached Block Storage devices. Each device can be up to 12TB in size.
+        .footer
+            .footer-flex
+                span © 2024 iCrux.net. Wszelkie prawa zastrzeżone.
+    script.
+        function showMenu() {
+            var menu = document.getElementById('sidebar');
+            if (menu.style.display === 'none') {
+                menu.style.display = 'block';
+            } else {
+                menu.style.display = 'none';
+            }
+        }
