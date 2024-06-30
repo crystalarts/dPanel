@@ -18,7 +18,6 @@ router.get("/auth", async (req, res) => {
     const key = await authClient.getAccess(code);
 
     res.cookie("key", key, { maxAge: 7 * 24 * 60 * 60 * 1000 });
-
     res.redirect("/guilds");
   } catch {
     res.redirect("/");

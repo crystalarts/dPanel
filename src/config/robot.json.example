@@ -4,5 +4,6 @@
   "DISCORD_CLIENT_ID": ""
   "AUTHORIZATION_URL": "",
   "ACCESS_ROLE": "",
-  "SERVER_ID": ""
+  "SERVER_ID": "",
+  "WEBHOOK_URL": ""
 }

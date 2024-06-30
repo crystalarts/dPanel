@@ -4,7 +4,7 @@ html(lang="pl")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
 
-        title iCrux.net - Twoja chmura do przechowywania danych.
+        title iCrux.net - Your cloud for data storage.
 
         link(rel='stylesheet', href='/css/index.css')
         link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css')
@@ -12,8 +12,8 @@ html(lang="pl")
         link(rel='icon', type='image/png', sizes='32x32', href='/img/icruxlogo.png')
 
         meta(name='theme-color', content='#4657bb')
-        meta(property='og:title', content='iCrux.net - Twoja chmura do przechowywania danych.')
-        meta(property='og:description', content='iCrux.net to usługa przechowywania danych w chmurze, która pozwala przechowywać pliki w chmurze i uzyskiwać do nich dostęp z dowolnego miejsca. Możesz przechowywać zdjęcia, filmy, muzykę, dokumenty i wiele innych. Możesz również udostępniać swoje pliki innym. iCrux.net jest bezpieczny, niezawodny i łatwy w użyciu. Zarejestruj się już dziś i otrzymaj 5 GB darmowego miejsca na przechowywanie.')
+        meta(property='og:title', content='iCrux.net - Your cloud for data storage.')
+        meta(property='og:description', content='iCrux.net is a cloud storage service that allows you to store your files in the cloud and access them from anywhere. You can store photos, videos, music, documents and much more. You can also share your files with others. iCrux.net is safe, reliable and easy to use. Sign up today and get 5GB of free storage.')
         meta(property='og:type', content='website')
         meta(property='og:url', content='https://icrux.net/')
         meta(property='og:site_name', content='iCrux.net')
@@ -47,6 +47,30 @@ html(lang="pl")
                 background: #214d92;
             }
     body
+        .sidebar(style='display: none;', id='sidebar')
+            .sidebar-flex
+                .left
+                    span iCrux.net
+                .right 
+                    a(href="javascript:void(0)", onclick='showMenu()') <i class="fas fa-times"></i>
+            .container
+                a(href="/")
+                    <i class="fas fa-cloud"></i>
+                    span Cloud
+                a(href="")
+                    <i class="fas fa-disease"></i>
+                    span Features
+                a(href="/")
+                    <i class="fas fa-wallet"></i>
+                    span Pricing
+                a(href="/")
+                    <i class="fas fa-server"></i>
+                    span Data Centers
+                a(href="/")
+                    <i class="fas fa-info-circle"></i>
+                    span About us
+                a.login(href="https://dash.icrux.net/login") Sign In
+                a.register(href="https://dash.icrux.net/register") Sign up for iCrux
         .navbar-top
             .container
                 a(href="https://github.com/icruxnet/icrux") Open Source 
@@ -65,8 +89,8 @@ html(lang="pl")
                 .login
                     a.signup(href="https://dash.icrux.net/register") Register
                     a.login(href="https://dash.icrux.net/login") Sign In
-                    .menus
-                        .menuactive(onclick="showMenu()") <i class="fas fa-bars"></i>
+                .openmenu 
+                    span(onclick='showMenu()') <i class="fas fa-bars"></i>
         .hero
             .content
                 .info 
@@ -74,9 +98,103 @@ html(lang="pl")
                 .title  
                     h1 The perfect place to store all your photos, files, notes, email and more.
                     p iCrux.net is a cloud storage service that allows you to store your files in the cloud and access them from anywhere. You can store photos, videos, music, documents, and more. You can also share your files with others. iCrux.net is secure, reliable, and easy to use. Sign up today and get 5GB of free storage.
+                    span Ready to start your adventure?
                     .buttons
                         a.start(href="https://dash.icrux.net/register") Get Started
+                        .ksjdv
+                            .hfdius
                         a.support(href="mailto:support@icrux.net") Contact Support
+        .fsoia23 
+            .fsiud
+                .uihof.start 
+                    .fskaw 
+                        <i class="fas fa-user-plus"></i>
+                    .vbmk 
+                        h3 Register with icrux
+                    .wiquy 
+                        p Get a starter package of 5 GB of disk space by registering with us now and earning unique bonuses.
+                    .zvuys.qoiwu 
+                        <i class="fas fa-arrow-right"></i>
+                .uihof
+                    .fskaw 
+                        <i class="fas fa-home"></i>
+                    .vbmk 
+                        h3 Go to Dashboard
+                    .wiquy 
+                        p See our new and innovative control panel that is tailored to your needs.
+                    .zvuys.qoiwu 
+                        <i class="fas fa-arrow-right"></i>
+                .uihof.end
+                    .fskaw 
+                        <i class="fab fa-slideshare"></i>
+                    .vbmk 
+                        h3 Start sharing
+                    .wiquy 
+                        p Share your files with family, friends or anyone else you want in one place without any obligations.
+        .feature-row
+            .feature-wrapper
+                .feature-display1
+                    .feature-content
+                        h1 Data safety
+                        h3 iCrux offers advanced security features that protect your data from loss and unauthorized access.
+                        p 
+                            <i class="fas fa-check-circle"></i>
+                            | Encryption
+                        p 
+                            <i class="fas fa-check-circle"></i>
+                            | Two-step verification
+                        p 
+                            <i class="fas fa-check-circle"></i>
+                            | Regular backups
+                    .feature-image
+        .feature-row
+            .feature-wrapper
+                .feature-display2
+                    .feature-image
+                    .feature-content
+                        h1 Share and collaborate
+                        h3 iCrux makes it easy to share files and collaborate with others.
+                        p 
+                            <i class="fas fa-check-circle"></i>
+                            | File sharing
+                        p 
+                            <i class="fas fa-check-circle"></i>
+                            | Real-time collaboration
+                        p 
+                            <i class="fas fa-check-circle"></i>
+                            | Family library
+        .feature-row
+            .feature-wrapper
+                .feature-display1
+                    .feature-content
+                        h1 Device synchronization
+                        h3 iCrux allows you to easily sync data between different Apple & Android devices.
+                        p 
+                            <i class="fas fa-check-circle"></i>
+                            | Data availability
+                        p 
+                            <i class="fas fa-check-circle"></i>
+                            | Real-time updates
+                        p 
+                            <i class="fas fa-check-circle"></i>
+                            | Ease of use
+                    .feature-image
+        .feature-row
+            .feature-wrapper
+                .feature-display2
+                    .feature-image
+                    .feature-content
+                        h1 Space optimization
+                        h3 iCrux allows you to effectively manage storage space on Apple & Android devices.
+                        p 
+                            <i class="fas fa-check-circle"></i>
+                            | Photo optimization
+                        p 
+                            <i class="fas fa-check-circle"></i>
+                            | Archiving of documents
+                        p 
+                            <i class="fas fa-check-circle"></i>
+                            | Automatic management
         .feature-back
             .feature 
                 .container
@@ -147,8 +265,8 @@ html(lang="pl")
                             thead 
                                 tr.color1 
                                     th 
-                                    th(style='color: #84d9e4; font-weight: bold;') iCrux Free
-                                    th(style='color: #8e84e4; font-weight: bold;') iCrux+
+                                    th(style='color: #A7C7E7; font-weight: bold;') iCrux Free
+                                    th(style='color: #FFECB3; font-weight: bold;') iCrux+
                             tbody 
                                 tr.color2 
                                     th Use case
@@ -169,16 +287,56 @@ html(lang="pl")
                                         br
                                         | Write 3k IOPS
                                 tr.color1 
-                                    th Automatic Syncing
+                                    th Basic Storage
+                                    th(style='color: #8ce484;') <i class="fas fa-check-circle"></i>
+                                    th(style='color: #8ce484;')  <i class="fas fa-check-circle"></i>
+                                tr.color2 
+                                    th Device Synchronization
+                                    th(style='color: #8ce484;') <i class="fas fa-check-circle"></i>
+                                    th(style='color: #8ce484;')  <i class="fas fa-check-circle"></i>
+                                tr.color1 
+                                    th Automatic backups
+                                    th(style='color: #8ce484;') <i class="fas fa-check-circle"></i>
+                                    th(style='color: #8ce484;')  <i class="fas fa-check-circle"></i>
+                                tr.color2 
+                                    th Notes and Reminders
+                                    th(style='color: #8ce484;') <i class="fas fa-check-circle"></i>
+                                    th(style='color: #8ce484;')  <i class="fas fa-check-circle"></i>
+                                tr.color1 
+                                    th Calendar and Contacts
+                                    th(style='color: #8ce484;') <i class="fas fa-check-circle"></i>
+                                    th(style='color: #8ce484;')  <i class="fas fa-check-circle"></i>
+                                tr.color2 
+                                    th Family Sharing
+                                    th(style='color: #8ce484;') <i class="fas fa-check-circle"></i>
+                                    th(style='color: #8ce484;')  <i class="fas fa-check-circle"></i>
+                                tr.color1 
+                                    th File Sharing
                                     th(style='color: #8ce484;') <i class="fas fa-check-circle"></i>
                                     th(style='color: #8ce484;')  <i class="fas fa-check-circle"></i>
                                 tr.color2 
                                     th Custom Email Domain
                                     th(style='color: #e48484;')  <i class="fas fa-times-circle"></i>
                                     th(style='color: #8ce484;')  <i class="fas fa-check-circle"></i>
-                                tr.color1 
-                                    th Family Sharing
-                                    th(style='color: #e48484;')  <i class="fas fa-times-circle"></i>
+                                tr.color1
+                                    th Increased Storage Space
+                                    th(style='color: #e48484;') <i class="fas fa-times-circle"></i>
+                                    th(style='color: #8ce484;')  <i class="fas fa-check-circle"></i>
+                                tr.color2
+                                    th Hide My Email
+                                    th(style='color: #e48484;') <i class="fas fa-times-circle"></i>
+                                    th(style='color: #8ce484;')  <i class="fas fa-check-circle"></i>
+                                tr.color1
+                                    th Private Relay
+                                    th(style='color: #e48484;') <i class="fas fa-times-circle"></i>
+                                    th(style='color: #8ce484;')  <i class="fas fa-check-circle"></i>
+                                tr.color2
+                                    th Advanced Data Protection
+                                    th(style='color: #e48484;') <i class="fas fa-times-circle"></i>
+                                    th(style='color: #8ce484;')  <i class="fas fa-check-circle"></i>
+                                tr.color1
+                                    th Priority Technical Support
+                                    th(style='color: #e48484;') <i class="fas fa-times-circle"></i>
                                     th(style='color: #8ce484;')  <i class="fas fa-check-circle"></i>
                                 tr.color2
                                     th Price
