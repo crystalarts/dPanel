@@ -3,3 +3,5 @@ src/config/cloudflare.json
 src/config/database.json
 src/config/robot.json
 src/config/website.json
+src/config/security.json
+src/config/cloud.json

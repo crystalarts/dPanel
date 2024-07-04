@@ -1,0 +1,179 @@
+doctype
+html(lang="pl")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+
+        title iCrux
+
+        link(rel='stylesheet', href='/css/dashboard.css')
+        link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css')
+        link(rel='stylesheet', href='https://unpkg.com/leaflet/dist/leaflet.css')
+        link(rel='icon', type='image/png', sizes='32x32', href='/img/icruxlogo.png')
+
+        meta(name='theme-color', content='#4657bb')
+        meta(property='og:title', content='iCrux.net')
+        meta(property='og:description', content='iCrux.net is a cloud storage service that allows you to store your files in the cloud and access them from anywhere. You can store photos, videos, music, documents and much more. You can also share your files with others. iCrux.net is safe, reliable and easy to use. Sign up today and get 5GB of free storage.')
+        meta(property='og:type', content='website')
+        meta(property='og:url', content='https://dash.icrux.net/')
+        meta(property='og:site_name', content='dash.icrux.net')
+
+        script(src='https://code.jquery.com/jquery-3.5.1.slim.min.js', integrity='sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj', crossorigin='anonymous', defer)
+        script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js', integrity='sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN', crossorigin='anonymous', defer)
+        script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', integrity='sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV', crossorigin='anonymous', defer)
+
+        script(src="/js/index.js")
+    body
+        header
+            .left 
+                .button 
+                    a.logout(href='/logout') <i class="fas fa-times"></i>
+                    a.close(href='javascript:void(0)', onclick='showMenu()') <i class="fas fa-minus"></i>
+                    a.minimalize(href='/') <i class="fas fa-compress-alt"></i>
+                .displaynone
+                    p #{(user.storageUsed / (1024 * 1024 * 1024)).toFixed(2)} GB / #{(user.storageLimit / (1024 * 1024 * 1024)).toFixed(2)} GB
+                .displaymobile
+                    p #{(user.storageUsed / (1024 * 1024 * 1024)).toFixed(2)} GB
+            .center 
+                .background
+                    .background-radius
+            .right
+                .email
+                    img(src='/img/user.png')
+                    .displaymobile-email
+                        p #{user.email}
+                    .displaynone
+                        p #{user.email}
+                .times
+                    span#time 
+                    span#date
+        .desktop#desktop(style='display: flex;')
+            .content-desktop
+                .content-desktop-dark
+                    .up-desktop 
+                        .up-desktop-left
+                        .up-desktop-right
+                            h1 Your Stats
+                            h2 • Your plan: #{user.plan}
+                            h2 • Your server: #{user.server}
+                            h2 • Disk space usage: #{(user.storageUsed / (1024 * 1024 * 1024)).toFixed(2)} GB / #{(user.storageLimit / (1024 * 1024 * 1024)).toFixed(2)} GB
+                            .flex-wrapper
+                                .single-chart
+                                    svg(viewBox="0 0 36 36", class="circular-chart orange")
+                                        path.circle-bg(d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831")
+                                        path.circle(stroke-dasharray="0, 100", d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831")
+                                        text.percentage(x="18", y="20.35") 0%
+                    .down-desktop
+                        .menu
+                            img(src='/img/icruxlogo.png', onclick='showMenu()')
+                            img(src='/img/cloud-server.png')
+                            img(src='/img/calendar.png')
+                            img(src='/img/e-mail.png')
+                            img(src='/img/statistics.png')
+                            img(src='/img/list.png')
+                            img(src='/img/contacts.png')
+        .overview#overview(style='display: none;')
+            .content-overview
+                .up 
+                    .title 
+                        h1 Overview
+                        span Version 1.0-alpha 
+                    .display-up
+                        .img
+                            .display-img
+                                a(href='/')
+                                    img(src='/img/cloud-server.png', width='100px', height='100px')
+                                    p Your Cloud
+                        .img
+                            .display-img
+                                a(href='/')
+                                    img(src='/img/calendar.png', width='100px', height='100px')
+                                    p PlanIt
+                        .img
+                            .display-img
+                                a(href='/')
+                                    img(src='/img/e-mail.png', width='100px', height='100px')
+                                    p AlertMe
+                        .img
+                            .display-img
+                                a(href='/')
+                                    img(src='/img/statistics.png', width='100px', height='100px')
+                                    p Presentify
+                        .img
+                            .display-img
+                                a(href='/')
+                                    img(src='/img/list.png', width='100px', height='100px')
+                                    p TaskTrack
+                        .img
+                            .display-img
+                                a(href='/')
+                                    img(src='/img/contacts.png', width='100px', height='100px')
+                                    p Contacts
+                        .img
+                            .display-img
+                                a(href='/')
+                                    img(src='/img/advice.png', width='100px', height='100px')
+                                    p Tips and guides
+                        .img
+                            .display-img
+                                a(href='/')
+                                    img(src='/img/staff.png', width='100px', height='100px')
+                                    p Join to iCrux+
+                        .img
+                            .display-img
+                                a(href='/')
+                                    img(src='/img/art-generator.png', width='100px', height='100px')
+                                    p GenieAI
+                        .img
+                            .display-img
+                                a(href='/')
+                                    img(src='/img/picture.png', width='100px', height='100px')
+                                    p PicPerfect
+                        .img
+                            .display-img
+                                a(href='/')
+                                    img(src='/img/day-and-night.png', width='100px', height='100px')
+                                    p DayMaster
+                        .img
+                            .display-img
+                                a(href='/')
+                                    img(src='/img/settings.png', width='100px', height='100px')
+                                    p Settings
+                .down
+                    .menu
+                        img(src='/img/icruxlogo.png', onclick='showMenu()')
+                        img(src='/img/cloud-server.png')
+                        img(src='/img/calendar.png')
+                        img(src='/img/e-mail.png')
+                        img(src='/img/statistics.png')
+                        img(src='/img/list.png')
+                        img(src='/img/contacts.png')
+    script.
+        function showMenu() {
+            var menu = document.getElementById('overview');
+            var desktop = document.getElementById('desktop');
+            if (menu.style.display === 'none') {
+                desktop.style.display = 'none';
+                menu.style.display = 'flex';
+            } else {
+                menu.style.display = 'none';
+                desktop.style.display = 'flex';
+            }
+        }
+
+        const circle = document.querySelector('.circle');
+        const text = document.querySelector('.percentage');
+
+        const user = {
+            storageUsed: #{user.storageUsed},
+            storageLimit: #{user.storageLimit}
+        };
+
+        const usedPercentage = (user.storageUsed / user.storageLimit * 100).toFixed(2);
+
+        const circumference = 2 * Math.PI * 15.9155;
+
+        const strokeDashValue = `${(usedPercentage / 100) * circumference}, ${circumference}`;
+
+        circle.style.strokeDasharray = strokeDashValue;
+        text.textContent = `${usedPercentage}%`;

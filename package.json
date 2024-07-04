@@ -10,6 +10,7 @@
   "license": "ISC",
   "description": "iCrux.net is a dynamic platform that combines code management and creative team collaboration in one place.",
   "dependencies": {
+    "@discordjs/builders": "^1.8.2",
     "@discordjs/rest": "^2.3.0",
     "axios": "^1.7.2",
     "bcrypt": "^5.1.1",

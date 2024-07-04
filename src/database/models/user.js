@@ -40,7 +40,7 @@ const UserSchema = new mongoose.Schema({
   },
   server: {
     type: Number,
-    required: true
+    required: 0
   },
   date: {
     type: Date,

@@ -1,7 +1,9 @@
 {
   "DEFAULT_URL": "",
+  "DASHBOARD_URL": "",
   "PORT_WEBSITE": "",
   "PORT_DASHBOARD": "",
   "PORT_API": "",
-  "PORT_ADMIN": ""
+  "PORT_ADMIN": "",
+  "WEBSITE_NAME": ""
 }

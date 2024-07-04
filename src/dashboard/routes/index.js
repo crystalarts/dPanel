@@ -6,13 +6,8 @@
 const express = require("express");
 const router = express.Router();
 const { ensureAuthenticated } = require("../config/auth");
-const DEFAULT_URL = require("../../config/website.json").DEFAULT_URL;
 
-router.get("/", (req, res, next) => {
-  res.redirect(DEFAULT_URL);
-});
-
-router.get("/control", ensureAuthenticated, async (req, res, next) => {
+router.get("/", ensureAuthenticated, (req, res, next) => {
   res.render("dashboard", {
     user: req.user,
   });
@@ -23,7 +18,7 @@ router.get("/logout", (req, res, next) => {
     if (err) {
       return next(err);
     }
-    res.redirect("/panel/login");
+    res.redirect("/login");
   });
   req.flash("success_msg", "Now logged out");
 });

@@ -42,7 +42,9 @@ app.use(cors());
 require("./config/passport")(passport);
 
 app.use("/", require("./routes/index"));
-app.use("/panel", require("./routes/panel"));
+app.use("/", require("./routes/panel"));
+
+app.all("*", (req, res) => res.render("errors/404"));
 
 app.listen(PORT_DASHBOARD, () => {
   console.log(`[DASHBOARD] : SUCCESS : The server is listening on port ${PORT_DASHBOARD}.`);

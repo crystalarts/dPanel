@@ -1,0 +1,46 @@
+doctype
+html(lang="pl")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+
+        title Join to iCrux.net
+
+        link(rel='stylesheet', href='/css/login.css')
+        link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css')
+        link(rel='stylesheet', href='https://unpkg.com/leaflet/dist/leaflet.css')
+        link(rel='icon', type='image/png', sizes='32x32', href='/img/icruxlogo.png')
+
+        meta(name='theme-color', content='#4657bb')
+        meta(property='og:title', content='Join to iCrux.net')
+        meta(property='og:description', content='iCrux.net is a cloud storage service that allows you to store your files in the cloud and access them from anywhere. You can store photos, videos, music, documents and much more. You can also share your files with others. iCrux.net is safe, reliable and easy to use. Sign up today and get 5GB of free storage.')
+        meta(property='og:type', content='website')
+        meta(property='og:url', content='https://dash.icrux.net/login')
+        meta(property='og:site_name', content='dash.icrux.net')
+
+        script(src='https://code.jquery.com/jquery-3.5.1.slim.min.js', integrity='sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj', crossorigin='anonymous', defer)
+        script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js', integrity='sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN', crossorigin='anonymous', defer)
+        script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', integrity='sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV', crossorigin='anonymous', defer)
+    body
+        .login-form
+            form.user-form(action='/register', method='POST')
+                .formater
+                    .logo
+                        img(src='/img/icruxlogo.png', alt='iCrux.net')
+                    .title
+                        | Join to iCrux.net
+                    label(for="")
+                        input.margin(type='text', name='email', placeholder='Email Address')
+                    label(for="")
+                        input.margin(type='password', name='password', placeholder='Password')
+                    .text-right 
+                        a(href="https://discord.gg/krf2n9PrdV") Discord support server.
+                    .buttons
+                        button(type='submit') Create an account
+            .newuser
+                .formater-newuser
+                    p Already have an account?
+                    span 
+                        a(href="/login") Log in there
+            .copyright 
+                p © 2024 iCrux.net. All rights reserved.

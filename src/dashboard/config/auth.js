@@ -9,6 +9,6 @@ module.exports = {
       return next();
     }
     req.flash("error_msg", "please login to view this resource");
-    res.redirect("/panel/login");
+    res.redirect("/login");
   },
 };

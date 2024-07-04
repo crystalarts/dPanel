@@ -7,6 +7,7 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 const User = require("../../database/models/user");
+const Server = require("../../database/models/server");
 const bcrypt = require("bcrypt");
 
 router.get("/login", (req, res, next) => {
@@ -19,8 +20,8 @@ router.get("/register", (req, res, next) => {
 
 router.post("/login", (req, res, next) => {
   passport.authenticate("local", {
-    successRedirect: "/control",
-    failureRedirect: "/panel/login",
+    successRedirect: "/",
+    failureRedirect: "/login",
     failureFlash: true,
   })(req, res, next);
 });
@@ -43,14 +44,23 @@ router.post("/register", async (req, res) => {
       password: password,
     });
   } else {
-    User.findOne({ email: email }).exec((err, user) => {
+    User.findOne({ email: email }).exec(async (err, user) => {
       if (user) {
         errors.push({ msg: "email already registered" });
         res.render("register", { errors, email, password });
       } else {
+        const availableServer = await Server.findOne({ userCount: { $lt: 100 } })
+          .sort({ userCount: 1 });
+
+        if (!availableServer) {
+          errors.push({ msg: "No available servers" });
+          res.render("register", { errors, email, password });
+        }
+        
         const newUser = new User({
           email: email,
-          password: password
+          password: password,
+          server: availableServer.serverNumber
         });
 
         bcrypt.genSalt(10, (err, salt) =>
@@ -59,9 +69,13 @@ router.post("/register", async (req, res) => {
             newUser.password = hash;
             newUser
               .save()
-              .then((value) => {
+              .then(async (value) => {
                 req.flash("success_msg", "You have now registered!");
-                res.redirect("/panel/login");
+
+                availableServer.userCount += 1;
+                await availableServer.save();
+
+                res.redirect("/login");
               })
               .catch((value) => console.log(value));
           })
