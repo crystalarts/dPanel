@@ -1,8 +1,3 @@
-// ------------------------------------------------------------ \\
-// ----------- * Copyright 2024 © Jakub Burzyński * ----------- \\
-// ------------------ * All rights reserved * ----------------- \\
-// ------------------------------------------------------------ \\
-
 const mongoose = require("mongoose");
 const url = require("../config/database.json").MONGODB_URL;
 

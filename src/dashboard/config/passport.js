@@ -1,8 +1,3 @@
-// ------------------------------------------------------------ \\
-// ----------- * Copyright 2024 © Jakub Burzyński * ----------- \\
-// ------------------ * All rights reserved * ----------------- \\
-// ------------------------------------------------------------ \\
-
 const User = require("../../database/models/user");
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcrypt");

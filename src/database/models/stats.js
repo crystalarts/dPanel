@@ -1,8 +1,3 @@
-// ------------------------------------------------------------ \\
-// ----------- * Copyright 2024 © Jakub Burzyński * ----------- \\
-// ------------------ * All rights reserved * ----------------- \\
-// ------------------------------------------------------------ \\
-
 const mongoose = require("mongoose");
 
 const StatsSchema = new mongoose.Schema({

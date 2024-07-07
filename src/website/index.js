@@ -1,8 +1,3 @@
-// ------------------------------------------------------------ \\
-// ----------- * Copyright 2024 © Jakub Burzyński * ----------- \\
-// ------------------ * All rights reserved * ----------------- \\
-// ------------------------------------------------------------ \\
-
 const cors = require('cors');
 const bodyParser = require("body-parser");
 const cookies = require("cookies");

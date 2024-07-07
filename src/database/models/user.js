@@ -1,8 +1,3 @@
-// ------------------------------------------------------------ \\
-// ----------- * Copyright 2024 © Jakub Burzyński * ----------- \\
-// ------------------ * All rights reserved * ----------------- \\
-// ------------------------------------------------------------ \\
-
 const mongoose = require("mongoose");
 
 function generateRandomNumber() {
@@ -25,6 +20,18 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
+  },
+  rank: {
+    type: Array,
+    default: {
+      user: true,
+      early_supporter: true,
+      icrux: false,
+      bug_hunter: false,
+      staff: false,
+      manager: false,
+      management: false,
+    },
   },
   plan: {
     type: String,

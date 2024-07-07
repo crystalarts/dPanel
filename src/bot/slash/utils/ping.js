@@ -1,8 +1,3 @@
-// ------------------------------------------------------------ \\
-// ----------- * Copyright 2024 © Jakub Burzyński * ----------- \\
-// ------------------ * All rights reserved * ----------------- \\
-// ------------------------------------------------------------ \\
-
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const mongoose = require("mongoose");
 const { MessageEmbed } = require("discord.js");
@@ -33,7 +28,7 @@ module.exports = {
     const embed = new MessageEmbed()
       .addFields({
         name: "Opóźnienie bota:",
-        value: `・Opóźnienie (bot): \`${botPing} ms\`\n・Opóźnienie (WebSocket): \`${wsPing} ms\`\n・Opóźnienie (MongoDB): \`${mongoPing} ms\``,
+        value: `・Opóźnienie (Bot): \`${botPing} ms\`\n・Opóźnienie (WebSocket): \`${wsPing} ms\`\n・Opóźnienie (MongoDB): \`${mongoPing} ms\``,
       })
       .setColor("#2f3136");
 
