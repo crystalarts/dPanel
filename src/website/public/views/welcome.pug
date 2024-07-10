@@ -315,43 +315,7 @@ html(lang="pl")
                                         | Read 10k IOPS
                                         br
                                         | Write 3k IOPS
-                                tr.color1 
-                                    th Basic Storage
-                                    th(style='color: #8ce484;') <i class="fas fa-check-circle"></i>
-                                    th(style='color: #8ce484;')  <i class="fas fa-check-circle"></i>
-                                tr.color2 
-                                    th Device Synchronization
-                                    th(style='color: #8ce484;') <i class="fas fa-check-circle"></i>
-                                    th(style='color: #8ce484;')  <i class="fas fa-check-circle"></i>
-                                tr.color1 
-                                    th Automatic backups
-                                    th(style='color: #8ce484;') <i class="fas fa-check-circle"></i>
-                                    th(style='color: #8ce484;')  <i class="fas fa-check-circle"></i>
-                                tr.color2 
-                                    th Family Sharing
-                                    th(style='color: #8ce484;') <i class="fas fa-check-circle"></i>
-                                    th(style='color: #8ce484;')  <i class="fas fa-check-circle"></i>
-                                tr.color1 
-                                    th Custom Email Domain
-                                    th(style='color: #e48484;')  <i class="fas fa-times-circle"></i>
-                                    th(style='color: #8ce484;')  <i class="fas fa-check-circle"></i>
-                                tr.color2
-                                    th Increased Storage Space
-                                    th(style='color: #e48484;') <i class="fas fa-times-circle"></i>
-                                    th(style='color: #8ce484;')  <i class="fas fa-check-circle"></i>
                                 tr.color1
-                                    th Hide My Email
-                                    th(style='color: #e48484;') <i class="fas fa-times-circle"></i>
-                                    th(style='color: #8ce484;')  <i class="fas fa-check-circle"></i>
-                                tr.color2
-                                    th Advanced Data Protection
-                                    th(style='color: #e48484;') <i class="fas fa-times-circle"></i>
-                                    th(style='color: #8ce484;')  <i class="fas fa-check-circle"></i>
-                                tr.color1
-                                    th Priority Technical Support
-                                    th(style='color: #e48484;') <i class="fas fa-times-circle"></i>
-                                    th(style='color: #8ce484;')  <i class="fas fa-check-circle"></i>
-                                tr.color2
                                     th Price
                                     th FREE / mo
                                     th $1 - 60 / mo
@@ -363,7 +327,48 @@ html(lang="pl")
             a(href="https://dash.icrux.net/register") Get Started Now 
         .footer
             .footer-flex
-                span © 2024 iCrux.net. Wszelkie prawa zastrzeżone.
+                .footer-grid
+                    .footer-column
+                        .footer-social
+                            span.title iCrux.net
+                            .social 
+                                a(href="https://github.com/icruxnet") <i class="fab fa-github"></i>
+                                a(href="https://dsc.gg/icrux/") <i class="fab fa-discord"></i>
+                    .footer-column
+                        .footer-product
+                            span.title Product
+                            a(href="/") Download
+                            a(href="/") iCrux+
+                            a(href="https://status.icrux.net/") Status
+                    .footer-column
+                        .footer-company 
+                            span.title Company
+                            a(href="/") About
+                            a(href="/") Jobs
+                            a(href="/") Newsroom
+                    .footer-column
+                        .footer-resources
+                            span.title Resources
+                            a(href="/hc") Support
+                            a(href="/") Safety
+                            a(href="/") Forum
+                            a(href="/") Creators
+                            a(href="/") Community
+                            a(href="/") Feedback
+                            a(href="/") Developers
+                    .footer-column
+                        .footer-policies
+                            span.title Policies
+                            a(href="/") Terms
+                            a(href="/") Privacy
+                            a(href="/") Cookie Settings
+                            a(href="/") Guidelines
+                            a(href="/") Licenses
+                            a(href="/") Company Information
+        .footer-bottom
+            .footer-bottom-container
+                img(src='/img/icruxlogo.png', alt='iCrux.net logo', style='width: 30px; height: 30px;')
+                span © 2024 iCrux.net. All rights reserved.
     script.
         function showMenu() {
             var menu = document.getElementById('sidebar');

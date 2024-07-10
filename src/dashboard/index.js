@@ -8,6 +8,8 @@ const flash = require("connect-flash");
 const session = require("express-session");
 const passport = require("passport");
 const path = require("path");
+const WebSocket = require('ws');
+const ping = require('ping');
 const PORT_DASHBOARD = require("../config/website.json").PORT_DASHBOARD;
 
 const app = express();
@@ -41,6 +43,29 @@ app.use("/", require("./routes/panel"));
 
 app.all("*", (req, res) => res.render("errors/404"));
 
-app.listen(PORT_DASHBOARD, () => {
+const server = app.listen(PORT_DASHBOARD, () => {
   console.log(`[DASHBOARD] : SUCCESS : The server is listening on port ${PORT_DASHBOARD}.`);
+});
+
+const wss = new WebSocket.Server({ server });
+
+wss.on('connection', (ws) => {
+  const pingInterval = setInterval(async () => {
+    try {
+      const res = await ping.promise.probe('8.8.8.8');
+      if (res.alive) {
+        const msg = JSON.stringify({ ping: res.time });
+        ws.send(msg);
+      } else {
+        ws.send(JSON.stringify({ error: 'Host is unreachable' }));
+      }
+    } catch (error) {
+      console.error('Ping error:', error);
+      ws.send(JSON.stringify({ error: 'Ping error' }));
+    }
+  }, 1000);
+
+  ws.on('close', () => {
+    clearInterval(pingInterval);
+  });
 });

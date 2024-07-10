@@ -18,6 +18,7 @@ html(lang="pl")
         meta(property='og:url', content='https://dash.icrux.net/')
         meta(property='og:site_name', content='dash.icrux.net')
 
+        script(src="https://code.jquery.com/jquery-3.6.0.min.js")
         script(src='https://code.jquery.com/jquery-3.5.1.slim.min.js', integrity='sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj', crossorigin='anonymous', defer)
         script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js', integrity='sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN', crossorigin='anonymous', defer)
         script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', integrity='sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV', crossorigin='anonymous', defer)
@@ -44,10 +45,13 @@ html(lang="pl")
                         p #{user.email}
                     .displaynone
                         p #{user.email}
-                .times
-                    span#time 
-                    span#date
-        .desktop#desktop(style='display: flex;')
+                .right-left 
+                    .ping
+                        p#ping 
+                    .times
+                        span#time 
+                        span#date
+        .desktop#desktop(style='opacity: 1; visibility: visible; transition: opacity 1s ease-in-out, visibility 1s ease-in-out;')
             .content-desktop
                 .content-desktop-dark
                     .up-desktop 
@@ -66,44 +70,39 @@ html(lang="pl")
                     .down-desktop
                         .menu
                             img(src='/img/icruxlogo.png', onclick='showMenu()')
-                            img(src='/img/cloud-server.png')
+                            img(src='/img/files.png')
                             img(src='/img/calendar.png')
-                            img(src='/img/e-mail.png')
-                            img(src='/img/statistics.png')
-                            img(src='/img/list.png')
+                            img(src='/img/mail.png')
+                            img(src='/img/notes.png')
+                            img(src='/img/reminders.png')
                             img(src='/img/contacts.png')
-        .overview#overview(style='display: none;')
+        .overview#overview(style='opacity: 0; visibility: hidden; transition: opacity 1s ease-in-out, visibility 1s ease-in-out;')
             .content-overview
                 .up 
                     .title 
                         h1 Overview
-                        span Version 1.0-alpha 
+                        span Version 1.0.1-alpha 
                     .display-up
                         .img
                             .display-img
                                 a(href='/')
-                                    img(src='/img/cloud-server.png', width='100px', height='100px')
-                                    p Your Cloud
+                                    img(src='/img/my-shortcuts.png', width='100px', height='100px')
+                                    p AI
+                        .img
+                            .display-img
+                                a(href='/')
+                                    img(src='/img/calculator.png', width='100px', height='100px')
+                                    p Calculator
                         .img
                             .display-img
                                 a(href='/')
                                     img(src='/img/calendar.png', width='100px', height='100px')
-                                    p PlanIt
+                                    p Calendar
                         .img
                             .display-img
                                 a(href='/')
-                                    img(src='/img/e-mail.png', width='100px', height='100px')
-                                    p AlertMe
-                        .img
-                            .display-img
-                                a(href='/')
-                                    img(src='/img/statistics.png', width='100px', height='100px')
-                                    p Presentify
-                        .img
-                            .display-img
-                                a(href='/')
-                                    img(src='/img/list.png', width='100px', height='100px')
-                                    p TaskTrack
+                                    img(src='/img/clock.png', width='100px', height='100px')
+                                    p Clock
                         .img
                             .display-img
                                 a(href='/')
@@ -112,52 +111,82 @@ html(lang="pl")
                         .img
                             .display-img
                                 a(href='/')
-                                    img(src='/img/advice.png', width='100px', height='100px')
-                                    p Tips and guides
+                                    img(src='/img/home.png', width='100px', height='100px')
+                                    p Home
                         .img
                             .display-img
                                 a(href='/')
-                                    img(src='/img/staff.png', width='100px', height='100px')
+                                    img(src='/img/plus.png', width='100px', height='100px')
                                     p Join to iCrux+
                         .img
                             .display-img
                                 a(href='/')
-                                    img(src='/img/art-generator.png', width='100px', height='100px')
-                                    p GenieAI
+                                    img(src='/img/notes.png', width='100px', height='100px')
+                                    p Notes
                         .img
                             .display-img
                                 a(href='/')
-                                    img(src='/img/picture.png', width='100px', height='100px')
-                                    p PicPerfect
+                                    img(src='/img/photos.png', width='100px', height='100px')
+                                    p Photos
                         .img
                             .display-img
                                 a(href='/')
-                                    img(src='/img/day-and-night.png', width='100px', height='100px')
-                                    p DayMaster
+                                    img(src='/img/reminders.png', width='100px', height='100px')
+                                    p Reminders
                         .img
                             .display-img
                                 a(href='/')
                                     img(src='/img/settings.png', width='100px', height='100px')
                                     p Settings
+                        .img
+                            .display-img
+                                a(href='/')
+                                    img(src='/img/news.png', width='100px', height='100px')
+                                    p Tips and guides
+                        .img
+                            .display-img
+                                a(href='/')
+                                    img(src='/img/translate.png', width='100px', height='100px')
+                                    p Translate
+                        .img
+                            .display-img
+                                a(href='/')
+                                    img(src='/img/wallet.png', width='100px', height='100px')
+                                    p Wallet
+                        .img
+                            .display-img
+                                a(href='/')
+                                    img(src='/img/weather.png', width='100px', height='100px')
+                                    p Weather
+                        .img
+                            .display-img
+                                a(href='/')
+                                    img(src='/img/files.png', width='100px', height='100px')
+                                    p Your Cloud
                 .down
                     .menu
                         img(src='/img/icruxlogo.png', onclick='showMenu()')
-                        img(src='/img/cloud-server.png')
+                        img(src='/img/files.png')
                         img(src='/img/calendar.png')
-                        img(src='/img/e-mail.png')
-                        img(src='/img/statistics.png')
-                        img(src='/img/list.png')
+                        img(src='/img/mail.png')
+                        img(src='/img/notes.png')
+                        img(src='/img/reminders.png')
                         img(src='/img/contacts.png')
     script.
         function showMenu() {
             var menu = document.getElementById('overview');
             var desktop = document.getElementById('desktop');
-            if (menu.style.display === 'none') {
-                desktop.style.display = 'none';
-                menu.style.display = 'flex';
+
+            if (desktop.style.opacity == 1) {
+                menu.style.opacity = 1;
+                menu.style.visibility = 'visible';
+                desktop.style.opacity = 0;
+                desktop.style.visibility = 'hidden';
             } else {
-                menu.style.display = 'none';
-                desktop.style.display = 'flex';
+                desktop.style.opacity = 1;
+                desktop.style.visibility = 'visible';
+                menu.style.opacity = 0;
+                menu.style.visibility = 'hidden';
             }
         }
 
@@ -177,3 +206,16 @@ html(lang="pl")
 
         circle.style.strokeDasharray = strokeDashValue;
         text.textContent = `${usedPercentage}%`;
+
+        $(document).ready(function() {
+            const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
+            const socket = new WebSocket(`${protocol}://${window.location.host}`);
+            socket.onmessage = function(event) {
+                const data = JSON.parse(event.data);
+                if (data.ping) {
+                    $('#ping').text(`${data.ping}ms`);
+                } else if (data.error) {
+                    $('#ping').text(`${data.error}`);
+                }
+            };
+        });

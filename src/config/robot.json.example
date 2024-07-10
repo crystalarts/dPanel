@@ -2,9 +2,6 @@
   "DISCORD_TOKEN": "",
   "DISCORD_SECRET": "",
   "DISCORD_CLIENT_ID": ""
-  "AUTHORIZATION_URL": "",
-  "ACCESS_ROLE": "",
-  "SERVER_ID": "",
   "WEBHOOK_URL": "",
   "LASTFM_API_KEY": ""
 }
