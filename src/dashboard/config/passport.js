@@ -3,7 +3,9 @@ const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcrypt");
 
 module.exports = function (passport) {
-  console.log(`[PASSPORT] : SUCCESS : The passport module has been successfully loaded.`);
+  console.log(
+    `[PASSPORT] : SUCCESS : The passport module has been successfully loaded.`,
+  );
   passport.use(
     new LocalStrategy({ usernameField: "email" }, (email, password, done) => {
       User.findOne({ email: email })
@@ -37,13 +39,13 @@ module.exports = function (passport) {
         .catch((err) => {
           console.log(err);
         });
-    })
+    }),
   );
 
   passport.serializeUser(function (user, done) {
     done(null, user.id);
   });
-  
+
   passport.deserializeUser(function (id, done) {
     User.findById(id, function (err, user) {
       done(err, user);

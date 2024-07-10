@@ -8,7 +8,7 @@ module.exports = {
     .addUserOption((option) =>
       option
         .setName("username")
-        .setDescription("Wybierz odpowiedniego użytkownika!")
+        .setDescription("Wybierz odpowiedniego użytkownika!"),
     ),
 
   async execute(client, interaction) {
@@ -22,7 +22,7 @@ module.exports = {
       guild.members.cache.get(user.id).presence.activities.length === 0
     ) {
       await interaction.reply(
-        `Użytkownik \`${user.username}\` nie ma żadnej aktywności`
+        `Użytkownik \`${user.username}\` nie ma żadnej aktywności`,
       );
     } else {
       const activities = guild.members.cache
@@ -63,7 +63,7 @@ module.exports = {
           }\`\n・Platforma: \`${activity.platform}\`\n・Party: \`${
             activity.party
           }\`\n・Rozpoczęto: <t:${Math.floor(
-            activity.createdTimestamp / 1000
+            activity.createdTimestamp / 1000,
           )}:d> (<t:${Math.floor(activity.createdTimestamp / 1000)}:R>)
           `,
         });

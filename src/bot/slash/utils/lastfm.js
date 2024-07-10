@@ -12,7 +12,7 @@ module.exports = {
       option
         .setName("username")
         .setDescription("Podaj nazwę lastfm")
-        .setRequired(true)
+        .setRequired(true),
     ),
 
   async execute(client, interaction) {
@@ -22,24 +22,24 @@ module.exports = {
     try {
       const response = await axios.get(
         `https://ws.audioscrobbler.com/2.0/?method=user.getinfo&user=${encodeURIComponent(
-          username
-        )}&api_key=${lastfmApiKey}&format=json`
+          username,
+        )}&api_key=${lastfmApiKey}&format=json`,
       );
       const response1 = await axios.get(
         `https://ws.audioscrobbler.com/2.0/?method=user.getTopArtists&user=${encodeURIComponent(
-          username
-        )}&api_key=${lastfmApiKey}&format=json`
+          username,
+        )}&api_key=${lastfmApiKey}&format=json`,
       );
       const response2 = await axios.get(
         `https://ws.audioscrobbler.com/2.0/?method=user.getTopTracks&user=${encodeURIComponent(
-          username
-        )}&api_key=${lastfmApiKey}&format=json`
+          username,
+        )}&api_key=${lastfmApiKey}&format=json`,
       );
 
       const response3 = await axios.get(
         `https://ws.audioscrobbler.com/2.0/?method=user.getRecentTracks&user=${encodeURIComponent(
-          username
-        )}&api_key=${lastfmApiKey}&format=json`
+          username,
+        )}&api_key=${lastfmApiKey}&format=json`,
       );
 
       const data = await response.data;
@@ -93,12 +93,12 @@ module.exports = {
           {
             name: `Najnowszy scrobbles:`,
             value: "・" + recentScrobblesList.join(""),
-          }
+          },
         );
       interaction.reply({ embeds: [embed], components: [action] });
     } catch (error) {
       interaction.reply(
-        "Wystąpił błąd podczas pobierania informacji o użytkowniku Last.fm."
+        "Wystąpił błąd podczas pobierania informacji o użytkowniku Last.fm.",
       );
     }
   },

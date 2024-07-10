@@ -13,4 +13,4 @@ router.get("/terms-of-service", (req, res, next) => {
   res.render("tos");
 });
 
-module.exports = router
+module.exports = router;

@@ -44,18 +44,19 @@ router.post("/register", async (req, res) => {
         errors.push({ msg: "email already registered" });
         res.render("register", { errors, email, password });
       } else {
-        const availableServer = await Server.findOne({ userCount: { $lt: 100 } })
-          .sort({ userCount: 1 });
+        const availableServer = await Server.findOne({
+          userCount: { $lt: 100 },
+        }).sort({ userCount: 1 });
 
         if (!availableServer) {
           errors.push({ msg: "No available servers" });
           res.render("register", { errors, email, password });
         }
-        
+
         const newUser = new User({
           email: email,
           password: password,
-          server: availableServer.serverNumber
+          server: availableServer.serverNumber,
         });
 
         bcrypt.genSalt(10, (err, salt) =>
@@ -73,11 +74,11 @@ router.post("/register", async (req, res) => {
                 res.redirect("/login");
               })
               .catch((value) => console.log(value));
-          })
+          }),
         );
       }
     });
   }
 });
 
-module.exports = router
+module.exports = router;

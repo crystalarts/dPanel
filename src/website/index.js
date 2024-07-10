@@ -1,4 +1,4 @@
-const cors = require('cors');
+const cors = require("cors");
 const bodyParser = require("body-parser");
 const cookies = require("cookies");
 const express = require("express");
@@ -27,7 +27,7 @@ app.use(
     secret: "secret",
     resave: false,
     saveUninitialized: false,
-  })
+  }),
 );
 app.use(passport.initialize());
 app.use(passport.session());
@@ -39,5 +39,7 @@ app.use("/", require("./routes/index"));
 app.all("*", (req, res) => res.render("errors/404"));
 
 app.listen(PORT_WEBSITE, () => {
-  console.log(`[WEBSITE] : SUCCESS : The server is listening on port ${PORT_WEBSITE}.`);
+  console.log(
+    `[WEBSITE] : SUCCESS : The server is listening on port ${PORT_WEBSITE}.`,
+  );
 });

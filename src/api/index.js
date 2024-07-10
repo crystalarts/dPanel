@@ -1,4 +1,4 @@
-const cors = require('cors');
+const cors = require("cors");
 const bodyParser = require("body-parser");
 const cookies = require("cookies");
 const express = require("express");
@@ -22,7 +22,7 @@ app.use(
     secret: "secret",
     resave: false,
     saveUninitialized: false,
-  })
+  }),
 );
 app.use(passport.initialize());
 app.use(passport.session());
@@ -33,7 +33,7 @@ app.use("/", require("./routes/index"));
 
 app.use("/api", (req, res) => res.json({ hello: "earth" }));
 app.use("/api/*", (req, res) =>
-  sendError(res, { code: 404, message: "Not found." })
+  sendError(res, { code: 404, message: "Not found." }),
 );
 
 app.listen(PORT_API, () => {

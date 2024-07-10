@@ -10,9 +10,7 @@ module.exports = {
   name: "ready",
 
   execute: async (client) => {
-    console.log(
-      "[ROBOT] : SUCCESS : The bot has been successfully launched."
-    );
+    console.log("[ROBOT] : SUCCESS : The bot has been successfully launched.");
 
     client.user.setPresence({
       activities: [
@@ -42,7 +40,7 @@ module.exports = {
           .catch((err) => console.log(err));
 
         console.log(
-          "[ROBOT SLASH] : SUCCESS : Application commands successfully reloaded."
+          "[ROBOT SLASH] : SUCCESS : Application commands successfully reloaded.",
         );
       } catch (error) {
         console.error(error);

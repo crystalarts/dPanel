@@ -10,7 +10,7 @@ module.exports = {
       option
         .setName("biblioteka")
         .setDescription("Podaj nazwę biblioteki do wyszukania")
-        .setRequired(true)
+        .setRequired(true),
     ),
 
   async execute(client, interaction) {
@@ -18,7 +18,7 @@ module.exports = {
 
     try {
       const response = await axios.get(
-        `https://registry.npmjs.com/${encodeURIComponent(names)}`
+        `https://registry.npmjs.com/${encodeURIComponent(names)}`,
       );
       const data = await response.data;
 
@@ -33,7 +33,7 @@ module.exports = {
       } = data;
 
       const downloadsResponse = await axios.get(
-        `https://api.npmjs.org/downloads/point/last-week/${names}`
+        `https://api.npmjs.org/downloads/point/last-week/${names}`,
       );
       const downloadsData = await downloadsResponse.data;
       const weeklyDownloads = downloadsData.downloads || 0;
@@ -59,7 +59,7 @@ module.exports = {
       interaction.reply({ embeds: [embed] });
     } catch (error) {
       interaction.reply(
-        "Wystąpił błąd podczas pobierania informacji o bibliotece!"
+        "Wystąpił błąd podczas pobierania informacji o bibliotece!",
       );
     }
   },
