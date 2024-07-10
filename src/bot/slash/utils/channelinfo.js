@@ -6,7 +6,7 @@ module.exports = {
     .setName("channelinfo")
     .setDescription("Sprawdź informacje o danym kanale")
     .addChannelOption((option) =>
-      option.setName("channel").setDescription("Wybierz odpowiedni kanał!")
+      option.setName("channel").setDescription("Wybierz odpowiedni kanał!"),
     ),
 
   async execute(client, interaction) {

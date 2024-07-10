@@ -39,15 +39,15 @@ const UserSchema = new mongoose.Schema({
   },
   storageUsed: {
     type: Number,
-    default: 0
+    default: 0,
   },
   storageLimit: {
     type: Number,
-    default: 5 * 1024 * 1024 * 1024
+    default: 5 * 1024 * 1024 * 1024,
   },
   server: {
     type: Number,
-    required: 0
+    required: 0,
   },
   date: {
     type: Date,

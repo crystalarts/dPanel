@@ -18,4 +18,4 @@ router.get("/logout", (req, res, next) => {
   req.flash("success_msg", "Now logged out");
 });
 
-module.exports = router
+module.exports = router;

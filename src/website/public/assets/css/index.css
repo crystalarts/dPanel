@@ -85,7 +85,9 @@ body {
     border-radius: 40px;
     padding: 8px 20px;
     margin-right: 15px;
-    transition: color 1s ease, background-color 1s ease;
+    transition:
+      color 1s ease,
+      background-color 1s ease;
   }
 
   .navbar-bottom .container .login a.login:hover {
@@ -194,7 +196,10 @@ body {
     font-size: 18px;
     margin-left: 10px;
     margin-right: 10px;
-    transition: color 1s ease, background-color 1s ease, border 1s ease;
+    transition:
+      color 1s ease,
+      background-color 1s ease,
+      border 1s ease;
   }
 
   .buttons a.start:hover {
@@ -740,7 +745,9 @@ body {
     border-radius: 40px;
     padding: 10px 20px;
     margin-top: 20px;
-    transition: color 1s ease, background-color 1s ease;
+    transition:
+      color 1s ease,
+      background-color 1s ease;
   }
 
   .enough-scroll a:hover {
@@ -793,7 +800,9 @@ body {
     border-radius: 40px;
     padding: 8px 20px;
     margin-right: 15px;
-    transition: color 1s ease, background-color 1s ease;
+    transition:
+      color 1s ease,
+      background-color 1s ease;
   }
 
   .navbar-bottom .container .login a.login:hover {
@@ -913,7 +922,10 @@ body {
     font-size: 18px;
     margin-left: 10px;
     margin-right: 10px;
-    transition: color 1s ease, background-color 1s ease, border 1s ease;
+    transition:
+      color 1s ease,
+      background-color 1s ease,
+      border 1s ease;
   }
 
   .buttons a.start:hover {
@@ -1465,7 +1477,9 @@ body {
     border-radius: 40px;
     padding: 10px 20px;
     margin-top: 20px;
-    transition: color 1s ease, background-color 1s ease;
+    transition:
+      color 1s ease,
+      background-color 1s ease;
   }
 
   .enough-scroll a:hover {
@@ -1565,7 +1579,9 @@ body {
     background-color: #ffffff;
     border-radius: 40px;
     padding: 8px 20px;
-    transition: color 1s ease, background-color 1s ease;
+    transition:
+      color 1s ease,
+      background-color 1s ease;
   }
 
   .sidebar .container a.login:hover {
@@ -1747,7 +1763,10 @@ body {
     font-size: 18px;
     margin-left: 10px;
     margin-right: 10px;
-    transition: color 1s ease, background-color 1s ease, border 1s ease;
+    transition:
+      color 1s ease,
+      background-color 1s ease,
+      border 1s ease;
   }
 
   .buttons a.start:hover {
@@ -2312,7 +2331,9 @@ body {
     border-radius: 40px;
     padding: 10px 20px;
     margin-top: 20px;
-    transition: color 1s ease, background-color 1s ease;
+    transition:
+      color 1s ease,
+      background-color 1s ease;
   }
 
   .enough-scroll a:hover {
