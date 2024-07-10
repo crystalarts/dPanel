@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "npm install": "npm install",
-    "start server": "node "
+    "start": "node src/run.js",
+    "dev": "npx nodemon -e js,json,pug,css src/run.js",
+    "format": "prettier --write \"src/**/*.js\" \"src/**/*.json\" \"src/**/*.css\""
   },
   "author": "Jakub Burzyński & Contributors",
   "license": "ISC",
