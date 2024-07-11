@@ -7,6 +7,7 @@ html(lang="pl")
         title iCrux
 
         link(rel='stylesheet', href='/css/dashboard.css')
+        link(rel='stylesheet', href='/css/weather.css')
         link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css')
         link(rel='stylesheet', href='https://unpkg.com/leaflet/dist/leaflet.css')
         link(rel='icon', type='image/png', sizes='32x32', href='/img/icruxlogo.png')
@@ -29,7 +30,7 @@ html(lang="pl")
             .left 
                 .button 
                     a.logout(href='/logout') <i class="fas fa-times"></i>
-                    a.close(href='javascript:void(0)', onclick='showMenu()') <i class="fas fa-minus"></i>
+                    a.close(href='javascript:void(0)', onclick='backGUI()') <i class="fas fa-minus"></i>
                     a.minimalize(href='/') <i class="fas fa-compress-alt"></i>
                 .displaynone
                     p #{(user.storageUsed / (1024 * 1024 * 1024)).toFixed(2)} GB / #{(user.storageLimit / (1024 * 1024 * 1024)).toFixed(2)} GB
@@ -111,6 +112,11 @@ html(lang="pl")
                         .img
                             .display-img
                                 a(href='/')
+                                    img(src='/img/files.png', width='100px', height='100px')
+                                    p Files
+                        .img
+                            .display-img
+                                a(href='/')
                                     img(src='/img/home.png', width='100px', height='100px')
                                     p Home
                         .img
@@ -155,14 +161,9 @@ html(lang="pl")
                                     p Wallet
                         .img
                             .display-img
-                                a(href='/')
+                                a(href='javascript:void(0)', onclick='showWeather()')
                                     img(src='/img/weather.png', width='100px', height='100px')
                                     p Weather
-                        .img
-                            .display-img
-                                a(href='/')
-                                    img(src='/img/files.png', width='100px', height='100px')
-                                    p Your Cloud
                 .down
                     .menu
                         img(src='/img/icruxlogo.png', onclick='showMenu()')
@@ -172,7 +173,111 @@ html(lang="pl")
                         img(src='/img/notes.png')
                         img(src='/img/reminders.png')
                         img(src='/img/contacts.png')
+        .weather#weather(style='opacity: 0; visibility: hidden; transition: opacity 1s ease-in-out, visibility 1s ease-in-out;')
+            .content-weather
+                .content-weather-dark
+                    .up-weather
+                        .box-weather
+                            .menu-up
+                                .button 
+                                    a.logout(href='javascript:void(0)', onclick='backGUI()') <i class="fas fa-times"></i>
+                                    a.close(href='javascript:void(0)', onclick='showWeather()') <i class="fas fa-minus"></i>
+                                    a.minimalize(href='/') <i class="fas fa-compress-alt"></i>
+                                .display-name 
+                                    p Weather
+                            .menu-down
+                                .menu-display 
+                                    .weather-left 
+                                        p test
+                                    .weather-right
+                                        p test
+                    .down-weather
+                        .menu
+                            img(src='/img/icruxlogo.png', onclick='showWeather()')
+                            img(src='/img/files.png')
+                            img(src='/img/calendar.png')
+                            img(src='/img/mail.png')
+                            img(src='/img/notes.png')
+                            img(src='/img/reminders.png')
+                            img(src='/img/contacts.png')
     script.
+        document.addEventListener('DOMContentLoaded', function() {
+            synchronizer();
+        });
+
+        function getCookie(name) {
+            var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+            if (match) return match[2];
+            return null;
+        }
+
+        function synchronizer() {
+            var menus = document.getElementById('overview');
+            var desktops = document.getElementById('desktop');
+            var weathers = document.getElementById('weather');
+
+            var desktop = getCookie('desktop');
+            var overview = getCookie('overview');
+            var weather = getCookie('weather');
+
+            if (desktop === "true") {
+                menus.style.opacity = 0;
+                menus.style.visibility = 'hidden';
+                weathers.style.opacity = 0;
+                weathers.style.visibility = 'hidden';
+                desktops.style.opacity = 1;
+                desktops.style.visibility = 'visible';
+            } 
+            
+            if (overview === "true")  {
+                desktops.style.opacity = 0;
+                desktops.style.visibility = 'hidden';
+                menus.style.opacity = 1;
+                menus.style.visibility = 'visible';
+                weathers.style.opacity = 0;
+                weathers.style.visibility = 'hidden';
+            }
+
+            if (weather === "true")  {
+                desktops.style.opacity = 0;
+                desktops.style.visibility = 'hidden';
+                menus.style.opacity = 0;
+                menus.style.visibility = 'hidden';
+                weathers.style.opacity = 1;
+                weathers.style.visibility = 'visible';
+            }
+        }
+
+        function backGUI() {
+            var menu = document.getElementById('overview');
+            var desktop = document.getElementById('desktop');
+            var weather = document.getElementById('weather');
+
+            if (desktop.style.opacity == 1) {
+                menu.style.opacity = 0;
+                menu.style.visibility = 'hidden';
+                weather.style.opacity = 0;
+                weather.style.visibility = 'hidden';
+                desktop.style.opacity = 1;
+                desktop.style.visibility = 'visible';
+
+                document.cookie = "desktop=true; path=/";
+                document.cookie = "weather=false; path=/";
+                document.cookie = "overview=false; path=/";
+            } else {
+                desktop.style.opacity = 1;
+                desktop.style.visibility = 'visible';
+                menu.style.opacity = 0;
+                menu.style.visibility = 'hidden';
+                weather.style.opacity = 0;
+                weather.style.visibility = 'hidden';
+
+                document.cookie = "desktop=true; path=/";
+                document.cookie = "weather=false; path=/";
+                document.cookie = "overview=false; path=/";
+            }
+        }
+
         function showMenu() {
             var menu = document.getElementById('overview');
             var desktop = document.getElementById('desktop');
@@ -182,11 +287,44 @@ html(lang="pl")
                 menu.style.visibility = 'visible';
                 desktop.style.opacity = 0;
                 desktop.style.visibility = 'hidden';
+
+                document.cookie = "desktop=false; path=/";
+                document.cookie = "weather=false; path=/";
+                document.cookie = "overview=true; path=/";
             } else {
                 desktop.style.opacity = 1;
                 desktop.style.visibility = 'visible';
                 menu.style.opacity = 0;
                 menu.style.visibility = 'hidden';
+
+                document.cookie = "desktop=true; path=/";
+                document.cookie = "weather=false; path=/";
+                document.cookie = "overview=false; path=/";
+            }
+        }
+
+        function showWeather() {
+            var menu = document.getElementById('overview');
+            var weather = document.getElementById('weather');
+
+            if (weather.style.opacity == 1) {
+                menu.style.opacity = 1;
+                menu.style.visibility = 'visible';
+                weather.style.opacity = 0;
+                weather.style.visibility = 'hidden';
+
+                document.cookie = "desktop=false; path=/";
+                document.cookie = "weather=false; path=/";
+                document.cookie = "overview=true; path=/";
+            } else {
+                weather.style.opacity = 1;
+                weather.style.visibility = 'visible';
+                menu.style.opacity = 0;
+                menu.style.visibility = 'hidden';
+
+                document.cookie = "desktop=false; path=/";
+                document.cookie = "weather=true; path=/";
+                document.cookie = "overview=false; path=/";
             }
         }
 

@@ -1,6 +1,7 @@
 {
   "DEFAULT_URL": "",
   "DASHBOARD_URL": "",
+  "API_KEY_OPENWEATHERMAP": "",
   "PORT_WEBSITE": "",
   "PORT_DASHBOARD": "",
   "PORT_API": ""

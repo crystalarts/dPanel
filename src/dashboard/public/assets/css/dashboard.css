@@ -722,9 +722,7 @@ body {
     background-size: cover;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
-    transition:
-      opacity 1s ease-in-out,
-      visibility 1s ease-in-out;
+    transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
   }
 
   .content-desktop {

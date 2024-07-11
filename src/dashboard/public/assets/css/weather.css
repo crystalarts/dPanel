@@ -1,0 +1,116 @@
+@media screen and (min-width: 1024px) {
+  .weather {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    background: url(/img/wallpaper.jpg) no-repeat center center fixed;
+    background-size: cover;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+
+  .menu-down {
+    display: flex;
+    width: 100%;
+    height: calc(100% - 30px);
+  }
+
+  .weather-left {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 300px;
+    border-bottom-left-radius: 15px;
+    background-color: #367aa2;
+  }
+
+  .weather-right {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    border-bottom-right-radius: 15px;
+    background-color: #3c8fc2;
+  }
+
+  .up-weather {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    width: 100%;
+    height: 100%;
+  }
+
+  .down-weather {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .down-weather .menu {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    height: 65px;
+    background-color: #272b33b9;
+    border: 1px solid #161a21;
+    border-radius: 15px;
+  }
+
+  .down-weather .menu img {
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 10px;
+    width: 48px;
+    height: 48px;
+    margin-right: 5px;
+  }
+
+  .content-weather-dark {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    justify-content: space-between;
+    height: calc(100% - 35px);
+    width: 100%;
+    background-color: #00000050;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+
+  .box-weather {
+    margin: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    height: 100%;
+    background-color: #272b33b9;
+    border: 1px solid #333841;
+    border-radius: 15px;
+  }
+
+  .menu-up {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #333841;
+  }
+
+  .display-name {
+    font-size: 14px;
+    color: #ebebeb;
+  }
+
+  .menu-display {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+}

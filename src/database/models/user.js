@@ -33,6 +33,14 @@ const UserSchema = new mongoose.Schema({
       management: false,
     },
   },
+  weather: {
+    type: Array,
+    default: [{
+      city: [
+        "Warsaw"
+      ]
+    }]
+  },
   plan: {
     type: String,
     default: "iCrux Free",
