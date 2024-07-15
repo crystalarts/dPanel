@@ -25,6 +25,7 @@ html(lang="en")
         script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js', integrity='sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV', crossorigin='anonymous', defer)
 
         script(src="/js/index.js")
+        script(src="/js/calendar.js")
     body
         header
             .left 
@@ -49,7 +50,7 @@ html(lang="en")
                 .right-left 
                     .ping
                         p#ping 
-                    .times
+                    .times#calendar-date
                         span#time 
                         span#date
         .desktop#desktop(style='opacity: 1; visibility: visible; transition: opacity 1s ease-in-out, visibility 1s ease-in-out;')
