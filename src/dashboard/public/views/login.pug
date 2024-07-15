@@ -31,8 +31,10 @@ html(lang="en")
                         | #{__('login_title')}
                     label(for="")
                         input.margin(type='text', name='email', placeholder=__('login_email'))
-                    label(for="")
-                        input.margin(type='password', name='password', placeholder=__('login_password'))
+                    .password-container
+                        label(for="")
+                            input.margin(type='password', name='password', required, placeholder=__('login_password'), id="password")
+                            button#toggle(type="button", onclick="togglePasswordVisibility()") <i class="far fa-eye"></i>
                     .text-right 
                         a(href="/") #{__('login_forgot_password')}
                     .buttons
@@ -44,3 +46,19 @@ html(lang="en")
                         a(href="/register") #{__('login_create_account')}
             .copyright 
                 p © 2024 iCrux.net. All rights reserved.
+    script.
+        function togglePasswordVisibility() {
+            var passwordField = document.getElementById('password');
+            var toggleButton = document.getElementById('toggle');
+            var icon = toggleButton.querySelector('i');
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }

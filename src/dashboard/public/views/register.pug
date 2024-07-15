@@ -30,9 +30,11 @@ html(lang="en")
                     .title
                         | #{__('register_title')}
                     label(for="")
-                        input.margin(type='text', name='email', placeholder=__('register_email'))
-                    label(for="")
-                        input.margin(type='password', name='password', placeholder=__('register_password'))
+                        input.margin(type='text', name='email', required, placeholder=__('register_email'))
+                    .password-container
+                        label(for="")
+                            input.margin(type='password', name='password', required, placeholder=__('register_password'), id="password")
+                            button#toggle(type="button", onclick="togglePasswordVisibility()") <i class="far fa-eye"></i>
                     .text-right 
                         a(href="https://discord.gg/krf2n9PrdV") #{__('register_support')}
                     .buttons
@@ -44,3 +46,19 @@ html(lang="en")
                         a(href="/login") #{__('register_sign_in')}
             .copyright 
                 p © 2024 iCrux.net. All rights reserved.
+    script.
+        function togglePasswordVisibility() {
+            var passwordField = document.getElementById('password');
+            var toggleButton = document.getElementById('toggle');
+            var icon = toggleButton.querySelector('i');
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }

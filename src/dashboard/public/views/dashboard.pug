@@ -58,10 +58,10 @@ html(lang="en")
                     .up-desktop 
                         .up-desktop-left
                         .up-desktop-right
-                            h1 Your Stats
-                            h2 • Your plan: #{user.plan}
-                            h2 • Your server: #{user.server}
-                            h2 • Disk space usage: #{(user.storageUsed / (1024 * 1024 * 1024)).toFixed(2)} GB / #{(user.storageLimit / (1024 * 1024 * 1024)).toFixed(2)} GB
+                            h1 #{__('dashboard_desktop_stats_title')}
+                            h2 • #{__('dashboard_desktop_plan')}: #{user.plan}
+                            h2 • #{__('dashboard_desktop_server')}: #{user.server}
+                            h2 • #{__('dashboard_desktop_usage')}: #{(user.storageUsed / (1024 * 1024 * 1024)).toFixed(2)} GB / #{(user.storageLimit / (1024 * 1024 * 1024)).toFixed(2)} GB
                             .flex-wrapper
                                 .single-chart
                                     svg(viewBox="0 0 36 36", class="circular-chart orange")
@@ -81,8 +81,8 @@ html(lang="en")
             .content-overview
                 .up 
                     .title 
-                        h1 Overview
-                        span Version 1.0.1-alpha 
+                        h1 #{__('dashboard_overview_title')}
+                        span #{__('dashboard_overview_version')} 1.0.1-alpha 
                     .display-up
                         .img
                             .display-img
@@ -93,77 +93,77 @@ html(lang="en")
                             .display-img
                                 a(href='/')
                                     img(src='/img/calculator.png', width='100px', height='100px')
-                                    p Calculator
+                                    p #{__('dashboard_overview_calculator')}
                         .img
                             .display-img
                                 a(href='/')
                                     img(src='/img/calendar.png', width='100px', height='100px')
-                                    p Calendar
+                                    p #{__('dashboard_overview_calendar')}
                         .img
                             .display-img
                                 a(href='/')
                                     img(src='/img/clock.png', width='100px', height='100px')
-                                    p Clock
+                                    p #{__('dashboard_overview_clock')}
                         .img
                             .display-img
                                 a(href='/')
                                     img(src='/img/contacts.png', width='100px', height='100px')
-                                    p Contacts
+                                    p #{__('dashboard_overview_contacts')}
                         .img
                             .display-img
                                 a(href='/')
                                     img(src='/img/files.png', width='100px', height='100px')
-                                    p Files
+                                    p #{__('dashboard_overview_files')}
                         .img
                             .display-img
                                 a(href='/')
                                     img(src='/img/home.png', width='100px', height='100px')
-                                    p Home
+                                    p #{__('dashboard_overview_home')}
                         .img
                             .display-img
                                 a(href='/')
                                     img(src='/img/plus.png', width='100px', height='100px')
-                                    p Join to iCrux+
+                                    p #{__('dashboard_overview_icrux')}
                         .img
                             .display-img
                                 a(href='/')
                                     img(src='/img/notes.png', width='100px', height='100px')
-                                    p Notes
+                                    p #{__('dashboard_overview_notes')}
                         .img
                             .display-img
                                 a(href='/')
                                     img(src='/img/photos.png', width='100px', height='100px')
-                                    p Photos
+                                    p #{__('dashboard_overview_photos')}
                         .img
                             .display-img
                                 a(href='/')
                                     img(src='/img/reminders.png', width='100px', height='100px')
-                                    p Reminders
+                                    p #{__('dashboard_overview_reminders')}
                         .img
                             .display-img
                                 a(href='/')
                                     img(src='/img/settings.png', width='100px', height='100px')
-                                    p Settings
+                                    p #{__('dashboard_overview_settings')}
                         .img
                             .display-img
                                 a(href='/')
                                     img(src='/img/news.png', width='100px', height='100px')
-                                    p Tips and guides
+                                    p #{__('dashboard_overview_t&g')}
                         .img
                             .display-img
                                 a(href='/')
                                     img(src='/img/translate.png', width='100px', height='100px')
-                                    p Translate
+                                    p #{__('dashboard_overview_translate')}
                         .img
                             .display-img
                                 a(href='/')
                                     img(src='/img/wallet.png', width='100px', height='100px')
-                                    p Wallet
+                                    p #{__('dashboard_overview_wallet')}
                         .img
                             .display-img
                                 a(href='javascript:void(0)', onclick='showWeather()')
                                     img(src='/img/weather.png', width='100px', height='100px')
-                                    p Weather
+                                    p #{__('dashboard_overview_weather')}
                 .down
                     .menu
                         img(src='/img/icruxlogo.png', onclick='showMenu()')
