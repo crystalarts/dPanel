@@ -11,19 +11,32 @@ const path = require("path");
 const WebSocket = require("ws");
 const ping = require("ping");
 const PORT_DASHBOARD = require("../config/website.json").PORT_DASHBOARD;
+const i18n = require("i18n");
 
 const app = express();
 
+i18n.configure({
+  locales: ["en", "pl", "de"],
+  directory: path.join(__dirname, "../locales"),
+  defaultLocale: "en",
+  cookie: "lang",
+});
+
+app.use(i18n.init);
+
 app.set("views", path.join(__dirname, "public/views"));
 app.set("view engine", "pug");
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(cookies.express("a", "b", "c"));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
+
 app.use(express.static(`${__dirname}/public/assets`));
 app.locals.basedir = `${__dirname}/public/assets`;
+
 app.use(
   session({
     secret: "secret",
@@ -31,8 +44,19 @@ app.use(
     saveUninitialized: false,
   }),
 );
+
+app.use((req, res, next) => {
+  let lang = req.query.lang;
+  if (lang) {
+    res.cookie('lang', lang);
+    res.setLocale(lang);
+  }
+  next();
+})
+
 app.use(passport.initialize());
 app.use(passport.session());
+
 app.use(flash());
 app.use(cors());
 

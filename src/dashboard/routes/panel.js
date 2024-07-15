@@ -6,11 +6,31 @@ const Server = require("../../database/models/server");
 const bcrypt = require("bcrypt");
 
 router.get("/login", (req, res, next) => {
-  res.render("login");
+  const ogTitle = res.__web_title_login
+  const ogDescription = res.__web_description
+  const email = res._login_email
+  const password = res._login_password
+
+  res.render("login", {
+    ogTitle,
+    ogDescription,
+    email,
+    password
+  });
 });
 
 router.get("/register", (req, res, next) => {
-  res.render("register");
+  const ogTitle = res.__web_title_register
+  const ogDescription = res.__web_description
+  const email = res._login_email
+  const password = res._login_password
+
+  res.render("register", {
+    ogTitle,
+    ogDescription,
+    email,
+    password
+  });
 });
 
 router.post("/login", (req, res, next) => {

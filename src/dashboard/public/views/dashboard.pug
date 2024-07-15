@@ -1,5 +1,5 @@
 doctype
-html(lang="pl")
+html(lang="en")
     head
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
@@ -13,8 +13,8 @@ html(lang="pl")
         link(rel='icon', type='image/png', sizes='32x32', href='/img/icruxlogo.png')
 
         meta(name='theme-color', content='#4657bb')
-        meta(property='og:title', content='iCrux.net')
-        meta(property='og:description', content='iCrux.net is a cloud storage service that allows you to store your files in the cloud and access them from anywhere. You can store photos, videos, music, documents and much more. You can also share your files with others. iCrux.net is safe, reliable and easy to use. Sign up today and get 5GB of free storage.')
+        meta(property='og:title', content=ogTitle)
+        meta(property='og:description', content=ogDescription)
         meta(property='og:type', content='website')
         meta(property='og:url', content='https://dash.icrux.net/')
         meta(property='og:site_name', content='dash.icrux.net')
@@ -188,7 +188,9 @@ html(lang="pl")
                             .menu-down
                                 .menu-display 
                                     .weather-left 
-                                        p test
+                                        each item in cities 
+                                            .weather-box(onclick='showCities(' + item + ')' style='cursor: pointer;') 
+                                                p #{item}
                                     .weather-right
                                         p test
                     .down-weather

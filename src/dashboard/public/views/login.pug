@@ -1,10 +1,10 @@
 doctype
-html(lang="pl")
+html(lang="en")
     head
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
 
-        title Sign in to iCrux.net
+        title #{__('web_title_login')}
 
         link(rel='stylesheet', href='/css/login.css')
         link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css')
@@ -12,8 +12,8 @@ html(lang="pl")
         link(rel='icon', type='image/png', sizes='32x32', href='/img/icruxlogo.png')
 
         meta(name='theme-color', content='#4657bb')
-        meta(property='og:title', content='Sign in to iCrux.net')
-        meta(property='og:description', content='iCrux.net is a cloud storage service that allows you to store your files in the cloud and access them from anywhere. You can store photos, videos, music, documents and much more. You can also share your files with others. iCrux.net is safe, reliable and easy to use. Sign up today and get 5GB of free storage.')
+        meta(property='og:title', content=ogTitle)
+        meta(property='og:description', content=ogDescription)
         meta(property='og:type', content='website')
         meta(property='og:url', content='https://dash.icrux.net/login')
         meta(property='og:site_name', content='dash.icrux.net')
@@ -28,19 +28,19 @@ html(lang="pl")
                     .logo
                         img(src='/img/icruxlogo.png', alt='iCrux.net')
                     .title
-                        | Sign in to iCrux.net
+                        | #{__('login_title')}
                     label(for="")
-                        input.margin(type='text', name='email', placeholder='Email Address')
+                        input.margin(type='text', name='email', placeholder=__('login_email'))
                     label(for="")
-                        input.margin(type='password', name='password', placeholder='Password')
+                        input.margin(type='password', name='password', placeholder=__('login_password'))
                     .text-right 
-                        a(href="/") Forgot password?
+                        a(href="/") #{__('login_forgot_password')}
                     .buttons
-                        button(type='submit') Sign In
+                        button(type='submit') #{__('login_button')}
             .newuser
                 .formater-newuser
-                    p Don't have an account?
+                    p #{__('login_no_account')}
                     span 
-                        a(href="/register") Create an account
+                        a(href="/register") #{__('login_create_account')}
             .copyright 
                 p © 2024 iCrux.net. All rights reserved.

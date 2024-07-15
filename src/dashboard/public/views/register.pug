@@ -1,10 +1,10 @@
 doctype
-html(lang="pl")
+html(lang="en")
     head
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
 
-        title Join to iCrux.net
+        title #{__('web_title_login')}
 
         link(rel='stylesheet', href='/css/login.css')
         link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css')
@@ -12,10 +12,10 @@ html(lang="pl")
         link(rel='icon', type='image/png', sizes='32x32', href='/img/icruxlogo.png')
 
         meta(name='theme-color', content='#4657bb')
-        meta(property='og:title', content='Join to iCrux.net')
-        meta(property='og:description', content='iCrux.net is a cloud storage service that allows you to store your files in the cloud and access them from anywhere. You can store photos, videos, music, documents and much more. You can also share your files with others. iCrux.net is safe, reliable and easy to use. Sign up today and get 5GB of free storage.')
+        meta(property='og:title', content=ogTitle)
+        meta(property='og:description', content=ogDescription)
         meta(property='og:type', content='website')
-        meta(property='og:url', content='https://dash.icrux.net/login')
+        meta(property='og:url', content='https://dash.icrux.net/register')
         meta(property='og:site_name', content='dash.icrux.net')
 
         script(src='https://code.jquery.com/jquery-3.5.1.slim.min.js', integrity='sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj', crossorigin='anonymous', defer)
@@ -28,19 +28,19 @@ html(lang="pl")
                     .logo
                         img(src='/img/icruxlogo.png', alt='iCrux.net')
                     .title
-                        | Join to iCrux.net
+                        | #{__('register_title')}
                     label(for="")
-                        input.margin(type='text', name='email', placeholder='Email Address')
+                        input.margin(type='text', name='email', placeholder=__('register_email'))
                     label(for="")
-                        input.margin(type='password', name='password', placeholder='Password')
+                        input.margin(type='password', name='password', placeholder=__('register_password'))
                     .text-right 
-                        a(href="https://discord.gg/krf2n9PrdV") Discord support server.
+                        a(href="https://discord.gg/krf2n9PrdV") #{__('register_support')}
                     .buttons
-                        button(type='submit') Create an account
+                        button(type='submit') #{__('register_button')}
             .newuser
                 .formater-newuser
-                    p Already have an account?
+                    p #{__('register_have_account')}
                     span 
-                        a(href="/login") Log in there
+                        a(href="/login") #{__('register_sign_in')}
             .copyright 
                 p © 2024 iCrux.net. All rights reserved.
