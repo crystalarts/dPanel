@@ -24,6 +24,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     const firstDayOfMonth = new Date(year, month, 1).getDay();
 
+    const adjustedFirstDay = (firstDayOfMonth === 0) ? 6 : firstDayOfMonth - 1;
+
     const daysOfWeek = ['Pn', 'Wt', 'Śr', 'Cz', 'Pt', 'So', 'Nd'];
 
     const headerRow = document.createElement('div');
@@ -48,8 +50,8 @@ document.addEventListener('DOMContentLoaded', function () {
       const weekRow = document.createElement('div');
       weekRow.className = 'calendar-row';
       for (let j = 0; j < 7; j++) {
-        if (i === 0 && j < firstDayOfMonth) {
-          const prevMonthDay = daysInPrevMonth - (firstDayOfMonth - j) + 1;
+        if (i === 0 && j < adjustedFirstDay) {
+          const prevMonthDay = daysInPrevMonth - (adjustedFirstDay - j) + 1;
           const cell = createCalendarCell(prevMonthDay, prevMonth, prevYear, 'prev-month');
           weekRow.appendChild(cell);
         } else if (date > daysInMonth) {
