@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node src/run.js",
-    "dev": "npx nodemon -e js,json,pug,css src/run.js",
-    "format": "prettier --write \"src/**/*.js\" \"src/**/*.json\" \"src/**/*.css\""
+    "start": "node run.js",
+    "dev": "npx nodemon -e js,json,pug,css run.js",
+    "format": "prettier --write \"**/*.js\" \"**/*.json\" \"**/*.css\""
   },
   "author": "Jakub Burzyński & Contributors",
   "license": "ISC",
@@ -23,7 +23,9 @@
     "disco-oauth": "^4.2.7",
     "discord-api-types": "^0.37.90",
     "discord.js": "^13.16.0",
+    "dockerode": "^4.0.2",
     "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
     "express": "^4.19.2",
     "express-rate-limit": "^7.3.1",
     "express-session": "^1.18.0",
