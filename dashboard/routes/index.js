@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { ensureAuthenticated } = require("../config/auth");
 const os = require('os');
+const db = require("../../mysql-promise");
 
 function getLocalIPs() {
   const interfaces = os.networkInterfaces();
@@ -21,9 +22,20 @@ function getLocalIPs() {
 router.get("/", ensureAuthenticated, async (req, res, next) => {
   try {
     const ips = getLocalIPs();
+    const sql = `
+      SELECT COUNT(*) AS total_indexes
+      FROM INFORMATION_SCHEMA.STATISTICS
+      WHERE TABLE_SCHEMA = 'dpanel'
+      AND TABLE_NAME = 'user';
+    `;
+
+    const [results] = await db.query(sql);
+    const index_user = results[0].total_indexes;
+
     res.render("dashboard", {
       user: req.user,
-      iphost: ips
+      iphost: ips,
+      index_user: index_user
     });
   } catch (err) {
     next(err);

@@ -171,7 +171,7 @@ body {
   }
   
   .button {
-    padding: 10px 20px;
+    padding: 10px 10px;
     border: none;
     border-radius: 8px;
     font-size: 13px;
@@ -183,7 +183,12 @@ body {
   }
   
   .button i {
-    margin-right: 10px;
+    margin-right: 6px;
+  }
+
+  .button a {
+    text-decoration: none;
+    color: #fff;
   }
   
   .expand-button {
@@ -477,6 +482,7 @@ body {
 
   .leftbar-secound .leftbar-secound-item {
     margin-top: 5px;
+    margin-bottom: 5px;
     border: 1px solid transparent;
     border-radius: 8px;
     transition: 0.85s ease all;
