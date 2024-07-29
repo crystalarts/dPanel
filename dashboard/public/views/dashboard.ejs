@@ -157,28 +157,66 @@
             </div>
           </div>
           <div class="dashboard">
-            <h1>Welcome back, !name</h1>
+            <h1>Welcome back, <%= user.name %></h1>
             <h3>It's great to see you again!</h3>
 
-            <div class="notification-box">
-              <h4>Notifications</h4>
-              <div class="notification-item">
-                <p>
-                  <strong>New Feature Release: </strong>
-                  A new update is available
-                </p>
-                <span class="timestamp">Just now</span>
+            <div class="expand">
+              <div class="section">
+                <div class = "section-item-left">
+                  <i class="fas fa-code"></i>
+                  <h2>Information for Developers</h2>
+                </div>
+                <div class = "section-item-right">
+                  <button class="button create-issue"><i class="fab fa-github"></i> Create Issue</button>
+                  <button class="button discuss-features"><i class="fab fa-github"></i> Discuss Features</button>
+                  <button class="expand-button" onclick="toggleExpand(this)"><i class="fas fa-angle-down"></i></button>
+                </div> 
+              </div>
+              <div class="section">
+                <div class = "section-item-left">
+                  <i class="fas fa-heart color-heart"></i>
+                  <h2>Support dPanel</h2>
+                </div>
+                <div class = "section-item-right">
+                  <button class="button help-translate"><i class="fas fa-globe"></i> Help Translate</button>
+                  <button class="button donate-directly"><i class="fas fa-money-bill-wave"></i> Donate Directly</button>
+                  <button class="expand-button" onclick="toggleExpand(this)"><i class="fas fa-angle-down"></i></button>
+                </div>
+              </div>
+              <div class="section"> 
+                <div class = "section-item-left">
+                  <i class="fas fa-question"></i>
+                  <h2>Need Help? </h2>
+                </div>
+                <div class = "section-item-right">
+                  <button class="button read-documentation"><i class="fas fa-ship"></i> Read Documentation</button>
+                  <button class="button get-help-discord"><i class="fab fa-discord"></i> Get help in Discord</button>
+                  <button class="expand-button" onclick="toggleExpand(this)"><i class="fas fa-angle-down"></i></button>
+                </div>
               </div>
             </div>
+            
+            <div class="display-flex">
+              <div class="notification-box">
+                <h4>Notifications</h4>
+                <div class="notification-item">
+                  <p>
+                    <strong>New Feature Release: </strong>
+                    A new update is available
+                  </p>
+                  <span class="timestamp">Just now</span>
+                </div>
+              </div>
 
-            <div class="activity-box">
-              <h4>Activity</h4>
-              <div class="activity-item">
-                <p>
-                  <strong>@Admin1 </strong>
-                  Created a new node
-                </p>
-                <span class="timestamp">Just now</span>
+              <div class="activity-box">
+                <h4>Activity</h4>
+                <div class="activity-item">
+                  <p>
+                    <strong>@Admin1 </strong>
+                    Created a new node
+                  </p>
+                  <span class="timestamp">Just now</span>
+                </div>
               </div>
             </div>
           </div>

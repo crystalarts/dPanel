@@ -31,8 +31,6 @@ body {
 @media screen and (min-width: 1024px) {
   .stats {
     display: flex;
-    margin-top: 20px;
-    margin-bottom: 20px;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
@@ -108,14 +106,132 @@ body {
 
   .dashboard h1 {
     color: #b4b7b9;
-    margin-left: 20px;
   }
 
   .dashboard h3 {
     font-size: 15px;
     color: #b4b7b9;
     margin-bottom: 30px;
-    margin-left: 20px;
+  }
+
+  .expand {
+    width: 100%;
+  }
+  
+  .section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 1px solid #33373f;
+    border-radius: 10px;
+    background-color: #ffffff08;
+    padding: 20px;
+    margin: 20px 0;
+  }
+
+  .section .section-item-left {
+    display: flex;
+    align-items: center;
+  }
+
+  .section .section-item-left i {
+    display: flex;
+    align-items: center;
+    color: #accff762;
+    width: 25px;
+  }
+
+  .section .section-item-left i.color-heart {
+    color: #d9534f;
+  }
+
+  .section .section-item-right {
+    display: flex;
+  }
+
+  .section .section-item-right button {
+    margin-left: 10px;
+  }
+  
+  .section h2 {
+    display: flex;
+    color: #b4b7b9;
+    font-size: 15px;
+    align-items: center;
+  }
+  
+  .button-container {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .buttons {
+    display: none;
+    flex-direction: column;
+  }
+  
+  .button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    font-weight: 600;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .button i {
+    margin-right: 10px;
+  }
+  
+  .expand-button {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding-left: 10px;
+  }
+  
+  .create-issue {
+    background-color: #CC7C2E;
+    color: #fff;
+  }
+  
+  .discuss-features {
+    background-color: #3982C2;
+    color: #fff;
+  }
+  
+  .help-translate {
+    background-color: #3662e3;
+    color: #fff;
+  }
+  
+  .donate-directly {
+    background-color: #4ca154;
+    color: #fff;
+  }
+  
+  .read-documentation {
+    background-color: #3662e3;
+    color: #fff;
+  }
+  
+  .get-help-discord {
+    background-color: #3982C2;
+    color: #fff;
+  }
+  
+  .section.expanded .buttons {
+    display: flex;
+  }
+
+  .display-flex {
+    display: flex;
+    flex: 1 1;
+    gap: 20px;
   }
 
   .notification-box {
@@ -125,8 +241,7 @@ body {
     padding: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: left;
-    max-width: 400px;
-    margin-left: 20px;
+    width: 100%;
     margin-top: 20px;
   }
 
@@ -165,8 +280,7 @@ body {
     padding: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: left;
-    max-width: 400px;
-    margin-left: 20px;
+    width: 100%;
     margin-top: 20px;
   }
 
@@ -296,6 +410,10 @@ body {
         rgba(143, 143, 143, 0.17) 0%,
         transparent 100%
       );
+  }
+
+  .right-bar {
+    margin: 25px;
   }
 
   .leftbar-icon {
