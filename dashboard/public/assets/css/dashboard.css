@@ -66,11 +66,11 @@ body {
 
   .stats .stats-boxing p {
     font-size: 12px;
-    color: #acf7bc;
+    color: #acd3f7;
     padding: 5px;
     border-radius: 5px;
-    border: 1px solid #acf7bc2c;
-    background-color: #acf7bc1c;
+    border: 1px solid #acd3f72c;
+    background-color: #acd3f71c;
     font-weight: 500;
     transition: 0.85s ease all;
   }
@@ -88,17 +88,17 @@ body {
   }
 
   .stats-box:hover {
-    color: #acf7bc;
+    color: #acd3f7;
     border: 1px solid rgba(255, 255, 255, 0.05);
     background-color: rgba(255, 255, 255, 0.03);
   }
 
   .stats-box:hover i {
-    color: #acf7bc;
+    color: #acd3f7;
   }
 
   .stats-box:hover h4 {
-    color: #acf7bc;
+    color: #acd3f7;
   }
 
   .dashboard {
@@ -222,7 +222,7 @@ body {
     width: 70px;
     height: 2px;
     border-radius: 999px;
-    background: linear-gradient(90deg, transparent, #acf7bc, transparent);
+    background: linear-gradient(90deg, transparent, #accff7, transparent);
     background-size: 200% 100%;
     animation: animateBorder 3.5s linear infinite;
   }
@@ -287,7 +287,7 @@ body {
     height: 200px;
     background: radial-gradient(
           60% 70% at 50% 0%,
-          rgba(134, 194, 50, 0.2) 0%,
+          rgba(50, 129, 194, 0.2) 0%,
           transparent 100%
         )
         center,
@@ -345,6 +345,58 @@ body {
     height: 27px;
     border-radius: 50%;
     margin-left: 8px;
+  }
+
+  .leftbar-secound {
+    margin: 10px;
+  }
+
+  .leftbar-secound .leftbar-secound-title {
+    color: #b4b7b9;
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .leftbar-secound .leftbar-secound-item {
+    margin-top: 5px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    transition: 0.85s ease all;
+  }
+
+  .leftbar-secound .leftbar-secound-item a {
+    display: flex;
+    text-decoration: none;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .leftbar-secound .leftbar-secound-item a i {
+    display: flex;
+    width: 30px;
+    color: #accff762;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+  }
+
+  .leftbar-secound .leftbar-secound-item:hover {
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: rgba(255, 255, 255, 0.03);
+  }
+
+  .leftbar-secound .leftbar-secound-item a h2 {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  .leftbar-secound .leftbar-secound-item a h2.iphost {
+    color: #acf7eb62;
+    font-size: 16px;
+    font-weight: 500;
   }
 }
 
