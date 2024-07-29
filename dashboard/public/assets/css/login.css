@@ -42,6 +42,7 @@ body {
 .formater .logo img {
   width: 58px;
   height: 58px;
+  border-radius: 10px;
 }
 
 .user-form {

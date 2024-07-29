@@ -1,6 +1,0 @@
-{
-  "DEFAULT_URL": "https://icrux.net/",
-  "DASHBOARD_URL": "https://dash.icrux.net/",
-  "API_KEY_OPENWEATHERMAP": "96e77e1213c7eb323b1daa0d4dbb3797",
-  "PORT_WEBSITE": 3000
-}

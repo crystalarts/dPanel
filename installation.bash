@@ -110,6 +110,51 @@ INSERT INTO dpanel-user (name, email, password, admin, servers) VALUES ('$admin_
 echo "* The dPanel admin account has been created."
 echo "*"
 
+## -------------------------------
+## ----- Saving data in .env -----
+## -------------------------------
+
+env_file=".env"
+
+db_host="localhost"
+db_name="dpanel-user"
+
+if [ -f "$env_file" ]; then
+    # Wczytaj istniejący plik .env i zaktualizuj wartości
+    awk -v user="$db_user" -v pass="$db_password" -v host="$db_host" -v name="$db_name" \
+        -v admin_user="$admin_name" -v admin_email="$admin_email" -v admin_pass="$admin_password" '
+    BEGIN { user_set=0; pass_set=0; host_set=0; name_set=0; admin_user_set=0; admin_email_set=0; admin_pass_set=0; }
+    /^DB_USER=/ { print "DB_USER=" user; user_set=1; next; }
+    /^DB_PASSWORD=/ { print "DB_PASSWORD=" pass; pass_set=1; next; }
+    /^DB_HOST=/ { print "DB_HOST=" host; host_set=1; next; }
+    /^DB_NAME=/ { print "DB_NAME=" name; name_set=1; next; }
+    /^ADMIN_NAME=/ { print "ADMIN_NAME=" admin_user; admin_user_set=1; next; }
+    /^ADMIN_EMAIL=/ { print "ADMIN_EMAIL=" admin_email; admin_email_set=1; next; }
+    /^ADMIN_PASSWORD=/ { print "ADMIN_PASSWORD=" admin_pass; admin_pass_set=1; next; }
+    { print; }
+    END {
+        if (!user_set) print "DB_USER=" user;
+        if (!pass_set) print "DB_PASSWORD=" pass;
+        if (!host_set) print "DB_HOST=" host;
+        if (!name_set) print "DB_NAME=" name;
+        if (!admin_user_set) print "ADMIN_NAME=" admin_user;
+        if (!admin_email_set) print "ADMIN_EMAIL=" admin_email;
+        if (!admin_pass_set) print "ADMIN_PASSWORD=" admin_pass;
+    }' "$env_file" > "$env_file.tmp" && mv "$env_file.tmp" "$env_file"
+else
+    # Stwórz nowy plik .env z podanymi wartościami
+    echo "DB_USER=${db_user}" > "$env_file"
+    echo "DB_PASSWORD=${db_password}" >> "$env_file"
+    echo "DB_HOST=${db_host}" >> "$env_file"
+    echo "DB_NAME=${db_name}" >> "$env_file"
+    echo "ADMIN_NAME=${admin_name}" >> "$env_file"
+    echo "ADMIN_EMAIL=${admin_email}" >> "$env_file"
+    echo "ADMIN_PASSWORD=${admin_password}" >> "$env_file"
+fi
+
+echo "* MySQL login details have been saved in the .env file."
+echo "*"
+
 ## ------------------------------
 ## ----- Installation NGINX -----
 ## ------------------------------

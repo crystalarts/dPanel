@@ -382,6 +382,11 @@ body {
     margin-right: 5px;
   }
 
+  .leftbar-secound .leftbar-secound-item.active {
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: rgba(255, 255, 255, 0.03);
+  }
+
   .leftbar-secound .leftbar-secound-item:hover {
     border: 1px solid rgba(255, 255, 255, 0.05);
     background-color: rgba(255, 255, 255, 0.03);
