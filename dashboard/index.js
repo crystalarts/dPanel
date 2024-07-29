@@ -68,7 +68,7 @@ app.all("*", (req, res) => res.render("errors/404"));
 
 const server = app.listen(3000, () => {
   console.log(
-    `The server is listening on port 3000.`,
+    `*   The server is listening on port 3000.`,
   );
 });
 

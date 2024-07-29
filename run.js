@@ -1,3 +1,16 @@
+console.log("*");
+console.log("*          __  _______                                __ ");
+console.log("*         |  \\|       \\                              |  \\");
+console.log("*     ____| $$| $$$$$$$\\ ______   _______    ______  | $$");
+console.log("*    /      $$| $$__/ $$|      \\ |       \\  /      \\ | $$");
+console.log("*   |  $$$$$$$| $$    $$ \\$$$$$$\\| $$$$$$$\\|  $$$$$$\\| $$");
+console.log("*   | $$  | $$| $$$$$$$ /      $$| $$  | $$| $$    $$| $$");
+console.log("*   | $$__| $$| $$     |  $$$$$$$| $$  | $$| $$$$$$$$| $$");
+console.log("*    \\$$    $$| $$      \\$$    $$| $$  | $$ \\$$     \\| $$");
+console.log("*     \\$$$$$$$ \\$$       \\$$$$$$$ \\$$   \\$$  \\$$$$$$$ \\$$");
+console.log("*");
+console.log("*   dPanel has started launching:");
+console.log("*");
 require("./dashboard/index");
 require("./mysql-promise");
 require("./mysql");

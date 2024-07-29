@@ -4,7 +4,7 @@ const db = require("../../mysql");
 
 module.exports = function (passport) {
   console.log(
-    `The passport module has been successfully loaded.`,
+    `*   The passport module has been successfully loaded.`,
   );
   passport.use(new LocalStrategy(
     { usernameField: 'email' },
