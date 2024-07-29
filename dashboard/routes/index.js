@@ -30,14 +30,13 @@ router.get("/", ensureAuthenticated, async (req, res, next) => {
   }
 });
 
-router.get("/logout", (req, res, next) => {
-  req.logout(function (err) {
+router.get('/logout', (req, res) => {
+  req.logout((err) => {
     if (err) {
       return next(err);
     }
-    res.redirect("/login");
+    res.redirect('/');
   });
-  req.flash("success_msg", "Now logged out");
 });
 
 module.exports = router;

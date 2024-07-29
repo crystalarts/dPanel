@@ -4,6 +4,7 @@
   "web_title_register": "Join to iCrux.net",
   "web_description": "iCrux.net is a cloud storage service that allows you to store files in the cloud and access them from anywhere. You can store photos, videos, music, documents, and more. You can also share your files with others. iCrux.net is secure, reliable, and easy to use. Sign up today and get 5 GB of free storage.",
   "login_title": "Sign in to iCrux.net",
+  "login_name": "Username",
   "login_email": "Email Address",
   "login_password": "Password",
   "login_forgot_password": "Forgot your password?",

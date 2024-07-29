@@ -4,6 +4,7 @@
   "web_title_register": "Dołącz do iCrux.net",
   "web_description": "iCrux.net to usługa przechowywania w chmurze, która umożliwia przechowywanie plików w chmurze i dostęp do nich z dowolnego miejsca. Możesz przechowywać zdjęcia, filmy, muzykę, dokumenty i wiele więcej. Możesz także udostępniać swoje pliki innym osobom. iCrux.net jest bezpieczny, niezawodny i łatwy w użyciu. Zarejestruj się już dziś i uzyskaj 5 GB bezpłatnej przestrzeni dyskowej.",
   "login_title": "Zaloguj się do iCrux.net",
+  "login_name": "Pseudonim",
   "login_email": "Adres e-mail",
   "login_password": "Hasło",
   "login_forgot_password": "Zapomniałeś hasła?",

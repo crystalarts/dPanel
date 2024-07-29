@@ -10,7 +10,6 @@ const passport = require("passport");
 const path = require("path");
 const WebSocket = require("ws");
 const ping = require("ping");
-const PORT_WEBSITE = require("../config/website.json").PORT_WEBSITE;
 const i18n = require("i18n");
 
 const app = express();
@@ -67,9 +66,9 @@ app.use("/", require("./routes/panel"));
 
 app.all("*", (req, res) => res.render("errors/404"));
 
-const server = app.listen(PORT_WEBSITE, () => {
+const server = app.listen(3000, () => {
   console.log(
-    `The server is listening on port ${PORT_WEBSITE}.`,
+    `The server is listening on port 3000.`,
   );
 });
 

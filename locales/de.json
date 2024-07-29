@@ -4,6 +4,7 @@
   "web_title_register": "Bei iCrux.net registrieren",
   "web_description": "iCrux.net ist ein Cloud-Speicherdienst, der es Ihnen ermöglicht, Dateien in der Cloud zu speichern und von überall darauf zuzugreifen. Sie können Fotos, Videos, Musik, Dokumente und vieles mehr speichern. Sie können Ihre Dateien auch mit anderen Personen teilen. iCrux.net ist sicher, zuverlässig und einfach zu bedienen. Registrieren Sie sich noch heute und erhalten Sie 5 GB kostenlosen Speicherplatz.",
   "login_title": "Anmelden bei iCrux.net",
+  "login_name": "Benutzername",
   "login_email": "E-Mail-Adresse",
   "login_password": "Passwort",
   "login_forgot_password": "Passwort vergessen?",

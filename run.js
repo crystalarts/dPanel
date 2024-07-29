@@ -1,2 +1,2 @@
 require("./dashboard/index");
-require("./database/index");
+require("./mysql");
