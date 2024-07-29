@@ -7,36 +7,36 @@ module.exports = function (passport) {
     `The passport module has been successfully loaded.`,
   );
   passport.use(new LocalStrategy(
-      { usernameField: 'email' },
-      (email, password, done) => {
-          db.query('SELECT * FROM user WHERE email = ?', [email], (err, results) => {
-              if (err) { return done(err); }
-              if (results.length === 0) {
-                  return done(null, false, { message: 'Incorrect email.' });
-              }
+    { usernameField: 'email' },
+    (email, password, done) => {
+      db.query('SELECT * FROM user WHERE email = ?', [email], (err, results) => {
+        if (err) { return done(err); }
+        if (results.length === 0) {
+          return done(null, false, { message: 'Incorrect email.' });
+        }
 
-              const user = results[0];
+        const user = results[0];
 
-              bcrypt.compare(password, user.password, (err, isMatch) => {
-                  if (err) { return done(err); }
-                  if (isMatch) {
-                      return done(null, user);
-                  } else {
-                      return done(null, false, { message: 'Incorrect password.' });
-                  }
-              });
-          });
-      }
+        bcrypt.compare(password, user.password, (err, isMatch) => {
+          if (err) { return done(err); }
+          if (isMatch) {
+            return done(null, user);
+          } else {
+            return done(null, false, { message: 'Incorrect password.' });
+          }
+        });
+      });
+    }
   ));
 
   passport.serializeUser((user, done) => {
-      done(null, user.id);
+    done(null, user.id);
   });
 
   passport.deserializeUser((id, done) => {
-      db.query('SELECT * FROM user WHERE id = ?', [id], (err, results) => {
-          if (err) { return done(err); }
-          done(null, results[0]);
-      });
+    db.query('SELECT * FROM user WHERE id = ?', [id], (err, results) => {
+      if (err) { return done(err); }
+      done(null, results[0]);
+    });
   });
 };
