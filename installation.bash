@@ -84,10 +84,10 @@ fi
 ## ----- Creating an admin account -----
 ## -------------------------------------
 
+echo "* Creating an admin account..."
 read -p "* Provide the dPanel admin username: " admin_name
 read -p "* Provide the dPanel admin email: " admin_email
 read -s -p "* Provide the dPanel admin password: " admin_password
-echo
 
 if [ -z "$admin_name" ] || [ -z "$admin_email" ] || [ -z "$password" ]; then
     echo "* The admin username, email, and password cannot be empty."
@@ -110,49 +110,39 @@ INSERT INTO dpanel-user (name, email, password, admin, servers) VALUES ('$admin_
 echo "* The dPanel admin account has been created."
 echo "*"
 
-## -------------------------------
-## ----- Saving data in .env -----
-## -------------------------------
 
-env_file=".env"
+## ------------------------------
+## ----- SMTP configuration -----
+## ------------------------------
 
-db_host="localhost"
-db_name="dpanel-user"
+echo "* Configuring SMTP..."
 
-if [ -f "$env_file" ]; then
-    # Wczytaj istniejący plik .env i zaktualizuj wartości
-    awk -v user="$db_user" -v pass="$db_password" -v host="$db_host" -v name="$db_name" \
-        -v admin_user="$admin_name" -v admin_email="$admin_email" -v admin_pass="$admin_password" '
-    BEGIN { user_set=0; pass_set=0; host_set=0; name_set=0; admin_user_set=0; admin_email_set=0; admin_pass_set=0; }
-    /^DB_USER=/ { print "DB_USER=" user; user_set=1; next; }
-    /^DB_PASSWORD=/ { print "DB_PASSWORD=" pass; pass_set=1; next; }
-    /^DB_HOST=/ { print "DB_HOST=" host; host_set=1; next; }
-    /^DB_NAME=/ { print "DB_NAME=" name; name_set=1; next; }
-    /^ADMIN_NAME=/ { print "ADMIN_NAME=" admin_user; admin_user_set=1; next; }
-    /^ADMIN_EMAIL=/ { print "ADMIN_EMAIL=" admin_email; admin_email_set=1; next; }
-    /^ADMIN_PASSWORD=/ { print "ADMIN_PASSWORD=" admin_pass; admin_pass_set=1; next; }
-    { print; }
-    END {
-        if (!user_set) print "DB_USER=" user;
-        if (!pass_set) print "DB_PASSWORD=" pass;
-        if (!host_set) print "DB_HOST=" host;
-        if (!name_set) print "DB_NAME=" name;
-        if (!admin_user_set) print "ADMIN_NAME=" admin_user;
-        if (!admin_email_set) print "ADMIN_EMAIL=" admin_email;
-        if (!admin_pass_set) print "ADMIN_PASSWORD=" admin_pass;
-    }' "$env_file" > "$env_file.tmp" && mv "$env_file.tmp" "$env_file"
-else
-    # Stwórz nowy plik .env z podanymi wartościami
-    echo "DB_USER=${db_user}" > "$env_file"
-    echo "DB_PASSWORD=${db_password}" >> "$env_file"
-    echo "DB_HOST=${db_host}" >> "$env_file"
-    echo "DB_NAME=${db_name}" >> "$env_file"
-    echo "ADMIN_NAME=${admin_name}" >> "$env_file"
-    echo "ADMIN_EMAIL=${admin_email}" >> "$env_file"
-    echo "ADMIN_PASSWORD=${admin_password}" >> "$env_file"
+read -p "* Provide the SMTP host (e.g. gmail): " smtp_host
+read -p "* Provide the SMTP address: " smtp_email
+read -p "* Provide the SMTP password: " smtp_pass
+
+if [ -z "$smtp_host" ] || [ -z "$smtp_email" ] || [ -z "$smtp_pass" ]; then
+    echo "* The SMTP host, address, and password cannot be empty."
+    exit 1
 fi
 
-echo "* MySQL login details have been saved in the .env file."
+echo "* SMTP configuration completed"
+echo "*"
+
+## -----------------------------------
+## ----- Dashboard configuration -----
+## -----------------------------------
+
+echo "* Dashboard configuration..."
+
+read -p "* Provide the dashboard name: " dash_name
+
+if [ -z "$dash_name" ]; then
+    echo "* The dashboard name cannot be empty."
+    exit 1
+fi
+
+echo "* Dashboard configuration completed"
 echo "*"
 
 ## ------------------------------
@@ -196,3 +186,72 @@ fi
 sudo systemctl reload nginx
 
 echo "* Nginx configuration has been updated. You can now use the server on ${port} at ${domain}."
+
+## -------------------------------
+## ----- Saving data in .env -----
+## -------------------------------
+
+env_file=".env"
+
+db_host="localhost"
+db_name="dpanel-user"
+
+if [ -f "$env_file" ]; then
+    awk -v user="$db_user" -v pass="$db_password" -v host="$db_host" -v name="$db_name" \
+        -v admin_user="$admin_name" -v admin_email="$admin_email" -v admin_pass="$admin_password" \
+        -v smtp_host="$smtp_host" -v smtp_email="$smtp_email" -v smtp_pass="$smtp_password" \
+        -v nginx_host="$domain" -v nginx_port="$port" -v dpanel_name="$dash_name" '
+    BEGIN { 
+        user_set=0; pass_set=0; host_set=0; name_set=0; 
+        admin_user_set=0; admin_email_set=0; admin_pass_set=0;
+        smtp_host_set=0; smtp_email_set=0; smtp_pass_set=0;
+        nginx_host_set=0; nginx_port_set=0; dpanel_name_set=0;
+    }
+    /^DB_USER=/ { print "DB_USER=" user; user_set=1; next; }
+    /^DB_PASSWORD=/ { print "DB_PASSWORD=" pass; pass_set=1; next; }
+    /^DB_HOST=/ { print "DB_HOST=" host; host_set=1; next; }
+    /^DB_NAME=/ { print "DB_NAME=" name; name_set=1; next; }
+    /^ADMIN_NAME=/ { print "ADMIN_NAME=" admin_user; admin_user_set=1; next; }
+    /^ADMIN_EMAIL=/ { print "ADMIN_EMAIL=" admin_email; admin_email_set=1; next; }
+    /^ADMIN_PASSWORD=/ { print "ADMIN_PASSWORD=" admin_pass; admin_pass_set=1; next; }
+    /^SMTP_HOST=/ { print "SMTP_HOST=" smtp_host; smtp_host_set=1; next; }
+    /^SMTP_EMAIL=/ { print "SMTP_EMAIL=" smtp_email; smtp_email_set=1; next; }
+    /^SMTP_PASSWORD=/ { print "SMTP_PASSWORD=" smtp_pass; smtp_pass_set=1; next; }
+    /^NGINX_HOST=/ { print "NGINX_HOST=" nginx_host; nginx_host_set=1; next; }
+    /^NGINX_PORT=/ { print "NGINX_PORT=" nginx_port; nginx_port_set=1; next; }
+    /^DPANEL_NAME=/ { print "DPANEL_NAME=" dpanel_name; dpanel_name_set=1; next; }
+    { print; }
+    END {
+        if (!user_set) print "DB_USER=" user;
+        if (!pass_set) print "DB_PASSWORD=" pass;
+        if (!host_set) print "DB_HOST=" host;
+        if (!name_set) print "DB_NAME=" name;
+        if (!admin_user_set) print "ADMIN_NAME=" admin_user;
+        if (!admin_email_set) print "ADMIN_EMAIL=" admin_email;
+        if (!admin_pass_set) print "ADMIN_PASSWORD=" admin_pass;
+        if (!smtp_host_set) print "SMTP_HOST=" smtp_host;
+        if (!smtp_email_set) print "SMTP_EMAIL=" smtp_email;
+        if (!smtp_pass_set) print "SMTP_PASSWORD=" smtp_pass;
+        if (!nginx_host_set) print "NGINX_HOST=" nginx_host;
+        if (!nginx_port_set) print "NGINX_PORT=" nginx_port;
+        if (!dpanel_name_set) print "DPANEL_NAME=" dpanel_name;
+    }' "$env_file" > "$env_file.tmp" && mv "$env_file.tmp" "$env_file"
+else
+    echo "DB_USER=${db_user}" > "$env_file"
+    echo "DB_PASSWORD=${db_password}" >> "$env_file"
+    echo "DB_HOST=${db_host}" >> "$env_file"
+    echo "DB_NAME=${db_name}" >> "$env_file"
+    echo "ADMIN_NAME=${admin_name}" >> "$env_file"
+    echo "ADMIN_EMAIL=${admin_email}" >> "$env_file"
+    echo "ADMIN_PASSWORD=${admin_password}" >> "$env_file"
+    echo "SMTP_HOST=${smtp_host}" >> "$env_file"
+    echo "SMTP_EMAIL=${smtp_email}" >> "$env_file"
+    echo "SMTP_PASSWORD=${smtp_password}" >> "$env_file"
+    echo "NGINX_HOST=${domain}" >> "$env_file"
+    echo "NGINX_PORT=${port}" >> "$env_file"
+    echo "DPANEL_NAME=${dash_name}" >> "$env_file"
+fi
+
+
+echo "* Details have been saved in the .env file."
+echo "*"

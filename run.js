@@ -14,3 +14,4 @@ console.log("*");
 require("./app/index");
 require("./mysql-promise");
 require("./mysql");
+require("./smtp");
