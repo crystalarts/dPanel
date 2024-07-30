@@ -14,7 +14,8 @@ router.get("/login", (req, res, next) => {
   res.render("login", {
     email,
     password,
-    message: req.flash('error') 
+    message_err: req.flash('error'),
+    message_succ: req.flash('success')
   });
 });
 
@@ -25,7 +26,8 @@ router.get("/register", (req, res, next) => {
   res.render("register", {
     email,
     password,
-    message: req.flash('error') 
+    message_err: req.flash('error'),
+    message_succ: req.flash('success')
   });
 });
 
@@ -66,7 +68,7 @@ router.post('/register', async (req, res) => {
 
             send_verify(email, uuid);
             req.flash('success', 'Registration successful. Please check your email for verification.');
-            res.redirect('/login');
+            res.redirect('/register');
           }
         );
       } catch (error) {
@@ -82,11 +84,16 @@ router.post('/register', async (req, res) => {
 router.get('/verify', (req, res) => {
   const token = req.query.token;
   const email = req.query.email;
+  const uuid = uuidv4();
 
   if (!token) {
     return res.status(400).send('Brak tokena w zapytaniu');
   }
-  const query = 'UPDATE user SET verify = 1 WHERE token = ? AND verify = 0';
+  const query = `
+    UPDATE user
+    SET verify = 1, token = ${uuid}
+    WHERE token = ? AND verify = 0
+  `;
 
   db.query(query, [token], (error, results) => {
     if (error) {
@@ -98,7 +105,8 @@ router.get('/verify', (req, res) => {
       return res.status(404).send('The token is invalid or already verified');
     }
 
-    res.send('Your account has been successfully verified');
+    req.flash('success', 'Your account has been successfully verified.');
+    res.redirect('/login');
     send_verify_completed(email);
   });
 });

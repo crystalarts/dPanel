@@ -7,6 +7,7 @@
     <title><%= __('web_title') %></title>
 
     <link rel="stylesheet" href="/css/dashboard.css" />
+    <link rel="stylesheet" href="/css/dashboard-user.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
@@ -48,13 +49,13 @@
     </div>
     <div class="main">
       <div class="sidebar">
-        <a class="active" href="/"><i class="fas fa-home"></i></a>
+        <a href="/admin"><i class="fas fa-home"></i></a>
         <a href="/"><i class="fas fa-key"></i></a>
         <a href="/"><i class="fas fa-database"></i></a>
         <a href="/"><i class="fas fa-egg"></i></a>
         <a href="/"><i class="fas fa-server"></i></a>
         <a href="/"><i class="fab fa-docker"></i></a>
-        <a href="/"><i class="fas fa-user-friends"></i></a>
+        <a  class="active"  href="/admin/users"><i class="fas fa-user-friends"></i></a>
       </div>
       <div class="content">
         <div class="left-bar">
@@ -144,78 +145,64 @@
               </div>
             </div>
           </div>
-          <div class="dashboard">
-            <h1>Welcome back, <%= user.name %></h1>
-            <h3>It's great to see you again!</h3>
-
-            <div class="expand">
-              <div class="section">
-                <div class = "section-item-left">
-                  <i class="fas fa-code"></i>
-                  <h2>Information for Developers</h2>
+            <div class="table">
+                <div class="table-title" style="display: flex; justify-content: space-between;align-items: center; font-size: 12px; font-weight: 300; margin-left: 10px; margin-top: 10px; margin-right: 10px; color: #b4b7b9;">
+                    <div style="display: flex; align-items: center;">
+                        <h2 style="font-weight: 400;">Users</h2>
+                        <i class="fas fa-chevron-right" style="margin-left: 10px; margin-right: 10px;"></i>
+                        <h2 style="font-weight: 400;">Lists</h2>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <button class="btn btn-primary" style="color: #acd3f7; padding: 5px; border-radius: 5px; border: 1px solid #acd3f72c; background-color: #acd3f71c; cursor: pointer;">Create User</button>
+                    </div>
                 </div>
-                <div class = "section-item-right">
-                  <button class="button create-issue">
-                    <a href="https://github.com/dpaneldev/dPanel/issues"> 
-                      <i class="fab fa-github"></i> Create Issues
-                    </a>
-                  </button>
-                  <button class="button discuss-features">
-                    <a href="https://github.com/dpaneldev/dPanel/discussions"> 
-                      <i class="fab fa-github"></i> Discuss Features
-                    </a>
-                  </button>
-                  <button class="expand-button" onclick="toggleExpand(this)"><i class="fas fa-angle-down"></i></button>
-                </div> 
-              </div>
-              <div class="section">
-                <div class = "section-item-left">
-                  <i class="fas fa-heart color-heart"></i>
-                  <h2>Support dPanel</h2>
+                <div class="content-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="first border-right"></th>
+                                <th class="border-right">Username</th>
+                                <th class="border-right">Email</th>
+                                <th class="border-right">Admin</th>
+                                <th class="border-right">2FA</th>
+                                <th class="border-right">Servers</th>
+                                <th class="last">Verify</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% users.forEach(user => { %>
+                                <tr>
+                                    <td class="border-right border-top"><i class="fas fa-cog" style="display: flex; justify-content: center; cursor: pointer; color: #acd3f7;"></i></td>
+                                    <td class="border-right border-top"><%= user.name %></td>
+                                    <td class="border-right border-top"><%= user.email %></td>
+                                    <td class="border-right border-top">
+                                        <% if (user.admin) { %>
+                                            <i class="far fa-star" style="color: #31df2163; font-size: 18px;"></i>
+                                        <% } else { %>
+                                            <i class="fas fa-star" style="color: #dd1c1c63; font-size: 18px;"></i>
+                                        <% } %>
+                                    </td>
+                                    <td class="border-right border-top">
+                                        <% if (user.twofa) { %>
+                                            <i class="fas fa-lock" style="color: #31df2163; font-size: 18px;"></i>
+                                        <% } else { %>
+                                            <i class="fas fa-unlock" style="color: #dd1c1c63; font-size: 18px;"></i>
+                                        <% } %>
+                                    </td>
+                                    <td class="border-right  border-top" style="color: #626466;"><i class="fas fa-server" style="margin-right: 5px; color: #b4b7b9;"></i> <%= user.serversCount %></td>
+                                    <td class="border-top">
+                                        <% if (user.verify) { %>
+                                            <i class="fas fa-user-check" style="color: #31df2163; font-size: 18px;"></i>
+                                        <% } else { %>
+                                            <i class="fas fa-user-times" style="color: #dd1c1c63; font-size: 18px;"></i>
+                                        <% } %>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
                 </div>
-                <div class = "section-item-right">
-                  <button class="button help-translate"><i class="fas fa-globe"></i> Help Translate</button>
-                  <button class="button donate-directly"><i class="fas fa-money-bill-wave"></i> Donate Directly</button>
-                  <button class="expand-button" onclick="toggleExpand(this)"><i class="fas fa-angle-down"></i></button>
-                </div>
-              </div>
-              <div class="section"> 
-                <div class = "section-item-left">
-                  <i class="fas fa-question"></i>
-                  <h2>Need Help? </h2>
-                </div>
-                <div class = "section-item-right">
-                  <button class="button read-documentation"><i class="fas fa-ship"></i> Read Documentation</button>
-                  <button class="button get-help-discord"><i class="fab fa-discord"></i> Get help in Discord</button>
-                  <button class="expand-button" onclick="toggleExpand(this)"><i class="fas fa-angle-down"></i></button>
-                </div>
-              </div>
             </div>
-            
-            <div class="display-flex">
-              <div class="notification-box">
-                <h4>Notifications</h4>
-                <div class="notification-item">
-                  <p>
-                    <strong>New Feature Release: </strong>
-                    A new update is available
-                  </p>
-                  <span class="timestamp">Just now</span>
-                </div>
-              </div>
-
-              <div class="activity-box">
-                <h4>Activity</h4>
-                <div class="activity-item">
-                  <p>
-                    <strong>@Admin1 </strong>
-                    Created a new node
-                  </p>
-                  <span class="timestamp">Just now</span>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

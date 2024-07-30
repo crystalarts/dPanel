@@ -35,10 +35,17 @@
     <script src="/js/script.js"></script>
   </head>
   <body>
-    <% if (message.length > 0) { %>
+    <% if (message_err.length > 0) { %>
       <div id="notification-container">
-        <% message.forEach(msg => { %>
-          <div class="notification"><%= msg %></div>
+        <% message_err.forEach(msg => { %>
+          <div class="notification-err"><%= msg %></div>
+        <% }) %>
+      </div>
+    <% } %>
+    <% if (message_succ.length > 0) { %>
+      <div id="notification-container">
+        <% message_succ.forEach(msg => { %>
+          <div class="notification-succ"><%= msg %></div>
         <% }) %>
       </div>
     <% } %>
@@ -52,7 +59,7 @@
           <label for="">
             <input
               class="margin"
-              type="text"
+              type="email"
               name="email"
               placeholder="<%= __('login_email') %>"
               required
