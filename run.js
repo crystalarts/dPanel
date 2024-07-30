@@ -11,6 +11,6 @@ console.log("*     \\$$$$$$$ \\$$       \\$$$$$$$ \\$$   \\$$  \\$$$$$$$ \\$$");
 console.log("*");
 console.log("*   dPanel has started launching:");
 console.log("*");
-require("./dashboard/index");
+require("./app/index");
 require("./mysql-promise");
 require("./mysql");

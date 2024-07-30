@@ -13,9 +13,9 @@ function confirm_continue {
     echo "* [1] Exit"
     read -p "* Input 0-1: " choice
     case "$choice" in
-        0 ) echo "I continue the installation...";;
-        1 ) echo "dPanel installation was interrupted."; exit;;
-        * ) echo "Select '0' to continue or '1' to interrupt."; confirm_continue;;
+        0 ) echo "* I continue the installation...";;
+        1 ) echo "* dPanel installation was interrupted."; exit;;
+        * ) echo "* Select '0' to continue or '1' to interrupt."; confirm_continue;;
     esac
 }
 
@@ -45,7 +45,7 @@ fi
 ## ----- Installation MySQL -----
 ## ------------------------------
 
-echo "* I am installing MySQL..."
+echo "* Installing MySQL..."
 read -p "* Provide a MySQL username: " username
 
 if [ -z "$username" ]; then
