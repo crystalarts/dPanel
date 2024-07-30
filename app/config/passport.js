@@ -17,6 +17,10 @@ module.exports = function (passport) {
 
         const user = results[0];
 
+        if (user.verify === '0') {
+          return done(null, false, { message: 'Account not verified.' });
+        }
+
         bcrypt.compare(password, user.password, (err, isMatch) => {
           if (err) { return done(err); }
           if (isMatch) {

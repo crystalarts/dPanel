@@ -32,8 +32,16 @@
       crossorigin="anonymous"
       defer
     ></script>
+    <script src="/js/script.js"></script>
   </head>
   <body>
+    <% if (message.length > 0) { %>
+      <div id="notification-container">
+        <% message.forEach(msg => { %>
+          <div class="notification"><%= msg %></div>
+        <% }) %>
+      </div>
+    <% } %>
     <div class="login-form">
       <form class="user-form" action="/register" method="POST">
         <div class="formater">
