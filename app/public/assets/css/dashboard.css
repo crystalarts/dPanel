@@ -36,6 +36,12 @@ body {
     gap: 20px;
   }
 
+  .stats-box a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
   .stats-boxing {
     display: flex;
     align-items: center;
@@ -117,7 +123,7 @@ body {
   .expand {
     width: 100%;
   }
-  
+
   .section {
     display: flex;
     flex-direction: row;
@@ -125,7 +131,7 @@ body {
     border: 1px solid #33373f;
     border-radius: 10px;
     background-color: #ffffff08;
-    padding: 20px;
+    padding: 10px 20px;
     margin: 20px 0;
   }
 
@@ -152,24 +158,24 @@ body {
   .section .section-item-right button {
     margin-left: 10px;
   }
-  
+
   .section h2 {
     display: flex;
     color: #b4b7b9;
     font-size: 15px;
     align-items: center;
   }
-  
+
   .button-container {
     display: flex;
     gap: 10px;
   }
-  
+
   .buttons {
     display: none;
     flex-direction: column;
   }
-  
+
   .button {
     padding: 10px 10px;
     border: none;
@@ -181,7 +187,7 @@ body {
     align-items: center;
     justify-content: center;
   }
-  
+
   .button i {
     margin-right: 6px;
   }
@@ -190,7 +196,7 @@ body {
     text-decoration: none;
     color: #fff;
   }
-  
+
   .expand-button {
     background: none;
     border: none;
@@ -198,37 +204,37 @@ body {
     cursor: pointer;
     padding-left: 10px;
   }
-  
+
   .create-issue {
-    background-color: #CC7C2E;
+    background-color: #cc7c2e;
     color: #fff;
   }
-  
+
   .discuss-features {
-    background-color: #3982C2;
+    background-color: #3982c2;
     color: #fff;
   }
-  
+
   .help-translate {
     background-color: #3662e3;
     color: #fff;
   }
-  
+
   .donate-directly {
     background-color: #4ca154;
     color: #fff;
   }
-  
+
   .read-documentation {
     background-color: #3662e3;
     color: #fff;
   }
-  
+
   .get-help-discord {
-    background-color: #3982C2;
+    background-color: #3982c2;
     color: #fff;
   }
-  
+
   .section.expanded .buttons {
     display: flex;
   }
@@ -404,7 +410,8 @@ body {
     flex-direction: column;
     align-items: center;
     height: 200px;
-    background: radial-gradient(
+    background:
+      radial-gradient(
           60% 70% at 50% 0%,
           rgba(50, 129, 194, 0.2) 0%,
           transparent 100%

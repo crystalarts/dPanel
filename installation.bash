@@ -252,6 +252,5 @@ else
     echo "DPANEL_NAME=${dash_name}" >> "$env_file"
 fi
 
-
 echo "* Details have been saved in the .env file."
 echo "*"

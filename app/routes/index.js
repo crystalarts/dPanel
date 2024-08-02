@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { ensureAuthenticated } = require("../config/auth");
-const os = require('os');
+const os = require("os");
 const db = require("../../mysql-promise");
 
 function getLocalIPs() {
@@ -11,7 +11,7 @@ function getLocalIPs() {
   for (let iface in interfaces) {
     for (let i = 0; i < interfaces[iface].length; i++) {
       const alias = interfaces[iface][i];
-      if (alias.family === 'IPv4' && !alias.internal) {
+      if (alias.family === "IPv4" && !alias.internal) {
         addresses.push(alias.address);
       }
     }
@@ -21,21 +21,8 @@ function getLocalIPs() {
 
 router.get("/", ensureAuthenticated, async (req, res, next) => {
   try {
-    const ips = getLocalIPs();
-    const sql = `
-      SELECT COUNT(*) AS total_indexes
-      FROM INFORMATION_SCHEMA.STATISTICS
-      WHERE TABLE_SCHEMA = 'dpanel'
-      AND TABLE_NAME = 'user';
-    `;
-
-    const [results] = await db.query(sql);
-    const index_user = results[0].total_indexes;
-
-    res.render("dashboard", {
+    res.render("panel", {
       user: req.user,
-      iphost: ips,
-      index_user: index_user
     });
   } catch (err) {
     next(err);
@@ -61,7 +48,7 @@ router.get("/admin", ensureAuthenticated, async (req, res, next) => {
       res.render("dashboard", {
         user: req.user,
         iphost: ips,
-        index_user: index_user
+        index_user: index_user,
       });
     }
   } catch (err) {
@@ -85,15 +72,21 @@ router.get("/admin/users", ensureAuthenticated, async (req, res, next) => {
       const [results] = await db.query(sql);
       const index_user = results[0].total_indexes;
 
-      const sqlUsers = 'SELECT id, name, email, admin, servers, verify FROM user';
+      const sqlUsers =
+        "SELECT id, name, email, admin, servers, verify FROM user";
       const [userResults] = await db.query(sqlUsers);
 
-      userResults.forEach(user => {
+      userResults.forEach((user) => {
         try {
-          const serversData = typeof user.servers === 'string' ? JSON.parse(user.servers) : user.servers;
-          user.serversCount = Array.isArray(serversData) ? serversData.length : 0;
+          const serversData =
+            typeof user.servers === "string"
+              ? JSON.parse(user.servers)
+              : user.servers;
+          user.serversCount = Array.isArray(serversData)
+            ? serversData.length
+            : 0;
         } catch (e) {
-          console.error('Error parsing JSON for user servers:', e);
+          console.error("Error parsing JSON for user servers:", e);
           user.serversCount = 0;
         }
       });
@@ -102,7 +95,7 @@ router.get("/admin/users", ensureAuthenticated, async (req, res, next) => {
         user: req.user,
         iphost: ips,
         index_user: index_user,
-        users: userResults
+        users: userResults,
       });
     }
   } catch (err) {
@@ -110,12 +103,12 @@ router.get("/admin/users", ensureAuthenticated, async (req, res, next) => {
   }
 });
 
-router.get('/logout', (req, res) => {
+router.get("/logout", (req, res) => {
   req.logout((err) => {
     if (err) {
       return next(err);
     }
-    res.redirect('/');
+    res.redirect("/");
   });
 });
 

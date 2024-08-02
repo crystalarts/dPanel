@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= __('web_title') %></title>
+
+    <link rel="stylesheet" href="/css/panel.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="icon" type="image/jpg" sizes="32x32" href="/img/logo.jpg" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+      defer
+    ></script>
+  </head>
+  <body>
+    <div class="content">
+      <div class="content-left">
+        <div class="content-flex">
+          <div class="content-top">
+            <div class="logo">
+              <img src="/img/logo.jpg" alt="Logo" width="36px" height="36px"/>
+              <p>dPanel</p>
+            </div>
+            <ul>
+              <li class="active"><i class="fas fa-server"></i> Servers</li>
+              <li><i class="fas fa-user-circle"></i> Account</li>
+            </ul>
+            <hr>
+          </div>
+          <div class="content-bottom">
+            <hr>
+            <div class="content-bottom-flex">
+              <div class="content-bottom-left">
+                <img src="/img/user.png" alt="Logo" width="32px" height="32px"/>
+                <p><%= user.name %></p>
+              </div>
+              <div class="content-bottom-right">
+                <i class="fas fa-ellipsis-v"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content-right">
+        <div class="header">
+          <select class="server-select">
+            <option value="/">Select a server</option>
+          </select>
+          <div class="links">
+            <a href="#">Discord</a>
+            <a href="#">Support center</a>
+          </div>
+        </div>
+        <div class="cards">
+          <a href="#" class="card margin">
+            <div class="card-flex">
+              <div>
+                <h4>Discord</h4>
+                <p>Join our Discord</p>
+              </div>
+              <div>
+                <i class="fab fa-discord"></i>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="card margin">
+            <div class="card-flex">
+              <div>
+                <h4>Billing area</h4>
+                <p>Manage your services</p>
+              </div>
+              <div>
+                <i class="fas fa-credit-card"></i>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="card margin">
+            <div class="card-flex">
+              <div>
+                <h4>Support center</h4>
+                <p>Get support</p>
+              </div>
+              <div>
+                <i class="fas fa-headset"></i>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="card">
+            <div class="card-flex">
+              <div>
+                <h4>Server status</h4>
+                <p>Check server status</p>
+              </div>
+              <div>
+                <i class="fas fa-server"></i>
+              </div>
+            </div></a>
+        </div>
+        <div class="welcome-box">
+          <div class="welcome-box-flex">
+            <div class="welcome-box-left">
+              <h1>Welcome back</p>
+              <h3>Here you can see all the servers you have access to.</p>
+            </div>
+            <div class="welcome-box-right">
+              <p>SHOWING YOUR SERVERS</p>
+            </div>
+          </div>
+        </div>
+        <div class="server-list"></div>
+        <footer>
+          <p><a href="#">dPanel.dev</a> © 2024</p>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>

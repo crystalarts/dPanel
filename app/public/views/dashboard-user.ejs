@@ -139,9 +139,11 @@
                 <p>0</p>
               </div>
               <div class="stats-box cpu">
-                <i class="fas fa-user-friends"></i>
-                <h4>Users</h4>
-                <p><%= index_user %></p>
+                <a href="/admin/users">
+                  <i class="fas fa-user-friends"></i>
+                  <h4>Users</h4>
+                  <p><%= index_user %></p>
+                </a>
               </div>
             </div>
           </div>
@@ -163,10 +165,10 @@
                                 <th class="first border-right"></th>
                                 <th class="border-right">Username</th>
                                 <th class="border-right">Email</th>
-                                <th class="border-right">Admin</th>
-                                <th class="border-right">2FA</th>
-                                <th class="border-right">Servers</th>
-                                <th class="last">Verify</th>
+                                <th class="border-right center">Admin</th>
+                                <th class="border-right center">2FA</th>
+                                <th class="border-right center">Servers</th>
+                                <th class="last center">Verify</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -175,22 +177,22 @@
                                     <td class="border-right border-top"><i class="fas fa-cog" style="display: flex; justify-content: center; cursor: pointer; color: #acd3f7;"></i></td>
                                     <td class="border-right border-top"><%= user.name %></td>
                                     <td class="border-right border-top"><%= user.email %></td>
-                                    <td class="border-right border-top">
+                                    <td class="border-right border-top center">
                                         <% if (user.admin) { %>
                                             <i class="far fa-star" style="color: #31df2163; font-size: 18px;"></i>
                                         <% } else { %>
                                             <i class="fas fa-star" style="color: #dd1c1c63; font-size: 18px;"></i>
                                         <% } %>
                                     </td>
-                                    <td class="border-right border-top">
+                                    <td class="border-right border-top center">
                                         <% if (user.twofa) { %>
                                             <i class="fas fa-lock" style="color: #31df2163; font-size: 18px;"></i>
                                         <% } else { %>
                                             <i class="fas fa-unlock" style="color: #dd1c1c63; font-size: 18px;"></i>
                                         <% } %>
                                     </td>
-                                    <td class="border-right  border-top" style="color: #626466;"><i class="fas fa-server" style="margin-right: 5px; color: #b4b7b9;"></i> <%= user.serversCount %></td>
-                                    <td class="border-top">
+                                    <td class="border-right  border-top center" style="color: #626466;"><i class="fas fa-server" style="margin-right: 5px; color: #b4b7b9;"></i> <%= user.serversCount %></td>
+                                    <td class="border-top center">
                                         <% if (user.verify) { %>
                                             <i class="fas fa-user-check" style="color: #31df2163; font-size: 18px;"></i>
                                         <% } else { %>

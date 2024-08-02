@@ -1,11 +1,11 @@
-const transporter = require('../../smtp');
-require('dotenv').config();
+const transporter = require("../../smtp");
+require("dotenv").config();
 
 function send_verify_completed(email) {
   const mailOptions = {
     from: process.env.SMTP_EMAIL,
     to: email,
-    subject: process.env.DPANEL_NAME + ' : Account verified',
+    subject: process.env.DPANEL_NAME + " : Account verified",
     html: `
       <html>
         <body style="font-family: Arial, sans-serif; background-color: #f9f9f9; margin: 0; padding: 0;">
@@ -26,7 +26,7 @@ function send_verify_completed(email) {
         </div>
       </body>
     </html>
-    `
+    `,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {});

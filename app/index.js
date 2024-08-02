@@ -47,11 +47,11 @@ app.use(
 app.use((req, res, next) => {
   let lang = req.query.lang;
   if (lang) {
-    res.cookie('lang', lang);
+    res.cookie("lang", lang);
     res.setLocale(lang);
   }
   next();
-})
+});
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -67,9 +67,7 @@ app.use("/", require("./routes/panel"));
 app.all("*", (req, res) => res.render("errors/404"));
 
 const server = app.listen(3000, () => {
-  console.log(
-    `*   The server is listening on port 3000.`,
-  );
+  console.log(`*   The server is listening on port 3000.`);
 });
 
 const wss = new WebSocket.Server({ server });

@@ -1,18 +1,18 @@
-const transporter = require('../../smtp');
-require('dotenv').config();
+const transporter = require("../../smtp");
+require("dotenv").config();
 
 function send_verify(email, token) {
   const mailOptions = {
     from: process.env.SMTP_EMAIL,
     to: email,
-    subject: process.env.DPANEL_NAME + ' : Account verification',
+    subject: process.env.DPANEL_NAME + " : Account verification",
     html: `
-      <html>
-  <style>
-    .button:hover {
-      background-color: #444;
-    }
-  </style>
+    <html>
+      <style>
+        .button:hover {
+          background-color: #444;
+        }
+      </style>
       <body style="font-family: Arial, sans-serif; background-color: #f9f9f9;">
         <div class="container" style="max-width: 600px; margin: 40px auto; padding: 20px; background-color: #fff; border: 1px solid #ddd; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
           <div class="header" style="text-align: center; border-radius: 5px; background-color: #333; color: #fff; padding: 10px; border-bottom: 1px solid #333;">
@@ -37,7 +37,7 @@ function send_verify(email, token) {
         </div>
       </body>
     </html>
-    `
+    `,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {});
