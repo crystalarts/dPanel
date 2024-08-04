@@ -13,8 +13,7 @@ async function checkExpiredServers() {
     }
   } catch (error) {
     console.error("Error checking for expired servers:", error);
-  } finally {
-  }
+  } 
 }
 
 module.exports = checkExpiredServers;

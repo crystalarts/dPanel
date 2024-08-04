@@ -35,6 +35,14 @@
     ></script>
   </head>
   <body>
+    <div class="menu" id="menu" style="display: none;">
+      <div class="menu-content">
+        <% if (user.admin) { %>
+          <a href="/admin"><i class="fas fa-user-shield"></i> Admin</a>
+        <% } %>
+        <a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+      </div>
+    </div>
     <div class="content">
       <div class="content-left">
         <div class="content-flex">
@@ -44,8 +52,18 @@
               <p>dPanel</p>
             </div>
             <ul>
-              <li class="active"><i class="fas fa-server"></i> Servers</li>
-              <li><i class="fas fa-user-circle"></i> Account</li>
+              <li class="active">
+                <i class="fas fa-server"></i> 
+                <p>Servers</p>
+              </li>
+              <li>
+                <i class="fas fa-user-circle"></i> 
+                <p>Account</p>
+              </li>
+              <li>
+                <i class="fas fa-wrench"></i> 
+                <p>Create server</p>
+              </li>
             </ul>
             <hr>
           </div>
@@ -56,7 +74,7 @@
                 <img src="/img/user.png" alt="Logo" width="32px" height="32px"/>
                 <p><%= user.name %></p>
               </div>
-              <div class="content-bottom-right">
+              <div class="content-bottom-right" onclick="showMenu()">
                 <i class="fas fa-ellipsis-v"></i>
               </div>
             </div>
@@ -69,9 +87,12 @@
             <option value="/">Select a server</option>
           </select>
           <div class="links">
-            <a href="#">Discord</a>
-            <a href="#">Support center</a>
+            <a href="#"><i class="fab fa-discord"></i> Discord</a>
+            <a href="#"><i class="fas fa-life-ring"></i> Support center</a>
           </div>
+        </div>
+        <div class="announcement">
+          <p><i class="fas fa-exclamation-triangle"></i> The Panel version may contain any errors, so if you encounter an error, please report it to us.</p>
         </div>
         <div class="cards">
           <a href="#" class="card margin">
@@ -136,4 +157,15 @@
       </div>
     </div>
   </body>
+  <script>
+    function showMenu() {
+      var menu = document.getElementById('menu');
+
+      if (menu.style.display == 'block') {
+        menu.style.display = 'none';
+      } else {
+        menu.style.display = 'block';
+      }
+    }
+  </script>
 </html>

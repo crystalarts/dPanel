@@ -44,7 +44,7 @@
       </div>
       <div class="right">
         <span><%= user.name %></span>
-        <img src="/img/man.png" alt="logo" />
+        <img src="/img/user.png" alt="logo" />
       </div>
     </div>
     <div class="main">
@@ -52,7 +52,7 @@
         <a href="/admin"><i class="fas fa-home"></i></a>
         <a href="/"><i class="fas fa-key"></i></a>
         <a href="/"><i class="fas fa-database"></i></a>
-        <a href="/"><i class="fas fa-egg"></i></a>
+        <a href="/admin/eggs"><i class="fas fa-egg"></i></a>
         <a href="/"><i class="fas fa-server"></i></a>
         <a href="/"><i class="fab fa-docker"></i></a>
         <a  class="active"  href="/admin/users"><i class="fas fa-user-friends"></i></a>
@@ -185,15 +185,15 @@
                                         <% } %>
                                     </td>
                                     <td class="border-right border-top center">
-                                        <% if (user.twofa) { %>
+                                        <% if (user.twofa === "1") { %>
                                             <i class="fas fa-lock" style="color: #31df2163; font-size: 18px;"></i>
                                         <% } else { %>
                                             <i class="fas fa-unlock" style="color: #dd1c1c63; font-size: 18px;"></i>
                                         <% } %>
                                     </td>
-                                    <td class="border-right  border-top center" style="color: #626466;"><i class="fas fa-server" style="margin-right: 5px; color: #b4b7b9;"></i> <%= user.serversCount %></td>
+                                    <td class="border-right border-top center" style="color: #626466;"><i class="fas fa-server" style="margin-right: 5px; color: #b4b7b9;"></i> <%= user.serversCount %></td>
                                     <td class="border-top center">
-                                        <% if (user.verify) { %>
+                                        <% if (user.verify === "1") { %>
                                             <i class="fas fa-user-check" style="color: #31df2163; font-size: 18px;"></i>
                                         <% } else { %>
                                             <i class="fas fa-user-times" style="color: #dd1c1c63; font-size: 18px;"></i>
