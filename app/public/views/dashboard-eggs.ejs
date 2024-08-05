@@ -134,9 +134,11 @@
                 <p>0</p>
               </div>
               <div class="stats-box ram">
-                <i class="fas fa-egg"></i>
-                <h4 class="statsboxname">Eggs</h4>
-                <p>0</p>
+                <a href="/admin/eggs">
+                  <i class="fas fa-egg"></i>
+                  <h4>Eggs</h4>
+                  <p><%= eggsdown %></p>
+                </a>
               </div>
               <div class="stats-box cpu">
                 <a href="/admin/users">
@@ -147,6 +149,11 @@
               </div>
             </div>
           </div>
+          <div style="display: flex; align-items: center; margin-left: 20px; color: #b4b7b9;">
+            <h2 style="font-weight: 400; font-size: 16px;">Eggs</h2>
+            <i class="fas fa-chevron-right" style="margin-left: 10px; margin-right: 10px; font-size: 12px;"></i>
+            <h2 style="font-weight: 400; font-size: 16px;">All eggs server</h2>
+          </div>
           <div class="flex">
             <div class="grid">
               <% eggs.forEach(item => { %>
@@ -156,14 +163,14 @@
                   <p class="desc"><%= item.description %></p>
                   <% if (item.download === "true") { %>
                     <div class="download">
-                      <a href="/admin/eggs/download/<%= item.id %>">
+                      <a href="/admin/eggs/uninstall/<%= item.id %>">
                         Uninstall
                       </a>
                     </div>
                   <% } else { %>
                     <div class="download">
                       <a href="/admin/eggs/download/<%= item.id %>">
-                        Install
+                        Download
                       </a>
                     </div>
                   <% } %>
