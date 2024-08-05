@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -7,6 +7,7 @@
     <title><%= __('web_title') %></title>
 
     <link rel="stylesheet" href="/css/dashboard.css" />
+    <link rel="stylesheet" href="/css/dashboard-database.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
@@ -48,9 +49,9 @@
     </div>
     <div class="main">
       <div class="sidebar">
-        <a class="active" href="/admin"><i class="fas fa-home"></i></a>
+        <a href="/admin"><i class="fas fa-home"></i></a>
         <a href="/"><i class="fas fa-key"></i></a>
-        <a href="/admin/database"><i class="fas fa-database"></i></a>
+        <a class="active" href="/admin/database"><i class="fas fa-database"></i></a>
         <a href="/admin/eggs"><i class="fas fa-egg"></i></a>
         <a href="/"><i class="fas fa-server"></i></a>
         <a href="/"><i class="fab fa-docker"></i></a>
@@ -121,15 +122,15 @@
         <div class="right-bar">
           <div class="stats">
             <div class="stats-boxing">
-              <h4>Panel's Resources:</h4>
+              <h4 class="namestats">Panel's Resources:</h4>
               <div class="stats-box accounts">
                 <i class="fas fa-server"></i>
-                <h4>Nodes</h4>
+                <h4 class="statsboxname">Nodes</h4>
                 <p>0</p>
               </div>
               <div class="stats-box servers">
                 <i class="fab fa-docker"></i>
-                <h4>Servers</h4>
+                <h4 class="statsboxname">Servers</h4>
                 <p>0</p>
               </div>
               <div class="stats-box ram">
@@ -142,86 +143,100 @@
               <div class="stats-box cpu">
                 <a href="/admin/users">
                   <i class="fas fa-user-friends"></i>
-                  <h4>Users</h4>
+                  <h4 class="statsboxname">Users</h4>
                   <p><%= index_user %></p>
                 </a>
               </div>
             </div>
           </div>
-          <div class="dashboard">
-            <h1>Welcome back, <%= user.name %></h1>
-            <h3>It's great to see you again!</h3>
-
-            <div class="expand">
-              <div class="section">
-                <div class = "section-item-left">
-                  <i class="fas fa-code"></i>
-                  <h2>Information for Developers</h2>
-                </div>
-                <div class = "section-item-right">
-                  <button class="button create-issue">
-                    <a href="https://github.com/dpaneldev/dPanel/issues"> 
-                      <i class="fab fa-github"></i> Create Issues
-                    </a>
-                  </button>
-                  <button class="button discuss-features">
-                    <a href="https://github.com/dpaneldev/dPanel/discussions"> 
-                      <i class="fab fa-github"></i> Discuss Features
-                    </a>
-                  </button>
-                  <button class="expand-button" onclick="toggleExpand(this)"><i class="fas fa-angle-down"></i></button>
-                </div> 
-              </div>
-              <div class="section">
-                <div class = "section-item-left">
-                  <i class="fas fa-heart color-heart"></i>
-                  <h2>Support dPanel</h2>
-                </div>
-                <div class = "section-item-right">
-                  <button class="button help-translate"><i class="fas fa-globe"></i> Help Translate</button>
-                  <button class="button donate-directly"><i class="fas fa-money-bill-wave"></i> Donate Directly</button>
-                  <button class="expand-button" onclick="toggleExpand(this)"><i class="fas fa-angle-down"></i></button>
-                </div>
-              </div>
-              <div class="section"> 
-                <div class = "section-item-left">
-                  <i class="fas fa-question"></i>
-                  <h2>Need Help? </h2>
-                </div>
-                <div class = "section-item-right">
-                  <button class="button read-documentation"><i class="fas fa-ship"></i> Read Documentation</button>
-                  <button class="button get-help-discord"><i class="fab fa-discord"></i> Get help in Discord</button>
-                  <button class="expand-button" onclick="toggleExpand(this)"><i class="fas fa-angle-down"></i></button>
-                </div>
-              </div>
+          <div style="margin-left: auto; color: #b4b7b9; margin-right: auto; margin-bottom: 10px;">
+            <div style="display: flex; align-items: center; margin-left: 20px; color: #b4b7b9; margin-top: 20px;">
+                <h2 style="font-weight: 400; font-size: 16px;">Database</h2>
+                <i class="fas fa-chevron-right" style="margin-left: 10px; margin-right: 10px; font-size: 12px;"></i>
+                <h2 style="font-weight: 400; font-size: 16px;">Database Preview</h2>
             </div>
-            
-            <div class="display-flex">
-              <div class="notification-box">
-                <h4>Notifications</h4>
-                <div class="notification-item">
-                  <p>
-                    <strong>New Feature Release: </strong>
-                    A new update is available
-                  </p>
-                  <span class="timestamp">Just now</span>
+            <div style="padding: 20px; background-color: #ffffff08; margin-top: 15px; border-radius: 10px; border: 1px solid #33373f;">
+                <h3 style="color: #fff; font-size: 15px;">Logged in as : <%= dbuser %>@<%= dbhost %></h3>
+                <p style="margin-top: 10px;"><i class="fas fa-database"></i> dPanel</p>
+                <p class="table-table" id="table" style="cursor: pointer; margin-left: 25px; margin-top: 5px;" onclick="showTable()"><i class="fas fa-caret-down"></i> Tables</p>
+                <div style="display: flex; flex-direction: row;">
+                    <ul style="display: flex; flex-direction: column;margin-left: 45px;" id="tableList">
+                        <% tables.forEach(table => { %>
+                            <li><a href="#" class="table-link" data-table="<%= table %>"><i class="fas fa-table"></i> <%= table %></a></li>
+                        <% }) %>
+                    </ul>
                 </div>
-              </div>
-
-              <div class="activity-box">
-                <h4>Activity</h4>
-                <div class="activity-item">
-                  <p>
-                    <strong>@Admin1 </strong>
-                    Created a new node
-                  </p>
-                  <span class="timestamp">Just now</span>
+                <h2 class="previewtable" style="color: #fff; font-size: 15px;">Table Preview</h2>
+                <div class="tableContent" id="tableContent">
+                    <p style="color: #b4b7b9; font-size: 12px;">Select a table to see the contents.</p>
                 </div>
-              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </body>
+  <script>
+        function showTable() {
+            var menu = document.getElementById('tableList');
+            var table = document.getElementById('table');
+
+            if (menu.style.display === 'flex') {
+                menu.style.display = 'none';
+                table.innerHTML = '<i class="fas fa-caret-right"></i> Tables';
+            } else {
+                menu.style.display = 'flex';
+                table.innerHTML = '<i class="fas fa-caret-down"></i> Tables';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const tableList = document.getElementById('tableList');
+            const tableContent = document.getElementById('tableContent');
+            
+            tableList.addEventListener('click', async (event) => {
+                if (event.target && event.target.matches('.table-link')) {
+                    event.preventDefault();
+
+                    document.querySelectorAll('.table-link').forEach(link => {
+                        link.classList.remove('active-table-link');
+                    });
+
+                    event.target.classList.add('active-table-link');
+
+                    const tableName = event.target.getAttribute('data-table');
+                    
+                    try {
+                        const response = await fetch(`/api/table/${tableName}`);
+                        const data = await response.json();
+
+                        if (data.length === 0) {
+                            tableContent.innerHTML = '<p style="color: #b4b7b9; font-size: 12px;">No data in the table.</p>';
+                            return;
+                        }
+
+                        let tableHtml = '<table border="1"><thead><tr>';
+                        Object.keys(data[0]).forEach(key => {
+                            tableHtml += `<th>${key}</th>`;
+                        });
+                        tableHtml += '</tr></thead><tbody>';
+
+                        data.forEach(row => {
+                            tableHtml += '<tr>';
+                            Object.values(row).forEach(value => {
+                                tableHtml += `<td>${value}</td>`;
+                            });
+                            tableHtml += '</tr>';
+                        });
+
+                        tableHtml += '</tbody></table>';
+                        tableContent.innerHTML = tableHtml;
+                    } catch (error) {
+                        console.error('Error fetching table data:', error);
+                        tableContent.innerHTML = '<p style="color: #b4b7b9; font-size: 12px;">An error occurred while retrieving data.</p>';
+                    }
+                }
+            });
+        });
+    </script>
 </html>
