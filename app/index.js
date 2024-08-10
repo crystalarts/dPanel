@@ -64,6 +64,12 @@ require("./config/passport")(passport);
 app.use("/", require("./routes/index"));
 app.use("/", require("./routes/panel"));
 
+// --- ADMIN ROUTES --- \\
+app.use("/", require("./routes/admin"));
+app.use("/", require("./routes/adminUsers"));
+app.use("/", require("./routes/adminEggs"));
+app.use("/", require("./routes/adminDatabase"));
+
 app.all("*", (req, res) => res.render("errors/404"));
 
 const server = app.listen(3000, () => {
