@@ -95,7 +95,6 @@ CREATE TABLE IF NOT EXISTS server (
 CREATE TABLE IF NOT EXISTS eggs (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255),
-    download VARCHAR(255),
     download LONGTEXT
 );
 
