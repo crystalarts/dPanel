@@ -3,6 +3,7 @@ const router = express.Router();
 const { ensureAuthenticated } = require("../config/auth");
 const db = require("../../mysql-promise");
 const getLocalIPs = require("../../utils/system/getLocalIP");
+require("dotenv").config();
 
 router.get("/admin/database", ensureAuthenticated, async (req, res, next) => {
   try {
