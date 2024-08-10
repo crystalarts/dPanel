@@ -10,16 +10,20 @@ const db = mysql.createConnection({
 
 db.connect((err) => {
   if (err) {
-    console.error("*   Error connecting to the database:", err.stack);
+    console.error(
+      "*   \x1b[31m[ERROR]\x1b[0m : Error connecting to the database:",
+      err.stack,
+    );
     return;
   }
   console.log(
-    "*   Connected to MySQL : " +
+    "*   \x1b[32m[SUCCESS]\x1b[0m : Connected to MySQL \x1b[90m➤\x1b[0m  \x1b[36m" +
       process.env.DB_USER +
       "@" +
       process.env.DB_HOST +
       "/" +
-      process.env.DB_NAME,
+      process.env.DB_NAME +
+      "\x1b[0m.",
   );
 });
 

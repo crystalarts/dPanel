@@ -61,19 +61,21 @@ app.use(cors());
 
 require("./config/passport")(passport);
 
-app.use("/", require("./routes/index"));
-app.use("/", require("./routes/panel"));
+app.use("/", require("../routes/index"));
+app.use("/", require("../routes/panel"));
 
 // --- ADMIN ROUTES --- \\
-app.use("/", require("./routes/admin"));
-app.use("/", require("./routes/adminUsers"));
-app.use("/", require("./routes/adminEggs"));
-app.use("/", require("./routes/adminDatabase"));
+app.use("/", require("../routes/admin"));
+app.use("/", require("../routes/adminUsers"));
+app.use("/", require("../routes/adminEggs"));
+app.use("/", require("../routes/adminDatabase"));
 
 app.all("*", (req, res) => res.render("errors/404"));
 
 const server = app.listen(3000, () => {
-  console.log(`*   The server is listening on port 3000.`);
+  console.log(
+    `*   \x1b[32m[SUCCESS]\x1b[0m : The server is listening on port \x1b[90m➤\x1b[0m  \x1b[36m3000\x1b[0m.`,
+  );
 });
 
 const wss = new WebSocket.Server({ server });

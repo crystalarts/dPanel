@@ -2,10 +2,10 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 const bcrypt = require("bcrypt");
-const db = require("../../mysql");
+const db = require("../mysql");
 const { v4: uuidv4 } = require("uuid");
-const send_verify = require("../../utils/smtp/verify");
-const send_verify_completed = require("../../utils/smtp/verify-completed");
+const send_verify = require("../utils/smtp/verify");
+const send_verify_completed = require("../utils/smtp/verify-completed");
 
 router.get("/login", (req, res, next) => {
   const email = res._login_email;

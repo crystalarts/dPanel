@@ -3,7 +3,9 @@ const bcrypt = require("bcrypt");
 const db = require("../../mysql");
 
 module.exports = function (passport) {
-  console.log(`*   The passport module has been successfully loaded.`);
+  console.log(
+    `*   \x1b[32m[SUCCESS]\x1b[0m : The passport module has been \x1b[32msuccessfully\x1b[0m loaded.`,
+  );
   passport.use(
     new LocalStrategy({ usernameField: "email" }, (email, password, done) => {
       db.query(

@@ -11,10 +11,12 @@ const transporter = nodemailer.createTransport({
 
 transporter.verify((error, success) => {
   if (error) {
-    return console.log(`*   Failed to connect to the server: ${error}`);
+    return console.log(
+      `*   \x1b[31m[ERROR]\x1b[0m : Failed to connect to the server: ${error}`,
+    );
   } else {
     console.log(
-      "*   The connection to the SMTP server has been successfully established.",
+      "*   \x1b[32m[SUCCESS]\x1b[0m : The connection to the SMTP server has been \x1b[32msuccessfully\x1b[0m established.",
     );
   }
 });
