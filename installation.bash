@@ -41,6 +41,28 @@ else
     echo "*"
 fi
 
+
+## -------------------------------------
+## ----- Installation Dependencies -----
+## -------------------------------------
+
+
+echo "* Installing Dependencies..."
+
+apt-get install -y nodejs
+NODEJS_INSTALLED=$?
+
+apt-get install -y npm
+NPM_INSTALLED=$?
+
+if [ $NODEJS_INSTALLED -eq 0 ] && [ $NPM_INSTALLED -eq 0 ]; then
+    echo "All dependencies installed successfully."
+else
+    echo "Failed to install dependencies." >&2
+    exit 1
+fi
+
+
 ## ------------------------------
 ## ----- Installation MySQL -----
 ## ------------------------------
