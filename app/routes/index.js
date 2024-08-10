@@ -293,8 +293,8 @@ router.get("/admin/database", ensureAuthenticated, async (req, res, next) => {
       const [downeggs] = await db.query(query);
       const downloadCount = downeggs[0].downloadCount;
 
-      const [tables] = await db.query('SHOW TABLES');
-      const tableNames = tables.map(table => Object.values(table)[0]);
+      const [tables] = await db.query("SHOW TABLES");
+      const tableNames = tables.map((table) => Object.values(table)[0]);
 
       res.render("dashboard-database", {
         user: req.user,
@@ -303,7 +303,7 @@ router.get("/admin/database", ensureAuthenticated, async (req, res, next) => {
         tables: tableNames,
         eggsdown: downloadCount,
         dbhost: process.env.DB_HOST,
-        dbuser: process.env.DB_USER
+        dbuser: process.env.DB_USER,
       });
     }
   } catch (err) {
@@ -320,48 +320,50 @@ router.get("/logout", (req, res) => {
   });
 });
 
-router.get('/api/table/:name', async (req, res) => {
-    const tableName = req.params.name;
-    try {
-        const [results] = await db.query(`SELECT * FROM ${tableName}`);
-        
-        const cleanResults = results.map(user => {
-          const { password, token, servers, ...cleanUser } = user;
+router.get("/api/table/:name", async (req, res) => {
+  const tableName = req.params.name;
+  try {
+    const [results] = await db.query(`SELECT * FROM ${tableName}`);
 
-          if (servers) {
-            if (typeof servers === 'string') {
-              try {
-                const parsedServers = JSON.parse(servers);
-                if (typeof parsedServers === 'object' && parsedServers !== null) {
-                  if (Array.isArray(parsedServers)) {
-                    cleanUser.servers = parsedServers.length;
-                  } else {
-                    cleanUser.servers = Object.keys(parsedServers).length;
-                  }
-                }
-              } catch (error) {
-                console.error("Failed to parse servers JSON:", error);
-                cleanUser.servers = 0;
+    const cleanResults = results.map((user) => {
+      const { password, token, servers, ...cleanUser } = user;
+
+      if (servers) {
+        if (typeof servers === "string") {
+          try {
+            const parsedServers = JSON.parse(servers);
+            if (typeof parsedServers === "object" && parsedServers !== null) {
+              if (Array.isArray(parsedServers)) {
+                cleanUser.servers = parsedServers.length;
+              } else {
+                cleanUser.servers = Object.keys(parsedServers).length;
               }
-            } else if (typeof servers === 'object' && servers !== null) {
-              cleanUser.servers = Array.isArray(servers) ? servers.length : Object.keys(servers).length;
             }
-          } else {
-            delete cleanUser.servers;
-          }
-        
-          if (cleanUser.servers === 0) {
+          } catch (error) {
+            console.error("Failed to parse servers JSON:", error);
             cleanUser.servers = 0;
           }
-        
-          return cleanUser;
-        })
+        } else if (typeof servers === "object" && servers !== null) {
+          cleanUser.servers = Array.isArray(servers)
+            ? servers.length
+            : Object.keys(servers).length;
+        }
+      } else {
+        delete cleanUser.servers;
+      }
 
-        res.json(cleanResults);
-    } catch (err) {
-        console.error('Error querying the database:', err);
-        res.status(500).send('Internal Server Error');
-    }
+      if (cleanUser.servers === 0) {
+        cleanUser.servers = 0;
+      }
+
+      return cleanUser;
+    });
+
+    res.json(cleanResults);
+  } catch (err) {
+    console.error("Error querying the database:", err);
+    res.status(500).send("Internal Server Error");
+  }
 });
 
 module.exports = router;

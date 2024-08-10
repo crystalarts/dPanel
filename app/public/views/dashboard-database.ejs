@@ -156,20 +156,26 @@
                 <h2 style="font-weight: 400; font-size: 16px;">Database Preview</h2>
             </div>
             <div style="padding: 20px; background-color: #ffffff08; margin-top: 15px; border-radius: 10px; border: 1px solid #33373f;">
-                <h3 style="color: #fff; font-size: 15px;">Logged in as : <%= dbuser %>@<%= dbhost %></h3>
-                <p style="margin-top: 10px;"><i class="fas fa-database"></i> dPanel</p>
-                <p class="table-table" id="table" style="cursor: pointer; margin-left: 25px; margin-top: 5px;" onclick="showTable()"><i class="fas fa-caret-down"></i> Tables</p>
-                <div style="display: flex; flex-direction: row;">
-                    <ul style="display: flex; flex-direction: column;margin-left: 45px;" id="tableList">
-                        <% tables.forEach(table => { %>
-                            <li><a href="#" class="table-link" data-table="<%= table %>"><i class="fas fa-table"></i> <%= table %></a></li>
-                        <% }) %>
-                    </ul>
+              <div style="display: flex;">
+                <div style="width: max-content;">
+                  <h3 style="color: #fff; font-size: 14px;">Logged in as : <%= dbuser %>@<%= dbhost %></h3>
+                  <p style="margin-top: 10px;"><i class="fas fa-database"></i> dPanel</p>
+                  <p class="table-table" id="table" style="cursor: pointer; margin-left: 25px; margin-top: 5px;" onclick="showTable()"><i class="fas fa-caret-down"></i> Tables</p>
+                  <div style="display: flex; flex-direction: row;">
+                      <ul style="display: flex; flex-direction: column;margin-left: 45px;" id="tableList">
+                          <% tables.forEach(table => { %>
+                              <li><a href="#" class="table-link" data-table="<%= table %>"><i class="fas fa-table"></i> <%= table %></a></li>
+                          <% }) %>
+                      </ul>
+                  </div>
                 </div>
-                <h2 class="previewtable" style="color: #fff; font-size: 15px;">Table Preview</h2>
-                <div class="tableContent" id="tableContent">
-                    <p style="color: #b4b7b9; font-size: 12px;">Select a table to see the contents.</p>
+                <div style="margin-left: 20px; width: 100%;">
+                  <h2 class="previewtable" style="color: #fff; font-size: 15px;">Table Preview</h2>
+                  <div class="tableContent" id="tableContent">
+                      <p style="color: #b4b7b9; font-size: 12px;">Select a table to see the contents.</p>
+                  </div>
                 </div>
+              </div>
             </div>
           </div>
         </div>

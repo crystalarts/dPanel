@@ -95,7 +95,8 @@ CREATE TABLE IF NOT EXISTS server (
 CREATE TABLE IF NOT EXISTS eggs (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255),
-    download LONGTEXT
+    download VARCHAR(255)
+    description LONGTEXT
 );
 
 INSERT INTO eggs (name, download, description) VALUES ('nginx', 'false', 'Nginx is a high-performance web server and reverse proxy server that efficiently handles large volumes of traffic, serving web content and balancing load across multiple servers.');
