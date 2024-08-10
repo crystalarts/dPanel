@@ -1,5 +1,5 @@
 const { v4: uuidv4 } = require("uuid");
-const db = require("../../../mysql-promise");
+const db = require("../../../database/mysql-promise");
 
 async function generateUniqueName(nameserver) {
   let isUnique = false;

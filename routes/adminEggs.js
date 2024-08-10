@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const { ensureAuthenticated } = require("../app/config/auth");
-const db = require("../mysql-promise");
-const dbs = require("../mysql");
+const db = require("../database/mysql-promise");
+const dbs = require("../database/mysql");
 const getLocalIPs = require("../utils/system/getLocalIP");
 
 router.get("/admin/eggs", ensureAuthenticated, async (req, res, next) => {

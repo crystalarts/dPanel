@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { ensureAuthenticated } = require("../app/config/auth");
-const db = require("../mysql-promise");
+const db = require("../database/mysql-promise");
 const getLocalIPs = require("../utils/system/getLocalIP");
 require("dotenv").config();
 

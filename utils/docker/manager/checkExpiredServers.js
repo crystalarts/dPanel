@@ -1,4 +1,4 @@
-const db = require("../../../mysql-promise");
+const db = require("../../../database/mysql-promise");
 
 async function checkExpiredServers() {
   try {

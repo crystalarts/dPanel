@@ -28,6 +28,6 @@ console.log(
 console.log("*               \x1b[36mdPanel has started launching:\x1b[0m");
 console.log("*");
 require("./app/index");
-require("./mysql-promise");
-require("./mysql");
+require("./database/mysql-promise");
+require("./database/mysql");
 require("./smtp");
