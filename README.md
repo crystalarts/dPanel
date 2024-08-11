@@ -1,42 +1,71 @@
 # dPanel
+
 ![Discord](https://img.shields.io/discord/1249245314225930320?label=Discord&logo=Discord&logoColor=white&style=for-the-badge)
 ![GitHub contributors](https://img.shields.io/github/contributors/dpaneldev/dpanel?style=for-the-badge)
+![License](https://img.shields.io/github/license/dpaneldev/dpanel?style=for-the-badge)
 
-## Introduction 
-[dPanel](https://discord.gg/DRDvwDe8dD) is an advanced game server management panel that allows you to easily create, manage and monitor cloud game servers. dPanel uses Docker technology to run isolated game servers in a secure and scalable environment.
+---
 
-## Features 
-- **Server Management**: Easily create, delete and manage game servers.
-- **Real-time monitoring**: Monitor resources such as CPU, RAM, disk and network.
-- **Multi-Game Support**: Supports many popular game engines and servers.
-- **Users and roles**: Ability to grant permissions to different users.
+## 🎮 Introduction 
 
-## System requirements 
+[dPanel](https://discord.gg/DRDvwDe8dD) is a next-generation game server management panel designed to revolutionize the way you create, manage, and monitor cloud-based game servers. Built on cutting-edge Docker technology, dPanel ensures each game server runs in a secure, isolated, and scalable environment, giving you peace of mind while delivering exceptional performance.
+
+---
+
+## ✨ Features 
+
+- **🛠️ Server Management**: Create, delete, and manage game servers with just a few clicks.
+- **📊 Real-time Monitoring**: Keep an eye on vital resources like CPU, RAM, disk usage, and network traffic in real-time.
+- **🎮 Multi-Game Support**: Seamlessly supports a broad range of popular game engines and servers.
+- **👥 User Roles & Permissions**: Customize user access and permissions to fit your team's needs.
+- **🔒 Secure & Scalable**: Leveraging Docker ensures that each server instance is securely isolated and can easily scale.
+
+---
+
+## ⚙️ System Requirements 
+
+To run dPanel smoothly, your system should meet the following requirements:
+
 - **Operating System**: Ubuntu 20.04+ or CentOS 7/8
-- **RAM**: Minimum 2 GB RAM
-- **Disk**: Minimum 10 GB of disk space (depending on the number of game servers)
-- **CPU**: Processor with min. 2 cores
+- **RAM**: Minimum 2 GB
+- **Disk Space**: Minimum 10 GB (expandable based on the number of servers)
+- **CPU**: Dual-core processor or better
 
-### Supported Games
+---
 
-dPanel supports a wide variety of games by utilizing Docker containers to isolate each instance. This gives
-you the power to run game servers without bloating machines with a host of additional dependencies.
+## 🎲 Supported Games
 
-Some of our core supported games include:
+dPanel offers broad support for a wide range of games, making it your one-stop solution for game server management. Thanks to Docker's containerization, each game server is isolated, ensuring maximum performance without dependency conflicts.
 
-* Minecraft
-* Rust
-* Terraria
-* Teamspeak
-* Assetto Corsa
-* DayZ
-* Factorio
-* Garry's Mod
+Some of the popular games supported by dPanel include:
 
-and much more...
+- **Minecraft** 🟩
+- **Rust** 🌍
+- **Terraria** 🏝️
+- **Teamspeak** 🗣️
+- **Assetto Corsa** 🚗
+- **DayZ** 🧟
+- **Factorio** ⚙️
+- **Garry's Mod** 🎮
 
-## License
+...and many more. Our constantly growing list ensures you'll find support for your favorite game.
 
-iCrux.net Copyright © 2024 Jakub Burzyński and contributors.
+---
 
-Code released under the [MIT License](./LICENSE).
+## 📜 License
+
+This project is licensed under the [MIT License](./LICENSE).
+
+© 2024 Jakub Burzyński and contributors, dpanel. All rights reserved.
+
+---
+
+## 🌐 Join Our Community
+
+Have questions or need support? Join our vibrant community on [Discord](https://discord.gg/DRDvwDe8dD) where you can connect with other users, share ideas, and get help from the developers.
+
+---
+
+## 🚀 Get Started
+
+Ready to take your game server management to the next level? [Get started with dPanel today](https://discord.gg/DRDvwDe8dD) and experience the difference!
