@@ -46,7 +46,6 @@ fi
 ## ----- Installation Dependencies -----
 ## -------------------------------------
 
-
 echo "* Installing Dependencies..."
 
 apt-get install -y nodejs
@@ -61,7 +60,6 @@ else
     echo "Failed to install dependencies." >&2
     exit 1
 fi
-
 
 ## ------------------------------
 ## ----- Installation MySQL -----

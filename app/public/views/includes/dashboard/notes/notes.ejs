@@ -1,10 +1,27 @@
 <div class="notes-header">
   <div class="notes-class">
-    <p class="notes-edit" onclick="editnotes()">
+    <p class="notes-edit" onclick="editNotes()">
       <i class="far fa-edit"></i> Edit
     </p>
   </div>
   <div class="notes-content">
-    <p></p>
+    <p id="noteDisplay"></p>
+  </div>
+</div>
+
+<div id="notesModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Notes</h2>
+      <div class="modal-icons">
+        <i class="fas fa-sync-alt" onclick="refreshNotes()"></i>
+        <i class="fas fa-times" onclick="closeNotes()"></i>
+      </div>
+    </div>
+    <textarea id="notesTextarea" class="notes-textarea"></textarea>
+    <div class="modal-footer">
+      <button class="help-button"><i class="fas fa-question-circle"></i> Help</button>
+      <button class="modal-button" onclick="saveNotes()">OK</button>
+    </div>
   </div>
 </div>

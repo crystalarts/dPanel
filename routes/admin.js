@@ -50,6 +50,46 @@ router.get("/admin", ensureAuthenticated, async (req, res, next) => {
   }
 });
 
+router.get('/admin/_api/v1/notes', (req, res) => {
+  const query = 'SELECT * FROM notes';
+
+  db.query(query)
+    .then(([results]) => {
+      const contents = results.map(row => row.content);
+      res.json(contents);
+    })
+    .catch(err => {
+      console.error('Error retrieving notes:', err);
+      res.status(500).send('An error occurred while retrieving the notes');
+    });
+});
+
+router.post('/admin/_api/v1/notes', (req, res) => {
+  const note = req.body.content;
+
+  if (!note) {
+    const deleteQuery = 'DELETE FROM notes';
+
+    db.query(deleteQuery, (err, result) => {
+        if (err) {
+            return res.status(500).send('An error occurred while deleting the notes.');
+        }
+
+        return res.send('All notes deleted successfully.');
+    });
+} else {
+    const insertQuery = 'INSERT INTO notes (content) VALUES (?)';
+
+    db.query(insertQuery, [note], (err, result) => {
+        if (err) {
+            return res.status(500).send('An error occurred while saving the note.');
+        }
+
+        return res.send('Note saved successfully');
+    });
+}
+});
+
 router.get('/admin/_api/v1/stats', async (req, res) => {
   try {
         const cpu = await getCPUUsage();
