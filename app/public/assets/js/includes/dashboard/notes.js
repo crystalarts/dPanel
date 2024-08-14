@@ -5,7 +5,6 @@ function displayNotes() {
         const notesDisplay = document.getElementById('noteDisplay');
 
         if (!Array.isArray(data) || data.length === 0) {
-            notesDisplay.innerHTML = 'No notes available.';
             return;
         }
 

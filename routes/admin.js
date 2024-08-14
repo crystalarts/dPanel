@@ -64,30 +64,22 @@ router.get('/admin/_api/v1/notes', (req, res) => {
     });
 });
 
-router.post('/admin/_api/v1/notes', (req, res) => {
+router.post('/admin/_api/v1/notes', async (req, res) => {
   const note = req.body.content;
 
-  if (!note) {
-    const deleteQuery = 'DELETE FROM notes';
-
-    db.query(deleteQuery, (err, result) => {
-        if (err) {
-            return res.status(500).send('An error occurred while deleting the notes.');
-        }
-
-        return res.send('All notes deleted successfully.');
-    });
-} else {
-    const insertQuery = 'INSERT INTO notes (content) VALUES (?)';
-
-    db.query(insertQuery, [note], (err, result) => {
-        if (err) {
-            return res.status(500).send('An error occurred while saving the note.');
-        }
-
-        return res.send('Note saved successfully');
-    });
-}
+  try {
+    if (!note) {
+      const deleteQuery = 'DELETE FROM notes';
+      await db.query(deleteQuery);
+      return res.send('All notes deleted successfully.');
+    } else {
+      const insertQuery = 'INSERT INTO notes (content) VALUES (?)';
+      await db.query(insertQuery, [note]);
+      return res.send('Note saved successfully');
+    }
+  } catch (err) {
+    return res.status(500).send('An error occurred while processing the request.');
+  }
 });
 
 router.get('/admin/_api/v1/stats', async (req, res) => {
