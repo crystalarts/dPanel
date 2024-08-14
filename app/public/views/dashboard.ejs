@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -35,193 +35,59 @@
     ></script>
 
     <script src="/js/index.js"></script>
+    <script src="/js/includes/dashboard/firewall.js"></script>
+    <script src="/js/includes/dashboard/summary.js"></script>
+    <script src="/js/includes/dashboard/notes.js"></script>
   </head>
   <body>
-    <div class="navbar">
-      <div class="left">
-        <span>dPanel</span>
+    <%- include('./includes/selector/navbar') %> <%-
+    include('./includes/selector/navbar-bottom') %>
+    <div class="content">
+      <div id="content" class="content-left" style="display: flex">
+        <p id="content-text" class="active f1" style="cursor: pointer">
+          <i class="fas fa-chevron-down i1"></i
+          ><i class="fas fa-server"></i> Datacenter
+        </p>
       </div>
-      <div class="right">
-        <span><%= user.name %></span>
-        <img src="/img/user.png" alt="logo" />
-      </div>
-    </div>
-    <div class="main">
-      <div class="sidebar">
-        <a class="active" href="/admin"><i class="fas fa-home"></i></a>
-        <a href="/"><i class="fas fa-key"></i></a>
-        <a href="/admin/database"><i class="fas fa-database"></i></a>
-        <a href="/admin/eggs"><i class="fas fa-egg"></i></a>
-        <a href="/"><i class="fas fa-server"></i></a>
-        <a href="/"><i class="fab fa-docker"></i></a>
-        <a href="/admin/users"><i class="fas fa-user-friends"></i></a>
-      </div>
-      <div class="content">
-        <div class="left-bar">
-          <div class="leftbar-info">
-            <div class="leftbar-icon">
-              <img src="/img/logo.jpg" alt="logo" />
-            </div>
-            <span>Welcome to dPanel</span>
-            <p>Version: Development</p>
+      <div class="content-right">
+        <div class="content-right-top">
+          <div class="content-right-top-left">
+            <p style="color: #999999; font-size: 14px">Datacenter</p>
           </div>
-          <div class="leftbar-secound">
-            <span class="leftbar-secound-title">OVERVIEW</span>
-            <div class="leftbar-secound-item active">
-              <a href="/">
-                <i class="fas fa-laptop"></i>
-                <h2 class="iphost"><%= iphost %></h2>
-              </a>
-            </div>
-            <div class="leftbar-secound-item">
-              <a href="/">
-                <i class="fas fa-tachometer-alt"></i>
-                <h2>Dashboard</h2>
-              </a>
-            </div>
-            <span class="leftbar-secound-title">MAIN</span>
-            <div class="leftbar-secound-item">
-              <a href="/">
-                <i class="fas fa-globe-americas"></i>
-                <h2>Websites</h2>
-              </a>
-            </div>
-            <div class="leftbar-secound-item">
-              <a href="/">
-                <i class="fas fa-network-wired"></i>
-                <h2>DNS</h2>
-              </a>
-            </div>
-            <div class="leftbar-secound-item">
-              <a href="/">
-                <i class="fas fa-paper-plane"></i>
-                <h2>Email</h2>
-              </a>
-            </div>
-            <div class="leftbar-secound-item">
-              <a href="/">
-                <i class="fas fa-cloud-upload-alt"></i>
-                <h2>FTP</h2>
-              </a>
-            </div>
-            <div class="leftbar-secound-item">
-              <a href="/">
-                <i class="far fa-copy"></i>
-                <h2>Back Up</h2>
-              </a>
-            </div>
-            <div class="leftbar-secound-item">
-              <a href="/">
-                <i class="fas fa-user-shield"></i>
-                <h2>SSL</h2>
-              </a>
-            </div>
+          <div class="content-right-top-right">
+            <a href="https://discord.gg/DRDvwDe8dD"
+              ><i class="fas fa-headset"></i> Help</a
+            >
           </div>
         </div>
-        <div class="right-bar">
-          <div class="stats">
-            <div class="stats-boxing">
-              <h4>Panel's Resources:</h4>
-              <div class="stats-box accounts">
-                <i class="fas fa-server"></i>
-                <h4>Nodes</h4>
-                <p>0</p>
-              </div>
-              <div class="stats-box servers">
-                <i class="fab fa-docker"></i>
-                <h4>Servers</h4>
-                <p>0</p>
-              </div>
-              <div class="stats-box ram">
-                <a href="/admin/eggs">
-                  <i class="fas fa-egg"></i>
-                  <h4>Eggs</h4>
-                  <p><%= eggsdown %></p>
-                </a>
-              </div>
-              <div class="stats-box cpu">
-                <a href="/admin/users">
-                  <i class="fas fa-user-friends"></i>
-                  <h4>Users</h4>
-                  <p><%= index_user %></p>
-                </a>
-              </div>
-            </div>
+        <div class="content-right-bottom">
+          <div class="content-right-bottom-left">
+            <%- include('./includes/selector/content-right-bottom-left') %>
           </div>
-          <div class="dashboard">
-            <h1>Welcome back, <%= user.name %></h1>
-            <h3>It's great to see you again!</h3>
-
-            <div class="expand">
-              <div class="section">
-                <div class = "section-item-left">
-                  <i class="fas fa-code"></i>
-                  <h2>Information for Developers</h2>
-                </div>
-                <div class = "section-item-right">
-                  <button class="button create-issue">
-                    <a href="https://github.com/dpaneldev/dPanel/issues"> 
-                      <i class="fab fa-github"></i> Create Issues
-                    </a>
-                  </button>
-                  <button class="button discuss-features">
-                    <a href="https://github.com/dpaneldev/dPanel/discussions"> 
-                      <i class="fab fa-github"></i> Discuss Features
-                    </a>
-                  </button>
-                  <button class="expand-button" onclick="toggleExpand(this)"><i class="fas fa-angle-down"></i></button>
-                </div> 
-              </div>
-              <div class="section">
-                <div class = "section-item-left">
-                  <i class="fas fa-heart color-heart"></i>
-                  <h2>Support dPanel</h2>
-                </div>
-                <div class = "section-item-right">
-                  <button class="button help-translate"><i class="fas fa-globe"></i> Help Translate</button>
-                  <button class="button donate-directly"><i class="fas fa-money-bill-wave"></i> Donate Directly</button>
-                  <button class="expand-button" onclick="toggleExpand(this)"><i class="fas fa-angle-down"></i></button>
-                </div>
-              </div>
-              <div class="section"> 
-                <div class = "section-item-left">
-                  <i class="fas fa-question"></i>
-                  <h2>Need Help? </h2>
-                </div>
-                <div class = "section-item-right">
-                  <button class="button read-documentation"><i class="fas fa-ship"></i> Read Documentation</button>
-                  <button class="button get-help-discord"><i class="fab fa-discord"></i> Get help in Discord</button>
-                  <button class="expand-button" onclick="toggleExpand(this)"><i class="fas fa-angle-down"></i></button>
-                </div>
-              </div>
+          <div class="content-right-bottom-right">
+            <div id="summary" class="summary" style="display: flex">
+              <%- include('./includes/dashboard/summary/summary') %>
             </div>
-            
-            <div class="display-flex">
-              <div class="notification-box">
-                <h4>Notifications</h4>
-                <div class="notification-item">
-                  <p>
-                    <strong>New Feature Release: </strong>
-                    A new update is available
-                  </p>
-                  <span class="timestamp">Just now</span>
-                </div>
-              </div>
-
-              <div class="activity-box">
-                <h4>Activity</h4>
-                <div class="activity-item">
-                  <p>
-                    <strong>@Admin1 </strong>
-                    Created a new node
-                  </p>
-                  <span class="timestamp">Just now</span>
-                </div>
-              </div>
+            <div id="firewall" class="firewall" style="display: none">
+              <%- include('./includes/dashboard/firewall/firewall') %>
+            </div>
+            <div id="notes" class="notes" style="display: none">
+              <%- include('./includes/dashboard/notes/notes') %>
             </div>
           </div>
         </div>
       </div>
     </div>
   </body>
+  <script>
+    function openNav() {
+      var menu = document.getElementById("content");
+
+      if (menu.style.display === "flex") {
+        menu.style.display = "none";
+      } else {
+        menu.style.display = "flex";
+      }
+    }
+  </script>
 </html>
