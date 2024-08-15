@@ -6,8 +6,9 @@ const db = require("../database/mysql");
 const { v4: uuidv4 } = require("uuid");
 const send_verify = require("../utils/smtp/verify");
 const send_verify_completed = require("../utils/smtp/verify-completed");
+const firewallMiddleware = require("../utils/system/firewallMiddleware");
 
-router.get("/login", (req, res, next) => {
+router.get("/login", firewallMiddleware, (req, res, next) => {
   const email = res._login_email;
   const password = res._login_password;
 
@@ -19,7 +20,7 @@ router.get("/login", (req, res, next) => {
   });
 });
 
-router.get("/register", (req, res, next) => {
+router.get("/register", firewallMiddleware, (req, res, next) => {
   const email = res._login_email;
   const password = res._login_password;
 

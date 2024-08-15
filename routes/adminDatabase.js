@@ -3,50 +3,56 @@ const router = express.Router();
 const { ensureAuthenticated } = require("../app/config/auth");
 const db = require("../database/mysql-promise");
 const getLocalIPs = require("../utils/system/getLocalIP");
+const firewallMiddleware = require("../utils/system/firewallMiddleware");
 require("dotenv").config();
 
-router.get("/admin/database", ensureAuthenticated, async (req, res, next) => {
-  try {
-    if (req.user.admin === 0) {
-      return res.render("errors/404");
-    } else {
-      const ips = getLocalIPs();
-      const sql = `
+router.get(
+  "/admin/database",
+  firewallMiddleware,
+  ensureAuthenticated,
+  async (req, res, next) => {
+    try {
+      if (req.user.admin === 0) {
+        return res.render("errors/404");
+      } else {
+        const ips = getLocalIPs();
+        const sql = `
         SELECT COUNT(*) AS total_indexes
         FROM INFORMATION_SCHEMA.STATISTICS
         WHERE TABLE_SCHEMA = 'dpanel'
         AND TABLE_NAME = 'user';
       `;
 
-      const [results] = await db.query(sql);
-      const index_user = results[0].total_indexes;
+        const [results] = await db.query(sql);
+        const index_user = results[0].total_indexes;
 
-      const query = `
+        const query = `
         SELECT COUNT(*) AS downloadCount
         FROM eggs
         WHERE download = 'true'
       `;
 
-      const [downeggs] = await db.query(query);
-      const downloadCount = downeggs[0].downloadCount;
+        const [downeggs] = await db.query(query);
+        const downloadCount = downeggs[0].downloadCount;
 
-      const [tables] = await db.query("SHOW TABLES");
-      const tableNames = tables.map((table) => Object.values(table)[0]);
+        const [tables] = await db.query("SHOW TABLES");
+        const tableNames = tables.map((table) => Object.values(table)[0]);
 
-      res.render("dashboard-database", {
-        user: req.user,
-        iphost: ips,
-        index_user: index_user,
-        tables: tableNames,
-        eggsdown: downloadCount,
-        dbhost: process.env.DB_HOST,
-        dbuser: process.env.DB_USER,
-      });
+        res.render("dashboard-database", {
+          user: req.user,
+          iphost: ips,
+          index_user: index_user,
+          tables: tableNames,
+          eggsdown: downloadCount,
+          dbhost: process.env.DB_HOST,
+          dbuser: process.env.DB_USER,
+        });
+      }
+    } catch (err) {
+      next(err);
     }
-  } catch (err) {
-    next(err);
-  }
-});
+  },
+);
 
 router.get("/api/table/:name", async (req, res) => {
   const tableName = req.params.name;

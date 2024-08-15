@@ -8,51 +8,57 @@ const getCPUUsage = require("../utils/system/getCPUUsage");
 const getRAMUsage = require("../utils/system/getRAMUsage");
 const getDiskUsage = require("../utils/system/getDiskUsage");
 const getNetworkUsage = require("../utils/system/getNetworkUsage");
+const firewallMiddleware = require("../utils/system/firewallMiddleware");
 
-router.get("/admin", ensureAuthenticated, async (req, res, next) => {
-  try {
-    if (req.user.admin === 0) {
-      return res.render("errors/404");
-    } else {
-      const ips = getLocalIPs();
-      const sql = `
+router.get(
+  "/admin",
+  firewallMiddleware,
+  ensureAuthenticated,
+  async (req, res, next) => {
+    try {
+      if (req.user.admin === 0) {
+        return res.render("errors/404");
+      } else {
+        const ips = getLocalIPs();
+        const sql = `
         SELECT COUNT(*) AS total_indexes
         FROM INFORMATION_SCHEMA.STATISTICS
         WHERE TABLE_SCHEMA = 'dpanel'
         AND TABLE_NAME = 'user';
       `;
 
-      const [results] = await db.query(sql);
-      const index_user = results[0].total_indexes;
+        const [results] = await db.query(sql);
+        const index_user = results[0].total_indexes;
 
-      const query = `
+        const query = `
         SELECT COUNT(*) AS downloadCount
         FROM eggs
         WHERE download = 'true'
       `;
 
-      const [downeggs] = await db.query(query);
-      const downloadCount = downeggs[0].downloadCount;
+        const [downeggs] = await db.query(query);
+        const downloadCount = downeggs[0].downloadCount;
 
-      const querys = "SELECT * FROM settings";
-      const [settings] = await db.query(querys);
+        const querys = "SELECT * FROM settings";
+        const [settings] = await db.query(querys);
 
-      const firewall = "SELECT * FROM firewall";
-      const [firewalls] = await db.query(firewall);
+        const firewall = "SELECT * FROM firewall";
+        const [firewalls] = await db.query(firewall);
 
-      res.render("dashboard", {
-        user: req.user,
-        iphost: ips,
-        index_user: index_user,
-        eggsdown: downloadCount,
-        settings: settings,
-        firewalls: firewalls,
-      });
+        res.render("dashboard", {
+          user: req.user,
+          iphost: ips,
+          index_user: index_user,
+          eggsdown: downloadCount,
+          settings: settings,
+          firewalls: firewalls,
+        });
+      }
+    } catch (err) {
+      next(err);
     }
-  } catch (err) {
-    next(err);
-  }
-});
+  },
+);
 
 router.get("/admin/_api/v1/notes", (req, res) => {
   const query = "SELECT * FROM notes";

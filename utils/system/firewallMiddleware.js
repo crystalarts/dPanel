@@ -1,33 +1,30 @@
-const db = require("../database/mysql-promise");
+const db = require("../../database/mysql-promise");
 
 const firewallMiddleware = async (req, res, next) => {
-    const clientIp = req.ip;
-    const protocol = req.protocol;
-    const method = req.method.toLowerCase();
+  const clientIp = req.ip === "::1" ? "127.0.0.1" : req.ip;
+  const protocol = req.protocol;
 
-    try {
-        const [rules] = await db.query("SELECT * FROM firewall WHERE `on` = 'on'");
-        
-        let accessAllowed = false;
+  try {
+    const [rules] = await db.query("SELECT * FROM firewall WHERE `on` = 'on'");
 
-        for (const rule of rules) {
-            if (rule.interfaces === clientIp || rule.interfaces === '0.0.0.0') {
-                if (rule.protocol === protocol && (rule.direction === 'in' || rule.direction === 'both')) {
-                    accessAllowed = true;
-                    break;
-                }
-            }
+    for (const rule of rules) {
+      if (rule.interfaces === clientIp || rule.interfaces === "0.0.0.0") {
+        if (
+          rule.protocol === protocol &&
+          (rule.direction === "in" || rule.direction === "both")
+        ) {
+          if (rule.type === "REJECT") {
+            return res.status(403).send("Access denied by firewall");
+          }
         }
-
-        if (accessAllowed) {
-            next();
-        } else {
-            res.status(403).send('Access denied by firewall');
-        }
-    } catch (err) {
-        console.error('Błąd w middleware firewalla:', err);
-        res.status(500).send('Błąd serwera');
+      }
     }
+
+    next();
+  } catch (err) {
+    console.error("Error in firewall middleware:", err);
+    res.status(500).send("Server error");
+  }
 };
 
 module.exports = firewallMiddleware;

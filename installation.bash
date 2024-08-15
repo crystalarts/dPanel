@@ -125,7 +125,7 @@ CREATE TABLE firewall (
     `type` ENUM('ACCEPT', 'DROP', 'REJECT') NOT NULL,
     interfaces VARCHAR(255) NOT NULL UNIQUE,
     direction ENUM('in', 'out') NOT NULL,
-    protocol ENUM('tcp', 'udp', 'icmp', 'igmp') NOT NULL,
+    protocol ENUM('http', 'https','tcp', 'udp', 'icmp', 'igmp', 'ggp', 'ipencap', 'st', 'egp', 'igp', 'pup', 'hmp', 'xns-idp', 'rdp', 'iso-tp4', 'dccp', 'xtp', 'ddp', 'idr-cmtp', 'ipv6', 'ipv6-route', 'ipv6-frag', 'idrp', 'rsvp', 'gre', 'esp', 'ah', 'skip', 'ipv6-icmp', 'ipv6-nonxt', 'ipv6-opts', 'vmtp', 'eigrp', 'ospf', 'ax.25', 'ipip', 'etherip', 'encap', 'pim', 'ipcomp', 'vrrp', 'l2tp', 'isis', 'sctp', 'dc', 'mobility-header', 'udplite', 'mpls-in-ip', 'hip', 'shim6', 'wesp', 'rohc') NOT NULL,
     comment TEXT
 );
 
