@@ -119,6 +119,16 @@ CREATE TABLE IF NOT EXISTS eggs (
     description LONGTEXT
 );
 
+CREATE TABLE firewall (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    `on` ENUM('on', 'off') NOT NULL,
+    `type` ENUM('ACCEPT', 'DROP', 'REJECT') NOT NULL,
+    interfaces VARCHAR(255) NOT NULL UNIQUE,
+    direction ENUM('in', 'out') NOT NULL,
+    protocol ENUM('tcp', 'udp', 'icmp', 'igmp') NOT NULL,
+    comment TEXT
+);
+
 INSERT INTO eggs (name, download, description) VALUES ('nginx', 'false', 'Nginx is a high-performance web server and reverse proxy server that efficiently handles large volumes of traffic, serving web content and balancing load across multiple servers.');
 INSERT INTO eggs (name, download, description) VALUES ('teamspeak', 'false', 'TeamSpeak is a voice communication platform designed for gamers and teams, offering high-quality, low-latency voice chat with customizable channels and robust administrative features.');
 INSERT INTO eggs (name, download, description) VALUES ('armathree', 'false', 'ARMA 3 is an open-world, realism-based tactical shooter with a wide range of vehicles and over 40 weapons. Enjoy diverse playstyles in both official and popular unofficial multiplayer modes. Test your squad’s skills in this tactical game with our game server hosting!');

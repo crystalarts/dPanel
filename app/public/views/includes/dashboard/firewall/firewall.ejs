@@ -1,0 +1,99 @@
+<div class="firewall-container">
+    <h1>Zarządzanie Firewallami</h1>
+    <button id="add-firewall-btn">Dodaj nowy firewall</button>
+
+    <div class="firewall-list">
+        <h2>Lista Firewalli</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>On</th>
+                    <th>Type</th>
+                    <th>IP</th>
+                    <th>Direction</th>
+                    <th>Protocol</th>
+                    <th>Comment</th>
+                    <th>Akcje</th>
+                </tr>
+            </thead>
+            <tbody id="firewall-table-body">
+                <% firewalls.forEach(firewall => { %>
+                    <tr data-id="<%= firewall.id %>">
+                        <td><%= firewall.on %></td>
+                        <td><%= firewall.type %></td>
+                        <td><%= firewall.interfaces %></td>
+                        <td><%= firewall.direction %></td>
+                        <td><%= firewall.protocol %></td>
+                        <td><%= firewall.comment %></td>
+                        <td class="actions">
+                            <button class="edit-firewall-btn">Edit</button>
+                            <button class="delete-firewall-btn">Delete</button>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="firewall-modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modal-title">Add: Rule</h2>
+            <span class="close-modal">&times;</span>
+        </div>
+        <div id="modal-body">
+            <form id="firewall-form">
+                <div class="firewall-box-flex">
+                    <div class="firewall-box">
+                        <div class="firewall-display">
+                            <label>Enabled:</label>
+                            <select name="on">
+                                <option value="on">On</option>
+                                <option value="off">Off</option>
+                            </select><br>
+                        </div>
+                        <div class="firewall-display">
+                            <label>Direction:</label>
+                            <select name="direction">
+                                <option value="in">In</option>
+                                <option value="out">Out</option>
+                            </select><br>
+                        </div>
+                        <div class="firewall-display">
+                            <label>Type:</label>
+                            <select name="type">
+                                <option value="ACCEPT">ACCEPT</option>
+                                <option value="DROP">DROP</option>
+                                <option value="REJECT">REJECT</option>
+                            </select><br>
+                        </div>
+                    </div>
+                    <div class="firewall-box">
+                        <div class="firewall-display">
+                            <label>Interfaces:</label>
+                            <input type="text" name="interfaces" required><br>
+                        </div>
+                        <div class="firewall-display">
+                            <label>Protocol:</label>
+                            <select name="protocol">
+                                <option value="tcp">TCP</option>
+                                <option value="udp">UDP</option>
+                                <option value="icmp">ICMP</option>
+                                <option value="igmp">IGMP</option>
+                            </select><br>
+                        </div>
+                            <div class="firewall-display">
+                            <label>Comment:</label>
+                            <input type="text" name="comment"></input><br>
+                        </div>
+                    </div>
+                </div>
+                <div class="firewall-display">
+                    <input type="hidden" name="id" value="">
+                    <button type="submit" style="padding: 5px 10px; background-color: #111217; border: 1px solid #2f3136; border-radius: 5px; cursor: pointer; color: #fff;">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

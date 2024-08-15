@@ -34,8 +34,11 @@ router.get("/admin", ensureAuthenticated, async (req, res, next) => {
       const [downeggs] = await db.query(query);
       const downloadCount = downeggs[0].downloadCount;
 
-      const querys = 'SELECT * FROM settings';
+      const querys = "SELECT * FROM settings";
       const [settings] = await db.query(querys);
+
+      const firewall = "SELECT * FROM firewall";
+      const [firewalls] = await db.query(firewall);
 
       res.render("dashboard", {
         user: req.user,
@@ -43,6 +46,7 @@ router.get("/admin", ensureAuthenticated, async (req, res, next) => {
         index_user: index_user,
         eggsdown: downloadCount,
         settings: settings,
+        firewalls: firewalls,
       });
     }
   } catch (err) {
@@ -50,79 +54,80 @@ router.get("/admin", ensureAuthenticated, async (req, res, next) => {
   }
 });
 
-router.get('/admin/_api/v1/notes', (req, res) => {
-  const query = 'SELECT * FROM notes';
+router.get("/admin/_api/v1/notes", (req, res) => {
+  const query = "SELECT * FROM notes";
 
   db.query(query)
     .then(([results]) => {
-      const contents = results.map(row => row.content);
+      const contents = results.map((row) => row.content);
       res.json(contents);
     })
-    .catch(err => {
-      console.error('Error retrieving notes:', err);
-      res.status(500).send('An error occurred while retrieving the notes');
+    .catch((err) => {
+      console.error("Error retrieving notes:", err);
+      res.status(500).send("An error occurred while retrieving the notes");
     });
 });
 
-router.post('/admin/_api/v1/notes', async (req, res) => {
+router.post("/admin/_api/v1/notes", async (req, res) => {
   const note = req.body.content;
 
   try {
-    if (note === undefined || note === null || note === '') {
-      const deleteQuery = 'DELETE FROM notes';
+    if (note === undefined || note === null || note === "") {
+      const deleteQuery = "DELETE FROM notes";
       await db.query(deleteQuery);
-      return res.send('Note deleted successfully.');
+      return res.send("Note deleted successfully.");
     } else {
-      const countQuery = 'SELECT COUNT(*) AS count FROM notes';
+      const countQuery = "SELECT COUNT(*) AS count FROM notes";
       const [countResult] = await db.query(countQuery);
       const noteCount = countResult[0].count;
 
       if (noteCount === 0) {
-        const insertQuery = 'INSERT INTO notes (content) VALUES (?)';
+        const insertQuery = "INSERT INTO notes (content) VALUES (?)";
         await db.query(insertQuery, [note]);
 
-        return res.send('Note added successfully.');
+        return res.send("Note added successfully.");
       } else {
-
-        const updateQuery = 'UPDATE notes SET content = ?';
+        const updateQuery = "UPDATE notes SET content = ?";
         const result = await db.query(updateQuery, [note]);
 
         if (result.affectedRows === 0) {
-          return res.status(404).send('No note found to update.');
+          return res.status(404).send("No note found to update.");
         }
 
-        return res.send('Note updated successfully.');
+        return res.send("Note updated successfully.");
       }
     }
   } catch (err) {
-    return res.status(500).send('An error occurred while processing the request.');
+    return res
+      .status(500)
+      .send("An error occurred while processing the request.");
   }
 });
 
-
-
-router.get('/admin/_api/v1/stats', async (req, res) => {
+router.get("/admin/_api/v1/stats", async (req, res) => {
   try {
-        const cpu = await getCPUUsage();
-        const memory = await getRAMUsage();
-        
-        getDiskUsage((err, disk) => {
-            if (err) {
-                console.error('Failed to get disk usage:', err.message);
-                return res.status(500).json({ error: 'Failed to get disk usage' });
-            }
+    const cpu = await getCPUUsage();
+    const memory = await getRAMUsage();
 
-            getNetworkUsage().then(network => {
-                res.json({ cpu, memory, disk, network });
-            }).catch(err => {
-                console.error('Failed to get network usage:', err.message);
-                res.status(500).json({ error: 'Failed to get network usage' });
-            });
+    getDiskUsage((err, disk) => {
+      if (err) {
+        console.error("Failed to get disk usage:", err.message);
+        return res.status(500).json({ error: "Failed to get disk usage" });
+      }
+
+      getNetworkUsage()
+        .then((network) => {
+          res.json({ cpu, memory, disk, network });
+        })
+        .catch((err) => {
+          console.error("Failed to get network usage:", err.message);
+          res.status(500).json({ error: "Failed to get network usage" });
         });
-    } catch (err) {
-        console.error('Failed to get system stats:', err.message);
-        res.status(500).json({ error: 'Failed to get system stats' });
-    }
+    });
+  } catch (err) {
+    console.error("Failed to get system stats:", err.message);
+    res.status(500).json({ error: "Failed to get system stats" });
+  }
 });
 
 module.exports = router;

@@ -1,5 +1,9 @@
-console.log("*         \x1b[91m __  _______                                __\x1b[0m ");
-console.log("*         \x1b[91m|  \\|       \\                              |  \\\x1b[0m");
+console.log(
+  "*         \x1b[91m __  _______                                __\x1b[0m ",
+);
+console.log(
+  "*         \x1b[91m|  \\|       \\                              |  \\\x1b[0m",
+);
 console.log(
   "*     \x1b[91m____|\x1b[0m \x1b[31m$$\x1b[0m\x1b[91m|\x1b[0m \x1b[31m$$$$$$$\x1b[0m\x1b[91m\\\x1b[0m\x1b[91m ______   _______    ______  | \x1b[0m\x1b[31m$$\x1b[0m",
 );
