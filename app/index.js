@@ -11,6 +11,7 @@ const path = require("path");
 const WebSocket = require("ws");
 const ping = require("ping");
 const i18n = require("i18n");
+const firewallMiddleware = require("../utils/system/firewallMiddleware");
 
 const app = express();
 
@@ -72,6 +73,7 @@ app.use("/", require("../routes/adminDatabase"));
 
 // --- INCLUDES ROUTES --- \\
 app.use("/", require("../routes/includes/firewall"));
+app.use(firewallMiddleware);
 
 app.all("*", (req, res) => res.render("errors/404"));
 
