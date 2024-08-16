@@ -47,12 +47,10 @@ router.post("/delete/:id", async (req, res) => {
     res.json({ success: true, message: "Firewall removed." });
   } catch (err) {
     console.error("Error when deleting from the database:", err);
-    res
-      .status(500)
-      .json({
-        success: false,
-        message: "Server error when removing firewall.",
-      });
+    res.status(500).json({
+      success: false,
+      message: "Server error when removing firewall.",
+    });
   }
 });
 

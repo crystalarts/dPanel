@@ -5,15 +5,19 @@ function firewall() {
   var summarylink = document.getElementById("summary-link");
   var notes = document.getElementById("notes");
   var noteslink = document.getElementById("notes-link");
+  var user = document.getElementById("users");
+  var userlink = document.getElementById("users-link");
 
   if (firewall.style.display === "none") {
     firewall.style.display = "flex";
     summary.style.display = "none";
     notes.style.display = "none";
+    user.style.display = "none";
 
     firewalllink.classList.add("active");
     summarylink.classList.remove("active");
     noteslink.classList.remove("active");
+    userlink.classList.remove("active");
   }
 }
 
@@ -30,7 +34,14 @@ $(document).ready(function () {
 
     $("#modal-title").text("Edit: Rule");
     $('#firewall-form input[name="id"]').val(id);
-    $('#firewall-form select[name="on"]').val(tr.find("td:eq(0)").text());
+    var icon = tr.find("td:eq(0) i");
+    var onValue;
+
+    if (icon.hasClass("fa-check-circle") && icon.css("color") === "rgb(135, 255, 119)") {
+        onValue = "on";
+    } else if (icon.hasClass("fa-times-circle") && icon.css("color") === "rgb(255, 119, 119)") {
+        onValue = "off";
+    }
     $('#firewall-form select[name="type"]').val(tr.find("td:eq(1)").text());
     $('#firewall-form input[name="interfaces"]').val(
       tr.find("td:eq(2)").text(),

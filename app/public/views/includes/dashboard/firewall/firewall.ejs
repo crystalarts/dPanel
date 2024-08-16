@@ -1,25 +1,31 @@
 <div class="firewall-container">
-    <h1>Zarządzanie Firewallami</h1>
-    <button id="add-firewall-btn">Dodaj nowy firewall</button>
+    <div class="firewall-header">
+        <button id="add-firewall-btn">Add a new firewall</button>
+    </div>
 
     <div class="firewall-list">
-        <h2>Lista Firewalli</h2>
         <table>
             <thead>
                 <tr>
-                    <th>On</th>
+                    <th style="display: flex; justify-content: center;">On</th>
                     <th>Type</th>
                     <th>IP</th>
                     <th>Direction</th>
                     <th>Protocol</th>
                     <th>Comment</th>
-                    <th>Akcje</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody id="firewall-table-body">
                 <% firewalls.forEach(firewall => { %>
                     <tr data-id="<%= firewall.id %>">
-                        <td><%= firewall.on %></td>
+                        <td style="display: flex; justify-content: center;">
+                            <% if (firewall.on === 'on') {%>
+                                <i class="fas fa-check-circle" style="color: #87ff77;"></i>
+                            <% } else { %>
+                                <i class="fas fa-times-circle" style="color: #ff7777;"></i>
+                            <% } %>
+                        </td>
                         <td><%= firewall.type %></td>
                         <td><%= firewall.interfaces %></td>
                         <td><%= firewall.direction %></td>

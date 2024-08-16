@@ -74,6 +74,7 @@ app.use("/", require("../routes/adminDatabase"));
 // --- INCLUDES ROUTES --- \\
 app.use("/", require("../routes/includes/firewall"));
 app.use(firewallMiddleware);
+app.use("/", require("../routes/includes/users"));
 
 app.all("*", (req, res) => res.render("errors/404"));
 

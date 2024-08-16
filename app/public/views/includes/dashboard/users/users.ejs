@@ -1,0 +1,33 @@
+<div class="container">
+        <h1>User Management</h1>
+
+        <%- include('./partials/form', { action: '/add-user', buttonLabel: 'Add User' }) %>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Verified</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% users.forEach(user => { %>
+                    <tr>
+                        <td><%= user.id %></td>
+                        <td><%= user.name %></td>
+                        <td><%= user.email %></td>
+                        <td><%= user.verify ? 'Yes' : 'No' %></td>
+                        <td>
+                            <form action="/delete-user/<%= user.id %>" method="POST" style="display:inline;">
+                                <button type="submit">Delete</button>
+                            </form>
+                            <button onclick="showEditForm('<%= user.id %>', '<%= user.name %>', '<%= user.email %>', '<%= user.verify %>')">Edit</button>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>

@@ -24,15 +24,19 @@ function notes() {
   var summarylink = document.getElementById("summary-link");
   var notes = document.getElementById("notes");
   var noteslink = document.getElementById("notes-link");
+  var user = document.getElementById("users");
+  var userlink = document.getElementById("users-link");
 
   if (notes.style.display === "none") {
     firewall.style.display = "none";
     summary.style.display = "none";
     notes.style.display = "flex";
+    user.style.display = "none";
 
     firewalllink.classList.remove("active");
     summarylink.classList.remove("active");
     noteslink.classList.add("active");
+    userlink.classList.remove("active");
   }
 }
 

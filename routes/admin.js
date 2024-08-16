@@ -45,12 +45,32 @@ router.get(
         const firewall = "SELECT * FROM firewall";
         const [firewalls] = await db.query(firewall);
 
+        const sqlUsers =
+          "SELECT id, name, email, admin, servers, verify FROM user";
+        const [userResults] = await db.query(sqlUsers);
+
+        userResults.forEach((user) => {
+          try {
+            const serversData =
+              typeof user.servers === "string"
+                ? JSON.parse(user.servers)
+                : user.servers;
+            user.serversCount = Array.isArray(serversData)
+              ? serversData.length
+              : 0;
+          } catch (e) {
+            console.error("Error parsing JSON for user servers:", e);
+            user.serversCount = 0;
+          }
+        });
+
         res.render("dashboard", {
           user: req.user,
           iphost: ips,
           index_user: index_user,
           eggsdown: downloadCount,
           settings: settings,
+          users: userResults,
           firewalls: firewalls,
         });
       }

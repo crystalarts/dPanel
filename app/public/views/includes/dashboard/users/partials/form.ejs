@@ -1,0 +1,36 @@
+<div id="form-container">
+  <form action="<%= action %>" method="POST">
+    <label for="name">Name:</label>
+    <input type="text" name="name" required />
+
+    <label for="email">Email:</label>
+    <input type="email" name="email" required />
+
+    <label for="password">Password:</label>
+    <input type="password" name="password" required />
+
+    <label for="verified">Verified:</label>
+    <input type="checkbox" name="verified" value="1" />
+
+    <button type="submit"><%= buttonLabel %></button>
+  </form>
+</div>
+
+<div id="edit-form" style="display: none">
+  <h2>Edit User</h2>
+  <form method="POST">
+    <label for="name">Name:</label>
+    <input type="text" name="name" required />
+
+    <label for="email">Email:</label>
+    <input type="email" name="email" required />
+
+    <label for="password">Password:</label>
+    <input type="password" name="password" required />
+
+    <label for="verified">Verified:</label>
+    <input type="checkbox" name="verified" value="1" />
+
+    <button type="submit">Save Changes</button>
+  </form>
+</div>
