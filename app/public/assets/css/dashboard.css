@@ -446,30 +446,84 @@ body {
     margin: 20px auto;
   }
 
+  .firewall-container h1 {
+    color: #d9e5fc;
+    margin-bottom: 20px;
+    font-size: 24px;
+    border-bottom: 2px solid #2f3136;
+    padding-bottom: 10px;
+  }
+  
+  #add-firewall-btn {
+    background-color: #a0a0a0;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  #add-firewall-btn:hover {
+    background-color: #a0a0a0;
+  }
+  
   .firewall-list {
     margin: 20px 0;
   }
-
+  
+  .firewall-list h2 {
+    color: #d9e5fc;
+    margin-bottom: 15px;
+    font-size: 20px;
+    border-bottom: 2px solid #2f3136;
+    padding-bottom: 10px;
+  }
+  
   .firewall-list table {
     width: 100%;
     border-collapse: collapse;
+    background-color: #191b1f;
+    border-radius: 8px;
+    border: 1px solid #2f3136;
   }
-
-  .firewall-list table,
-  th,
-  td {
-    border: 1px solid #ddd;
-  }
-
-  th,
-  td {
-    padding: 10px;
+  
+  .firewall-list th,
+  .firewall-list td {
+    padding: 15px;
     text-align: left;
+    color: #ffffff;
   }
-
+  
+  .firewall-list th {
+    background-color: rgb(47, 49, 54);
+    font-weight: bold;
+  }
+  
+  .firewall-list tr {
+    background-color: rgb(17, 18, 23)
+  }
+  
   .actions {
     display: flex;
     gap: 10px;
+  }
+  
+  .actions button {
+    background-color: #a0a0a0;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .actions button:hover {
+    background-color: #a0a0a0;
   }
 
   .modal {
