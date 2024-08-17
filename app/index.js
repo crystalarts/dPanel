@@ -9,9 +9,17 @@ const session = require("express-session");
 const passport = require("passport");
 const path = require("path");
 const WebSocket = require("ws");
+const fs = require('fs-extra');
 const ping = require("ping");
 const i18n = require("i18n");
+const helmet = require('helmet');
+const morgan = require('morgan');
 const firewallMiddleware = require("../utils/system/firewallMiddleware");
+const generalLimiter = require("../security/generalLimiter");
+const Redis = require('ioredis');
+const RedisStore = require('connect-redis')(session);
+
+const redisClient = new Redis();
 
 const app = express();
 
@@ -36,6 +44,8 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(express.static(`${__dirname}/public/assets`));
 app.locals.basedir = `${__dirname}/public/assets`;
+
+const logStream = fs.createWriteStream(path.join(__dirname, 'logs', 'access.log'), { flags: 'a' });
 
 app.use(
   session({
@@ -67,7 +77,6 @@ app.use("/", require("../routes/panel"));
 
 // --- ADMIN ROUTES --- \\
 app.use("/", require("../routes/admin"));
-app.use("/", require("../routes/adminUsers"));
 app.use("/", require("../routes/adminEggs"));
 app.use("/", require("../routes/adminDatabase"));
 
@@ -105,4 +114,28 @@ wss.on("connection", (ws) => {
   ws.on("close", () => {
     clearInterval(pingInterval);
   });
+});
+
+
+// --- SECURITY WARNING --- \\
+app.use(generalLimiter);
+app.use(morgan('combined', { stream: logStream }));
+app.use(helmet());
+
+const BLOCKED_IP_PREFIX = 'blocked_ip:';
+
+app.use(session({
+  store: new RedisStore({ client: redisClient }),
+  secret: 'supersecret',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: true, maxAge: 60000 }
+}));
+
+app.use(async (req, res, next) => {
+  const isBlocked = await redisClient.get(`${BLOCKED_IP_PREFIX}${req.ip}`);
+  if (isBlocked) {
+    return res.status(403).send('Your IP address has been blocked.');
+  }
+  next();
 });
