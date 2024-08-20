@@ -89,5 +89,18 @@
         menu.style.display = "flex";
       }
     }
+
+    function checkScreenWidth() {
+      var content = document.getElementById("content");
+      if (window.innerWidth <= 555) {
+        content.style.display = "none";
+      } else {
+        content.style.display = "flex";
+      }
+    }
+
+    window.onload = checkScreenWidth;
+
+    window.onresize = checkScreenWidth;
   </script>
 </html>
