@@ -1089,6 +1089,7 @@ body {
   }
 
   .content-right {
+    max-width: 100%;
     flex: 1;
   }
 
