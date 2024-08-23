@@ -21,10 +21,10 @@ function send_verify(email, token) {
           <div class="content" style="padding: 20px;">
             <p style="font-size: 18px; color: #333; margin-bottom: 20px;">Thank you for registering on our platform! We are excited to have you join our community.</p>
             <div class="action" style="margin-bottom: 20px;">
-              <a href="http://localhost:3000/verify?token=${token}&email=${email}" class="button" style="background-color: #333; color: #fff; padding: 10px 20px; border-radius: 5px; text-decoration: none; display: inline-block;">Verify Account</a>
+              <a href="http://${process.env.NGINX_HOST}/verify?token=${token}&email=${email}" class="button" style="background-color: #333; color: #fff; padding: 10px 20px; border-radius: 5px; text-decoration: none; display: inline-block;">Verify Account</a>
             </div>
             <p style="font-size: 16px; color: #666; margin-bottom: 20px;">If you cannot click the link, copy and paste the following URL into your browser:</p>
-            <code style="display: block; background-color: #f9f9f9; padding: 5px; border-radius: 5px; margin-bottom: 20px;">http://localhost:3000/verify?token=${token}&email=${email}</code>
+            <code style="display: block; background-color: #f9f9f9; padding: 5px; border-radius: 5px; margin-bottom: 20px;">http://${process.env.NGINX_HOST}/verify?token=${token}&email=${email}</code>
             <p style="font-size: 16px; color: #666; margin-bottom: 20px;">Important: If you do not verify your account within 72 hours, your account will be deleted.</p>
             <p style="font-size: 16px; color: #666; margin-bottom: 20px;">If you have any questions or need assistance, feel free to contact us. We are here to help!</p>
             <p style="font-size: 16px; color: #666; margin-bottom: 20px;">Thank you for choosing our platform!</p>

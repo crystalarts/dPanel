@@ -6,7 +6,7 @@ function confirm_continue {
     echo "* dPanel installation script @ v1.0"
     echo "*"
     echo "* Copyright (C) 2024 dPanel, Jakub Burzyński"
-    echo "* https://github.com/icruxnet/dPanel"
+    echo "* https://github.com/dpaneldev/dPanel"
     echo "*"
     echo "* What do you want to do?"
     echo "* [0] Install dPanel"
