@@ -88,6 +88,16 @@ app.use("/", require("../routes/includes/firewall"));
 app.use(firewallMiddleware);
 app.use("/", require("../routes/includes/users"));
 
+// --- API ROUTES --- \\
+app.use("/", require("../api/allocations"));
+app.use("/", require("../api/dbhost"));
+app.use("/", require("../api/dbserver"));
+app.use("/", require("../api/mounts"));
+app.use("/", require("../api/nodes"));
+app.use("/", require("../api/servers"));
+app.use("/", require("../api/users"));
+
+// --- OTHER ROUTES --- \\
 app.all("*", (req, res) => res.render("errors/404"));
 
 const server = app.listen(3000, () => {

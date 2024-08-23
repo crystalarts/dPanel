@@ -1,7 +1,11 @@
-<div class="container" style="width: 100%; margin: 0 auto; display: flex; overflow: auto; justify-content: center; align-items: center;">
+<div class="container" style="width: 100%; margin: 0 auto; ">
     <%- include('./partials/form', { action: '/add-user', buttonLabel: 'Add User' }) %>
 
-    <div style="width: 100%; overflow-x: auto;">
+    <div class="usertop">
+        <button id="add-user-btn">Add a new user</button>
+    </div>
+
+    <div style="width: 100%; overflow-x: auto; margin-top: 10px">
         <table class="tableUser">
             <thead>
                 <tr style="background-color: #2f3136; color: #ffffff; text-align: center;">

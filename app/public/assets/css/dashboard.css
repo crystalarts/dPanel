@@ -207,10 +207,12 @@ body {
   }
 
   .content-right-bottom-left a i {
+    display: flex;
     align-items: center;
     justify-content: center;
     width: 20px;
     color: #505050;
+    margin-right: 5px;
     transition: all 0.85s ease;
   }
 
@@ -679,6 +681,33 @@ body {
     padding: 5px;
     font-size: 12px;
   }
+
+  .usertop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #2f3136;
+  }
+
+  .usertop button {
+    background-color: #111217;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    border: 1px solid #2f3136;
+    transition: background-color 0.85s ease;
+  }
+
+  .navbar-bottom .left i.arrow {
+    color: #999999;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 12px;
+  }
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1600px) {
@@ -833,10 +862,12 @@ body {
   }
 
   .content-right-bottom-left a i {
+    display: flex;
     align-items: center;
     justify-content: center;
     width: 20px;
     color: #505050;
+    margin-right: 5px;
     transition: all 0.85s ease;
   }
 
@@ -952,6 +983,26 @@ body {
   }
   .div2 {
     margin-top: 5px;
+  }
+
+  .usertop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #2f3136;
+  }
+
+  .usertop button {
+    background-color: #111217;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    border: 1px solid #2f3136;
+    transition: background-color 0.85s ease;
   }
 }
 
@@ -1624,5 +1675,25 @@ body {
   .tdusers {
     padding: 5px;
     font-size: 12px;
+  }
+
+  .usertop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #2f3136;
+  }
+
+  .usertop button {
+    background-color: #111217;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    border: 1px solid #2f3136;
+    transition: background-color 0.85s ease;
   }
 }
