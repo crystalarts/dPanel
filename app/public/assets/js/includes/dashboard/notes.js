@@ -26,17 +26,21 @@ function notes() {
   var noteslink = document.getElementById("notes-link");
   var user = document.getElementById("users");
   var userlink = document.getElementById("users-link");
+    var support = document.getElementById("support");
+  var supportlink = document.getElementById("support-link");
 
   if (notes.style.display === "none") {
     firewall.style.display = "none";
     summary.style.display = "none";
     notes.style.display = "flex";
     user.style.display = "none";
+    support.style.display = "none";
 
     firewalllink.classList.remove("active");
     summarylink.classList.remove("active");
     noteslink.classList.add("active");
     userlink.classList.remove("active");
+    supportlink.classList.remove("active");
   }
 }
 

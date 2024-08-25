@@ -684,4 +684,55 @@
     border: 1px solid #2f3136;
     transition: background-color 0.85s ease;
   }
+
+  .support-container {
+    background-color: #111217;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border: 1px solid #2f3136;
+    width: 100%;
+  }
+
+  .contact-options {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-option {
+    background-color: #191b1f;
+    border: 1px solid #2f3136;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .contact-option h2 {
+    color: #d9e5fc;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+
+  .contact-option a {
+    color: #999999;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .contact-option a:hover {
+    text-decoration: underline;
+  }
+
+  .support-container h1 {
+    color: #d9e5fc;
+    font-size: 14px;
+  }
+
+  .support-container p {
+    margin-bottom: 10px;
+    font-size: 12px;
+  }
 }

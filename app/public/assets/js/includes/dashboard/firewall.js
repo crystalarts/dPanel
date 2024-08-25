@@ -7,17 +7,21 @@ function firewall() {
   var noteslink = document.getElementById("notes-link");
   var user = document.getElementById("users");
   var userlink = document.getElementById("users-link");
+    var support = document.getElementById("support");
+  var supportlink = document.getElementById("support-link");
 
   if (firewall.style.display === "none") {
     firewall.style.display = "flex";
     summary.style.display = "none";
     notes.style.display = "none";
     user.style.display = "none";
+    support.style.display = "none";
 
     firewalllink.classList.add("active");
     summarylink.classList.remove("active");
     noteslink.classList.remove("active");
     userlink.classList.remove("active");
+    supportlink.classList.remove("active");
   }
 }
 
