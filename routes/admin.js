@@ -60,6 +60,9 @@ router.get(
           }
         });
 
+        const notesQuery = "SELECT content FROM notes";
+        const [notes] = await db.query(notesQuery);
+
         res.render("dashboard", {
           user: req.user,
           iphost: ips,
@@ -67,6 +70,7 @@ router.get(
           eggsdown: downloadCount,
           settings: settings,
           users: userResults,
+          notes: notes,
           firewalls: firewalls,
         });
       }
