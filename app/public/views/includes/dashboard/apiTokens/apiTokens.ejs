@@ -1,0 +1,133 @@
+<div class="apitokens-container">
+    <div class="apitokens-header">
+        <button id="add-apitokens-btn">Create a new api key</button>
+    </div>
+
+    <% 
+        function formatDate(date) {
+            if (!date) return '';
+            const d = new Date(date);
+            const year = d.getFullYear();
+            const month = String(d.getMonth() + 1).padStart(2, '0');
+            const day = String(d.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+    %>
+
+    <div class="apitokens-list" style="width: 100%; overflow-x: auto;">
+        <table>
+            <thead>
+                <tr>
+                    <th class="key-column">Key</th>
+                    <th>Description</th>
+                    <th>Last Used</th>
+                    <th>Created</th>
+                    <th>Created By</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="apitokens-table-body">
+                <% apiTokens.forEach(token => { %>
+                    <tr data-key="<%= token.key %>">
+                      <td class="key-column"><%= token.key %></td>
+                      <td><%= token.description %></td>
+                      <td><%= formatDate(token.last_used) %></td>
+                      <td><%= formatDate(token.created) %></td>
+                      <td><%= token.created_by %></td>
+                      <td class="apitokens-actions">
+                        <button class="edit-apitokens-btn" data-key="<%= token.key %>">Edit</button>
+                        <button class="delete-apitokens-btn" data-key="<%= token.key %>">Delete</button>
+                      </td>
+                    </tr>
+                  <% }) %>
+              </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="apitoken-modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modal-title">Add: API Key</h2>
+            <span class="close-modal">&times;</span>
+        </div>
+        <div id="modal-body">
+            <form id="create-apitoken-form">
+                <div class="apitokens-box-flex">
+                    <div class="apitokens-box">
+                        <div class="apitokens-display">
+                            <label for="servers">Servers:</label>
+                            <select id="servers" name="servers">
+                                <option value="none">none</option>
+                                <option value="read">read</option>
+                                <option value="read-write">read & write</option>
+                            </select><br>
+                        </div>
+                        <div class="apitokens-display">
+                            <label for="nodes">Nodes:</label>
+                            <select id="nodes" name="nodes">
+                                <option value="none">none</option>
+                                <option value="read">read</option>
+                                <option value="read-write">read & write</option>
+                            </select><br>
+                        </div>
+                        <div class="apitokens-display">
+                            <label for="allocations">Allocations:</label>
+                            <select id="allocations" name="allocations">
+                                <option value="none">none</option>
+                                <option value="read">read</option>
+                                <option value="read-write">read & write</option>
+                            </select><br>
+                        </div>
+                        <div class="apitokens-display">
+                            <label for="dbhost">Database Hosts:</label>
+                            <select id="dbhost" name="dbhost">
+                                <option value="none">none</option>
+                                <option value="read">read</option>
+                                <option value="read-write">read & write</option>
+                            </select><br>
+                        </div>
+                    </div>
+                    <div class="apitokens-box">
+                        <div class="apitokens-display">
+                            <label for="users">Users:</label>
+                            <select id="users" name="users">
+                                <option value="none">none</option>
+                                <option value="read">read</option>
+                                <option value="read-write">read & write</option>
+                            </select><br>
+                        </div>
+                        <div class="apitokens-display">
+                            <label for="mounts">Mounts:</label>
+                            <select id="mounts" name="mounts">
+                                <option value="none">none</option>
+                                <option value="read">read</option>
+                                <option value="read-write">read & write</option>
+                            </select><br>
+                        </div>
+                        <div class="apitokens-display">
+                            <label for="dbservers">Server Databases:</label>
+                            <select id="dbservers" name="dbservers">
+                                <option value="none">none</option>
+                                <option value="read">read</option>
+                                <option value="read-write">read & write</option>
+                            </select><br>
+                        </div>
+                    </div>
+                </div>
+                <div class="apitokens-whitelisted-section">
+                    <label id="whitelist-ipv4-label" for="whitelist-ipv4">Whitelisted IPv4 Addresses:</label>
+                    <input type="text" id="whitelist-ipv4" name="whitelist-ipv4" placeholder="Example: 127.0.0.1 or 192.168.1.1">
+                </div>
+
+                <div class="apitokens-description-section">
+                    <label id="description-label" for="description">Description:</label>
+                    <input type="text" id="description" name="description" placeholder="Enter a description for this API key...">
+                </div>
+                <div class="apitokens-display">
+                    <button type="submit" style="padding: 5px 10px; background-color: #111217; border: 1px solid #2f3136; border-radius: 5px; cursor: pointer; color: #fff;">Create API Key</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

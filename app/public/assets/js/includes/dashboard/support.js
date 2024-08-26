@@ -1,4 +1,6 @@
 function support() {
+  var api = document.getElementById("apitokens");
+  var apilink = document.getElementById("apitokens-link");
   var firewall = document.getElementById("firewall");
   var firewalllink = document.getElementById("firewall-link");
   var summary = document.getElementById("summary");
@@ -12,11 +14,13 @@ function support() {
 
   if (user.style.display === "none") {
     summary.style.display = "none";
+    api.style.display = "none";
     firewall.style.display = "none";
     notes.style.display = "none";
     user.style.display = "none";
     support.style.display = "flex";
 
+    apilink.classList.remove("active");
     summarylink.classList.remove("active");
     firewalllink.classList.remove("active");
     noteslink.classList.remove("active");

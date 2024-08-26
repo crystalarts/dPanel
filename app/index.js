@@ -103,6 +103,7 @@ app.use("/", require("../api/servers"));
 app.use("/", require("../api/users"));
 app.use("/", require("../api/notes"));
 app.use("/", require("../api/stats"));
+app.use("/", require("../api/keygenerator"));
 
 // --- OTHER ROUTES --- \\
 app.all("*", (req, res) => res.render("errors/404"));

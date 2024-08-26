@@ -542,6 +542,7 @@
   .close-modal {
     cursor: pointer;
     font-size: 20px;
+    z-index: 1001
   }
 
   .error {
@@ -723,5 +724,127 @@
 
   .support-container p {
     margin-bottom: 10px;
+  }
+
+  .apitokens-container {
+    width: 100%;
+  }
+
+  .apitokens-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #2f3136;
+  }
+
+  .apitokens-list {
+    margin-top: 10px;
+  }
+
+  .apitokens-list table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #191b1f;
+    border-radius: 8px;
+    border: 1px solid #2f3136;
+  }
+
+  .apitokens-list th,
+  .apitokens-list td {
+    padding: 5px;
+    text-align: center;
+    color: #ffffff;
+  }
+
+  .apitokens-list th {
+    background-color: rgb(47, 49, 54);
+    font-weight: bold;
+  }
+
+  .apitokens-list tr {
+    background-color: rgb(17, 18, 23);
+  }
+
+  .apitokens-box-flex {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+  }
+
+  #apitokens-form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .apitokens-display {
+    display: flex;
+    margin-bottom: 5px;
+  }
+
+  .apitokens-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .apitokens-actions button {
+    text-align: center;
+    background-color: #111217;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    border: 1px solid #2f3136;
+    transition: background-color 0.85s ease;
+  }
+
+  .apitokens-actions button:hover {
+    background-color: #2f3136;
+  }
+
+  .apitokens-whitelisted-section label {
+    margin-top: 20px !important;
+  }
+
+  .apitokens-whitelisted-section label,
+  .apitokens-description-section label {
+      display: block !important;
+      margin-bottom: 7px !important;
+      width: 100% !important;
+  }
+  
+  .apitokens-whitelisted-section input[type="text"],
+  .apitokens-description-section input[type="text"] {
+    border: 1px solid #2f3136 !important;
+    background-color: #111217 !important;
+    color: #ffffff !important;
+    font-size: 14px !important;
+    border-radius: 4px !important;
+    padding: 10px !important;
+    box-shadow: none !important;
+    box-sizing: border-box !important;
+    outline: none !important;
+    width: 100% !important;
+    margin-bottom: 20px !important;
+  }
+
+  #add-apitokens-btn {
+    background-color: #111217;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    border: 1px solid #2f3136;
+    transition: background-color 0.85s ease;
+  }
+
+  #add-apitokens-btn:hover {
+    background-color: #2f3136;
   }
 }

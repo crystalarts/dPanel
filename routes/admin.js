@@ -59,9 +59,12 @@ router.get(
             user.serversCount = 0;
           }
         });
-
+        
         const notesQuery = "SELECT content FROM notes";
         const [notes] = await db.query(notesQuery);
+
+        const apiTokensQuery = "SELECT * FROM api_tokens";
+        const [apiTokens] = await db.query(apiTokensQuery);
 
         res.render("dashboard", {
           user: req.user,
@@ -72,6 +75,7 @@ router.get(
           users: userResults,
           notes: notes,
           firewalls: firewalls,
+          apiTokens: apiTokens,
         });
       }
     } catch (err) {

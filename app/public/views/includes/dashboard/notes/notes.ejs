@@ -5,7 +5,7 @@
     </p>
   </div>
   <div class="notes-content">
-    <p id="noteDisplay"></p>
+    <p id="noteDisplay" style="white-space: pre-line;"><% notes.forEach((note, index) => { %>  <%= note.content %>  <% }); %> </p>
   </div>
 </div>
 

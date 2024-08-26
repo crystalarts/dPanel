@@ -1,23 +1,6 @@
-function displayNotes() {
-  fetch("/admin/_api/v1/notes")
-    .then((response) => response.json())
-    .then((data) => {
-      const notesDisplay = document.getElementById("noteDisplay");
-
-      if (!Array.isArray(data) || data.length === 0) {
-        return;
-      }
-
-      notesDisplay.innerHTML = data;
-    })
-    .catch((error) => {
-      const notesDisplay = document.getElementById("noteDisplay");
-    });
-}
-
-window.onload = displayNotes;
-
 function notes() {
+  var api = document.getElementById("apitokens");
+  var apilink = document.getElementById("apitokens-link");
   var firewall = document.getElementById("firewall");
   var firewalllink = document.getElementById("firewall-link");
   var summary = document.getElementById("summary");
@@ -26,16 +9,18 @@ function notes() {
   var noteslink = document.getElementById("notes-link");
   var user = document.getElementById("users");
   var userlink = document.getElementById("users-link");
-    var support = document.getElementById("support");
+  var support = document.getElementById("support");
   var supportlink = document.getElementById("support-link");
 
   if (notes.style.display === "none") {
     firewall.style.display = "none";
+    api.style.display = "none";
     summary.style.display = "none";
     notes.style.display = "flex";
     user.style.display = "none";
     support.style.display = "none";
 
+    apilink.classList.remove("active");
     firewalllink.classList.remove("active");
     summarylink.classList.remove("active");
     noteslink.classList.add("active");
@@ -53,9 +38,7 @@ function editNotes() {
 function saveNotes() {
   var note = document.getElementById("notesTextarea").value;
 
-  var noteText = document.getElementById("notesTextarea").value;
-  document.getElementById("noteDisplay").innerText = noteText;
-  document.getElementById("notesModal").style.display = "none";
+  document.getElementById("noteDisplay").innerText = note;
 
   fetch("/admin/_api/v1/notes", {
     method: "POST",
@@ -64,9 +47,16 @@ function saveNotes() {
     },
     body: JSON.stringify({ content: note }),
   })
-    .then((response) => response.text())
+    .then((response) => {
+      if (!response.ok) {
+        return response.text().then((text) => {
+          throw new Error(`HTTP error ${response.status}: ${text}`);
+        });
+      }
+      return response.text();
+    })
     .then((data) => {
-      closeModal();
+      closeNotes();
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -80,10 +70,3 @@ function closeNotes() {
 function refreshNotes() {
   document.getElementById("notesTextarea").value = "";
 }
-
-window.onclick = function (event) {
-  var modal = document.getElementById("notesModal");
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-};
