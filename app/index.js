@@ -1,3 +1,4 @@
+// --- PACKAGE --- \\
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const cookies = require("cookies");
@@ -23,6 +24,7 @@ const firewallMiddleware = require("../utils/system/firewallMiddleware");
 
 const app = express();
 
+// --- TRANSLATE --- \\
 i18n.configure({
   locales: ["en", "pl", "de"],
   directory: path.join(__dirname, "../locales"),
@@ -32,6 +34,7 @@ i18n.configure({
 
 app.use(i18n.init);
 
+// --- EXPRESS CONFIG --- \\
 app.set("views", path.join(__dirname, "public/views"));
 app.set("view engine", "ejs");
 
@@ -67,14 +70,16 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(passport.initialize());
-app.use(passport.session());
-
+// --- FLASH & CORS --- \\
 app.use(flash());
 app.use(cors());
 
+// --- PASSPORT --- \\
+app.use(passport.initialize());
+app.use(passport.session());
 require("./config/passport")(passport);
 
+// --- GENERAL ROUTES --- \\
 app.use("/", require("../routes/index"));
 app.use("/", require("../routes/panel"));
 
@@ -96,16 +101,20 @@ app.use("/", require("../api/mounts"));
 app.use("/", require("../api/nodes"));
 app.use("/", require("../api/servers"));
 app.use("/", require("../api/users"));
+app.use("/", require("../api/notes"));
+app.use("/", require("../api/stats"));
 
 // --- OTHER ROUTES --- \\
 app.all("*", (req, res) => res.render("errors/404"));
 
+// --- WEB SERVER START --- \\
 const server = app.listen(3000, () => {
   console.log(
     `*   \x1b[32m[SUCCESS]\x1b[0m : The server is listening on port \x1b[90m➤\x1b[0m  \x1b[36m3000\x1b[0m.`,
   );
 });
 
+// --- WEBSOCKET --- \\
 const wss = new WebSocket.Server({ server });
 
 wss.on("connection", (ws) => {
