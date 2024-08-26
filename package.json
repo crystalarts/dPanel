@@ -2,6 +2,7 @@
   "name": "icrux",
   "version": "1.0",
   "scripts": {
+    "build": "echo 'No build step required'",
     "start": "node run.js",
     "dev": "npx nodemon -e js,json,pug,css run.js",
     "format": "prettier --write \"**/*.js\" \"**/*.json\" \"**/*.css\""
