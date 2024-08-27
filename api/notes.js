@@ -5,8 +5,6 @@ const { ensureAuthenticated } = require("../app/config/auth");
 const firewallMiddleware = require("../utils/system/firewallMiddleware");
 const db = require("../database/mysql-promise");
 
-const { ensureAuthenticated } = require("../app/config/auth");
-
 router.post("/admin/_api/v1/notes", firewallMiddleware, ensureAuthenticated, async (req, res) => {
   if (req.user.admin === 0) {
     return res.render("errors/404");
