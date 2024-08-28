@@ -129,6 +129,21 @@ CREATE TABLE firewall (
     comment TEXT
 );
 
+CREATE TABLE api_tokens (
+    `key` VARCHAR(255) PRIMARY KEY,
+    description TEXT,
+    last_used DATETIME,
+    created DATETIME NOT NULL,
+    created_by VARCHAR(255) NOT NULL,
+    servers ENUM('none', 'read', 'read-write') NOT NULL DEFAULT 'none',
+    nodes ENUM('none', 'read', 'read-write') NOT NULL DEFAULT 'none',
+    allocations ENUM('none', 'read-write', 'read') NOT NULL DEFAULT 'none',
+    users ENUM('none', 'read', 'read-write') NOT NULL DEFAULT 'none',
+    dbhost ENUM('none', 'read', 'read-write') NOT NULL DEFAULT 'none',
+    dbservers ENUM('none', 'read', 'read-write') NOT NULL DEFAULT 'none',
+    mounts ENUM('none', 'read', 'read-write') NOT NULL DEFAULT 'none'
+);
+
 INSERT INTO eggs (name, download, description) VALUES ('nginx', 'false', 'Nginx is a high-performance web server and reverse proxy server that efficiently handles large volumes of traffic, serving web content and balancing load across multiple servers.');
 INSERT INTO eggs (name, download, description) VALUES ('teamspeak', 'false', 'TeamSpeak is a voice communication platform designed for gamers and teams, offering high-quality, low-latency voice chat with customizable channels and robust administrative features.');
 INSERT INTO eggs (name, download, description) VALUES ('armathree', 'false', 'ARMA 3 is an open-world, realism-based tactical shooter with a wide range of vehicles and over 40 weapons. Enjoy diverse playstyles in both official and popular unofficial multiplayer modes. Test your squad’s skills in this tactical game with our game server hosting!');
