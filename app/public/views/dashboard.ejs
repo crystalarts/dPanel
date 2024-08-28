@@ -48,6 +48,7 @@
     <script src="/js/includes/dashboard/users.js"></script>
     <script src="/js/includes/dashboard/apiTokens.js"></script>
     <script src="/js/includes/dashboard/support.js"></script>
+    <script src="/js/includes/dashboard/storage.js"></script>
   </head>
   <body>
     <%- include('./includes/selector/navbar') %> <%-
@@ -92,6 +93,9 @@
             </div>
             <div id="apitokens" class="apitokens" style="display: none">
               <%- include('./includes/dashboard/apiTokens/apiTokens') %>
+            </div>
+            <div id="storage" class="storage" style="display: none">
+              <%- include('./includes/dashboard/storage/storage') %>
             </div>
           </div>
         </div>

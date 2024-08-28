@@ -11,6 +11,8 @@ function firewall() {
   var userlink = document.getElementById("users-link");
   var support = document.getElementById("support");
   var supportlink = document.getElementById("support-link");
+  var storage = document.getElementById("storage");
+  var storagelink = document.getElementById("storage-link");
 
   if (firewall.style.display === "none") {
     firewall.style.display = "flex";
@@ -19,6 +21,7 @@ function firewall() {
     notes.style.display = "none";
     user.style.display = "none";
     support.style.display = "none";
+    storage.style.display = "none";
 
     apilink.classList.remove("active");
     firewalllink.classList.add("active");
@@ -26,6 +29,7 @@ function firewall() {
     noteslink.classList.remove("active");
     userlink.classList.remove("active");
     supportlink.classList.remove("active");
+    storagelink.classList.remove("active");
   }
 }
 

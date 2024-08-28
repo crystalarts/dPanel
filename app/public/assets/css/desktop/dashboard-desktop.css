@@ -848,4 +848,31 @@
   #add-apitokens-btn:hover {
     background-color: #2f3136;
   }
+
+  .storage {
+    width: 100%;
+  }
+
+  .storage table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #111217;
+    border-top: 1px solid #2f3136;
+    border-left: 1px solid #2f3136;
+    border-right: 1px solid #2f3136;
+    text-align: center;
+  }
+
+  .storage table th {
+    background-color: #2f3136;
+  }
+
+  .storage table th,
+  td {
+    padding: 5px;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 400;
+    border-bottom: 1px solid #2f3136;
+  }
 }

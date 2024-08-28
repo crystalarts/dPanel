@@ -3,6 +3,8 @@ const router = express.Router();
 const { ensureAuthenticated } = require("../app/config/auth");
 const db = require("../database/mysql-promise");
 const getLocalIPs = require("../utils/system/getLocalIP");
+const { getDiskInfo } = require("node-disk-info");
+const si = require("systeminformation");
 
 const firewallMiddleware = require("../utils/system/firewallMiddleware");
 
@@ -59,12 +61,29 @@ router.get(
             user.serversCount = 0;
           }
         });
-        
+
         const notesQuery = "SELECT content FROM notes";
         const [notes] = await db.query(notesQuery);
 
         const apiTokensQuery = "SELECT * FROM api_tokens";
         const [apiTokens] = await db.query(apiTokensQuery);
+
+        const disks = await getDiskInfo();
+
+        const temperatures = await si.diskLayout();
+
+        const diskData = disks.map((disk) => {
+          const tempInfo = temperatures.find((t) => t.device === disk.mounted);
+          return {
+            name: disk.filesystem,
+            partition: disk.mounted,
+            capacity: disk.blocks / 1024 ** 3,
+            used: disk.used / 1024 ** 3,
+            available: disk.available / 1024 ** 3,
+            temperature: tempInfo ? tempInfo.temperature : "N/A",
+            type: tempInfo ? tempInfo.type : "Unknown",
+          };
+        });
 
         res.render("dashboard", {
           user: req.user,
@@ -76,6 +95,7 @@ router.get(
           notes: notes,
           firewalls: firewalls,
           apiTokens: apiTokens,
+          disks: diskData,
         });
       }
     } catch (err) {

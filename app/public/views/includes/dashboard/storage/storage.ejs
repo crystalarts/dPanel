@@ -1,0 +1,26 @@
+<table>
+    <thead>
+        <tr>
+            <th>Disk Name</th>
+            <th>Partition</th>
+            <th>Capacity (GB)</th>
+            <th>Used Space (GB)</th>
+            <th>Available Space (GB)</th>
+            <th>Temperature (°C)</th>
+            <th>Disk Type</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% disks.forEach(disk => { %>
+            <tr>
+                <td><%= disk.name %></td>
+                <td><%= disk.partition %></td>
+                <td><%= disk.capacity.toFixed(2) %></td>
+                <td><%= disk.used.toFixed(2) %></td>
+                <td><%= disk.available.toFixed(2) %></td>
+                <td><%= disk.temperature %></td>
+                <td><%= disk.type %></td>
+            </tr>
+        <% }); %>
+    </tbody>
+</table>

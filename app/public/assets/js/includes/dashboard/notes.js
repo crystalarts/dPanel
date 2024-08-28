@@ -11,6 +11,8 @@ function notes() {
   var userlink = document.getElementById("users-link");
   var support = document.getElementById("support");
   var supportlink = document.getElementById("support-link");
+  var storage = document.getElementById("storage");
+  var storagelink = document.getElementById("storage-link");
 
   if (notes.style.display === "none") {
     firewall.style.display = "none";
@@ -19,13 +21,15 @@ function notes() {
     notes.style.display = "flex";
     user.style.display = "none";
     support.style.display = "none";
+    storage.style.display = "none";
 
     apilink.classList.remove("active");
     firewalllink.classList.remove("active");
     summarylink.classList.remove("active");
-    noteslink.classList.add("active");
+    noteslink.classList.remove("active");
     userlink.classList.remove("active");
     supportlink.classList.remove("active");
+    storagelink.classList.remove("active");
   }
 }
 

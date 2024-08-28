@@ -9,6 +9,8 @@ function apitokens() {
   var noteslink = document.getElementById("notes-link");
   var user = document.getElementById("users");
   var userlink = document.getElementById("users-link");
+  var storage = document.getElementById("storage");
+  var storagelink = document.getElementById("storage-link");
 
   if (api.style.display === "none") {
     api.style.display = "flex";
@@ -16,12 +18,14 @@ function apitokens() {
     summary.style.display = "none";
     notes.style.display = "none";
     user.style.display = "none";
+    storage.style.display = "none";
 
     apilink.classList.add("active");
     firewalllink.classList.remove("active");
     summarylink.classList.remove("active");
     noteslink.classList.remove("active");
     userlink.classList.remove("active");
+    storagelink.classList.remove("active");
   }
 }
 
@@ -32,36 +36,38 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function setupDeleteButtons() {
-  const tableBody = document.getElementById('apitokens-table-body');
-  
+  const tableBody = document.getElementById("apitokens-table-body");
+
   if (!tableBody) {
-    console.error('Table body not found.');
+    console.error("Table body not found.");
     return;
   }
 
-  tableBody.addEventListener('click', async (event) => {
-
-    if (event.target && event.target.matches('.delete-apitokens-btn')) {
+  tableBody.addEventListener("click", async (event) => {
+    if (event.target && event.target.matches(".delete-apitokens-btn")) {
       const button = event.target;
-      const tokenKey = button.getAttribute('data-key');
-      const row = button.closest('tr');
+      const tokenKey = button.getAttribute("data-key");
+      const row = button.closest("tr");
 
       try {
-        const response = await fetch(`/_api/v1/keygenerator/delete?key=${encodeURIComponent(tokenKey)}`, {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
+        const response = await fetch(
+          `/_api/v1/keygenerator/delete?key=${encodeURIComponent(tokenKey)}`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
           },
-        });
+        );
 
         if (response.ok) {
           row.remove();
         } else {
-          console.log(response)
+          console.log(response);
           const errorText = await response.text();
         }
       } catch (error) {
-        console.error('Error:', error);
+        console.error("Error:", error);
       }
     }
   });
@@ -104,7 +110,7 @@ function setupFormButton() {
         location.reload();
       } else {
         const errorText = await response.text();
-        console.log(errorText)
+        console.log(errorText);
       }
     } catch (error) {
       console.error("Error:", error);
