@@ -868,7 +868,7 @@
   }
 
   .storage table th,
-  td {
+  .storage table td {
     padding: 5px;
     color: #ffffff;
     font-size: 12px;
