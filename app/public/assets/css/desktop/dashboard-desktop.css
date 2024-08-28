@@ -875,4 +875,8 @@
     font-weight: 400;
     border-bottom: 1px solid #2f3136;
   }
+
+  .storage table .tbody-sum {
+    background-color: #2f3136;
+  }
 }

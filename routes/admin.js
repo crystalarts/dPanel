@@ -68,18 +68,30 @@ router.get(
         const apiTokensQuery = "SELECT * FROM api_tokens";
         const [apiTokens] = await db.query(apiTokensQuery);
 
+        let totalCapacity = 0;
+        let totalUsed = 0;
+        let totalAvailable = 0;
+
         const disks = await getDiskInfo();
 
         const temperatures = await si.diskLayout();
 
         const diskData = disks.map((disk) => {
           const tempInfo = temperatures.find((t) => t.device === disk.mounted);
+          const capacity = disk.blocks / 1024 ** 3;
+          const used = disk.used / 1024 ** 3;
+          const available = disk.available / 1024 ** 3;
+
+          totalCapacity += capacity;
+          totalUsed += used;
+          totalAvailable += available;
+
           return {
             name: disk.filesystem,
             partition: disk.mounted,
-            capacity: disk.blocks / 1024 ** 3,
-            used: disk.used / 1024 ** 3,
-            available: disk.available / 1024 ** 3,
+            capacity: capacity,
+            used: used,
+            available: available,
             temperature: tempInfo ? tempInfo.temperature : "N/A",
             type: tempInfo ? tempInfo.type : "Unknown",
           };
@@ -96,6 +108,9 @@ router.get(
           firewalls: firewalls,
           apiTokens: apiTokens,
           disks: diskData,
+          totalCapacity,
+          totalUsed,
+          totalAvailable,
         });
       }
     } catch (err) {
