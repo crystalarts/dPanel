@@ -91,7 +91,7 @@ mysql -e "CREATE DATABASE dpanel;"
 mysql -e "FLUSH PRIVILEGES;"
 
 mysql -u"$username" -p"$password" -h "localhost" -D "dpanel" -e "
-CREATE TABLE IF NOT EXISTS user (
+CREATE TABLE IF NOT EXISTS `dpanel`.`user` (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255),
     email VARCHAR(255),
@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS user (
     twofa VARCHAR(255)
 );
 
-CREATE TABLE IF NOT EXISTS server (
+CREATE TABLE IF NOT EXISTS `dpanel`.`server` (
     key INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255),
     id VARCHAR(255),
@@ -112,14 +112,14 @@ CREATE TABLE IF NOT EXISTS server (
     timeout DATETIME,
 );
 
-CREATE TABLE IF NOT EXISTS eggs (
+CREATE TABLE IF NOT EXISTS `dpanel`.`eggs` (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255),
     download VARCHAR(255),
     description LONGTEXT
 );
 
-CREATE TABLE firewall (
+CREATE TABLE `dpanel`.`firewall` (
     id INT AUTO_INCREMENT PRIMARY KEY,
     `on` ENUM('on', 'off') NOT NULL,
     `type` ENUM('ACCEPT', 'DROP', 'REJECT') NOT NULL,
@@ -129,7 +129,7 @@ CREATE TABLE firewall (
     comment TEXT
 );
 
-CREATE TABLE api_tokens (
+CREATE TABLE `dpanel`.`api_tokens` (
     `key` VARCHAR(255) PRIMARY KEY,
     description TEXT,
     last_used DATETIME,
