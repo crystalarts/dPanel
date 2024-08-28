@@ -473,13 +473,15 @@
   .firewall-list th,
   .firewall-list td {
     padding: 5px;
-    text-align: left;
+    text-align: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 400;
     color: #ffffff;
   }
 
   .firewall-list th {
     background-color: rgb(47, 49, 54);
-    font-weight: bold;
   }
 
   .firewall-list tr {

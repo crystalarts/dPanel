@@ -7,7 +7,7 @@
         <table>
             <thead>
                 <tr>
-                    <th style="display: flex; justify-content: center;">On</th>
+                    <th>On</th>
                     <th>Type</th>
                     <th>IP</th>
                     <th>Direction</th>
@@ -19,7 +19,7 @@
             <tbody id="firewall-table-body">
                 <% firewalls.forEach(firewall => { %>
                     <tr data-id="<%= firewall.id %>">
-                        <td style="display: flex; justify-content: center;">
+                        <td>
                             <% if (firewall.on === 'on') {%>
                                 <i class="fas fa-check-circle" style="color: #87ff77;"></i>
                             <% } else { %>

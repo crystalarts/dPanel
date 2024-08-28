@@ -48,10 +48,10 @@
                             <% } %>
                         </td>
                         <td class="tdusers">
+                            <button onclick="showEditForm('<%= user.id %>', '<%= user.name %>', '<%= user.email %>', '<%= user.verify %>')" style="background-color: #111217; color: #ffffff; border: none; padding: 3px 5px; border-radius: 4px; border: 1px solid #2f3136; font-size: 12px; cursor: pointer;">Edit</button>
                             <form action="/delete-user/<%= user.id %>" method="POST" style="display:inline;">
                                 <button type="submit" style="background-color: #111217; color: #ffffff; border: none; padding: 3px 5px; border-radius: 4px; border: 1px solid #2f3136; font-size: 12px; cursor: pointer;">Delete</button>
                             </form>
-                            <button onclick="showEditForm('<%= user.id %>', '<%= user.name %>', '<%= user.email %>', '<%= user.verify %>')" style="background-color: #111217; color: #ffffff; border: none; padding: 3px 5px; border-radius: 4px; border: 1px solid #2f3136; font-size: 12px; cursor: pointer;">Edit</button>
                         </td>
                     </tr>
                 <% }) %>
