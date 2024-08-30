@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= __('web_title') %> - Summary</title>
+    <title><%= __('web_title') %> - Storage</title>
 
     <link rel="stylesheet" href="/css/dashboard.css" />
     <link rel="stylesheet" href="/css/desktop/dashboard-desktop.css" />
@@ -40,12 +40,10 @@
       crossorigin="anonymous"
       defer
     ></script>
-
-    <script src="/js/index.js"></script>
   </head>
   <body>
-    <%- include('./includes/selector/navbar') %> <%-
-    include('./includes/selector/navbar-bottom') %>
+    <%- include('../../includes/selector/navbar') %> <%-
+    include('../../includes/selector/navbar-bottom') %>
     <div class="content">
       <div id="content" class="content-left" style="display: flex">
         <p id="content-text" class="active f1" style="cursor: pointer">
@@ -66,10 +64,14 @@
         </div>
         <div class="content-right-bottom">
           <div class="content-right-bottom-left">
-            <%- include('./includes/selector/content-right-bottom-left') %>
+            <%-
+            include('../../includes/selector/content-right-bottom-left/storage')
+            %>
           </div>
           <div class="content-right-bottom-right">
-            <%- include('./includes/dashboard/summary/summary') %>
+            <div id="storage" class="storage">
+              <%- include('../../includes/dashboard/storage/storage') %>
+            </div>
           </div>
         </div>
       </div>

@@ -88,6 +88,14 @@ app.use("/", require("../routes/admin"));
 app.use("/", require("../routes/adminEggs"));
 app.use("/", require("../routes/adminDatabase"));
 
+// --- ADMIN DASHBOARD ROUTES --- \\
+app.use("/", require("../routes/dashboard/api"));
+app.use("/", require("../routes/dashboard/firewall"));
+app.use("/", require("../routes/dashboard/notes"));
+app.use("/", require("../routes/dashboard/storage"));
+app.use("/", require("../routes/dashboard/support"));
+app.use("/", require("../routes/dashboard/user"));
+
 // --- INCLUDES ROUTES --- \\
 app.use("/", require("../routes/includes/firewall"));
 app.use(firewallMiddleware);

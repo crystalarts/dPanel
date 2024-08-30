@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
 
-const { ensureAuthenticated } = require("../app/config/auth");
-const firewallMiddleware = require("../utils/system/firewallMiddleware");
+const { ensureAuthenticated } = require("../../app/config/auth");
+const firewallMiddleware = require("../../utils/system/firewallMiddleware");
 
 router.get(
-  "/admin",
+  "/admin/support",
   firewallMiddleware,
   ensureAuthenticated,
   async (req, res, next) => {
@@ -13,7 +13,7 @@ router.get(
       if (req.user.admin === 0) {
         return res.render("errors/404");
       } else {
-        res.render("dashboard", {
+        res.render("storage/dashboard/support", {
           user: req.user,
         });
       }
