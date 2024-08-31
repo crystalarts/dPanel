@@ -2,9 +2,19 @@ const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcrypt");
 const db = require("../../database/mysql");
 
+const now = new Date();
+const currentDateTime = now.toLocaleString("pl-PL", {
+  day: "2-digit",
+  month: "2-digit",
+  year: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+});
+
 module.exports = function (passport) {
   console.log(
-    `*   \x1b[32m[SUCCESS]\x1b[0m : The passport module has been \x1b[32msuccessfully\x1b[0m loaded.`,
+    `*   \x1b[94m[${currentDateTime}]\x1b[0m : \x1b[32m[SUCCESS]\x1b[0m : The \x1b[33mpassport\x1b[0m module has been \x1b[32msuccessfully\x1b[0m loaded.`,
   );
   passport.use(
     new LocalStrategy({ usernameField: "email" }, (email, password, done) => {

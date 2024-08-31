@@ -22,6 +22,16 @@ const firewallMiddleware = require("../utils/system/firewallMiddleware");
 //
 // const redisClient = new Redis();
 
+const now = new Date();
+const currentDateTime = now.toLocaleString("pl-PL", {
+  day: "2-digit",
+  month: "2-digit",
+  year: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+});
+
 const app = express();
 
 // --- TRANSLATE --- \\
@@ -78,6 +88,9 @@ app.use(cors());
 app.use(passport.initialize());
 app.use(passport.session());
 require("./config/passport")(passport);
+require("../oauth/google/passport-google");
+require("../oauth/github/passport-github");
+require("../oauth/discord/passport-discord");
 
 // --- GENERAL ROUTES --- \\
 app.use("/", require("../routes/index"));
@@ -113,13 +126,18 @@ app.use("/", require("../api/notes"));
 app.use("/", require("../api/stats"));
 app.use("/", require("../api/keygenerator"));
 
+// --- OAUTH ROUTES --- \\
+app.use("/", require("../oauth/google/router-google"));
+app.use("/", require("../oauth/github/router-github"));
+app.use("/", require("../oauth/discord/router-discord"));
+
 // --- OTHER ROUTES --- \\
 app.all("*", (req, res) => res.render("errors/404"));
 
 // --- WEB SERVER START --- \\
 const server = app.listen(3000, () => {
   console.log(
-    `*   \x1b[32m[SUCCESS]\x1b[0m : The server is listening on port \x1b[90m➤\x1b[0m  \x1b[36m3000\x1b[0m.`,
+    `*   \x1b[94m[${currentDateTime}]\x1b[0m : \x1b[32m[SUCCESS]\x1b[0m : The \x1b[33mserver\x1b[0m is listening on port \x1b[90m➤\x1b[0m  \x1b[36m3000\x1b[0m.`,
   );
 });
 
