@@ -18,7 +18,26 @@ router.get(
           "SELECT id, name, email, admin, servers, verify FROM user";
         const [userResults] = await db.query(sqlUsers);
 
+        const sqlUsersOauth =
+          "SELECT id, oauth_provider, username, email, admin, servers, verify FROM users_oauth";
+        const [userOauthResults] = await db.query(sqlUsersOauth);
+
         userResults.forEach((user) => {
+          try {
+            const serversData =
+              typeof user.servers === "string"
+                ? JSON.parse(user.servers)
+                : user.servers;
+            user.serversCount = Array.isArray(serversData)
+              ? serversData.length
+              : 0;
+          } catch (e) {
+            console.error("Error parsing JSON for user servers:", e);
+            user.serversCount = 0;
+          }
+        });
+
+        userOauthResults.forEach((user) => {
           try {
             const serversData =
               typeof user.servers === "string"
@@ -36,6 +55,7 @@ router.get(
         res.render("storage/dashboard/user", {
           user: req.user,
           users: userResults,
+          usersOauth: userOauthResults,
         });
       }
     } catch (err) {
