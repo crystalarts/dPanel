@@ -96,11 +96,25 @@ CREATE TABLE IF NOT EXISTS `dpanel`.`user` (
     name VARCHAR(255),
     email VARCHAR(255),
     password VARCHAR(255),
-    admin BOOLEAN,
+    admin VARCHAR(255),
     servers JSON,
     verify VARCHAR(255),
     token VARCHAR(255),
     twofa VARCHAR(255)
+);
+
+CREATE TABLE `dpanel`.`users_oauth` (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  oauth_provider VARCHAR(255) NOT NULL,
+  oauth_id VARCHAR(255) NOT NULL,
+  username VARCHAR(255),
+  email VARCHAR(255),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  admin VARCHAR(255),
+  servers JSON,
+  verify VARCHAR(255),
+  token VARCHAR(255),
+  twofa VARCHAR(255)
 );
 
 CREATE TABLE IF NOT EXISTS `dpanel`.`server` (

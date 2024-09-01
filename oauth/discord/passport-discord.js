@@ -22,7 +22,7 @@ passport.use(
     {
       clientID: process.env.DISCORD_CLIENT_ID,
       clientSecret: process.env.DISCORD_CLIENT_SECRET,
-      callbackURL: "http://localhost:3000/auth/discord/callback",
+      callbackURL: "http://localhost:3000/_auth/discord/callback",
       scope: ["identify", "email"],
     },
     function (accessToken, refreshToken, profile, done) {

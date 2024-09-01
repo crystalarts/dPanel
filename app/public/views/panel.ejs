@@ -72,7 +72,7 @@
             <div class="content-bottom-flex">
               <div class="content-bottom-left">
                 <img src="/img/user.png" alt="Logo" width="32px" height="32px"/>
-                <p><%= user.name %></p>
+                <p><%= user.name || user.username%></p>
               </div>
               <div class="content-bottom-right" onclick="showMenu()">
                 <i class="fas fa-ellipsis-v"></i>

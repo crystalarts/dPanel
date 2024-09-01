@@ -23,7 +23,7 @@ router.get(
 router.get(
   "/_auth/google/callback",
   passport.authenticate("google", { failureRedirect: "/" }),
-  (req, res) => res.redirect("/profile"),
+  (req, res) => res.redirect("/"),
 );
 
 module.exports = router;

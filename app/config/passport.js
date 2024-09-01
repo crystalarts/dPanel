@@ -1,6 +1,7 @@
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcrypt");
 const db = require("../../database/mysql");
+const dbpromise = require("../../database/mysql-promise");
 
 const now = new Date();
 const currentDateTime = now.toLocaleString("pl-PL", {
@@ -61,5 +62,17 @@ module.exports = function (passport) {
       }
       done(null, results[0]);
     });
+  });
+
+  passport.deserializeUser(async (id, done) => {
+    try {
+      const [rows] = await dbpromise.execute("SELECT * FROM users_oauth WHERE id = ?", [id]);
+      if (rows.length === 0) {
+        return done(new Error("User not found"));
+      }
+      done(null, rows[0]);
+    } catch (err) {
+      done(err);
+    }
   });
 };
