@@ -6,9 +6,9 @@ async function findOrCreateUser(provider, profile, done) {
   try {
     const [rows] = await mysql.execute(
       "SELECT * FROM users_oauth WHERE oauth_provider = ? AND oauth_id = ?",
-      [provider, profile.id]
+      [provider, profile.id],
     );
-    
+
     if (rows.length > 0) {
       return done(null, rows[0]);
     }
@@ -25,7 +25,7 @@ async function findOrCreateUser(provider, profile, done) {
         1,
         uuidv4(),
         0,
-      ]
+      ],
     );
 
     if (!result.insertId) {
@@ -34,7 +34,7 @@ async function findOrCreateUser(provider, profile, done) {
 
     const [newUser] = await mysql.execute(
       "SELECT * FROM users_oauth WHERE id = ?",
-      [result.insertId]
+      [result.insertId],
     );
 
     if (newUser.length === 0) {

@@ -1,6 +1,6 @@
 {
   "name": "icrux",
-  "version": "1.0",
+  "version": "1.0.1-DEV",
   "scripts": {
     "build": "echo 'No build step required'",
     "start": "node run.js",
@@ -33,6 +33,7 @@
     "passport-github2": "^0.1.12",
     "passport-google-oauth20": "^2.0.0",
     "passport-local": "^1.0.0",
+    "passport-microsoft": "^2.1.0",
     "path": "^0.12.7",
     "ping": "^0.4.4",
     "pug": "^3.0.3",

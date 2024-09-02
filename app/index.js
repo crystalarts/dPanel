@@ -91,6 +91,7 @@ require("./config/passport")(passport);
 require("../oauth/google/passport-google");
 require("../oauth/github/passport-github");
 require("../oauth/discord/passport-discord");
+// require("../oauth/microsoft/passport-microsoft");
 
 // --- GENERAL ROUTES --- \\
 app.use("/", require("../routes/index"));
@@ -130,6 +131,7 @@ app.use("/", require("../api/keygenerator"));
 app.use("/", require("../oauth/google/router-google"));
 app.use("/", require("../oauth/github/router-github"));
 app.use("/", require("../oauth/discord/router-discord"));
+// app.use("/", require("../oauth/microsoft/router-microsoft"));
 
 // --- OTHER ROUTES --- \\
 app.all("*", (req, res) => res.render("errors/404"));

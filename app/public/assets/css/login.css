@@ -257,7 +257,8 @@ input {
 
 .oauth .discord,
 .oauth .github,
-.oauth .google {
+.oauth .google,
+.oauth .microsoft {
   display: flex;
   height: 45px;
   width: 45px;

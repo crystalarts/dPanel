@@ -66,7 +66,10 @@ module.exports = function (passport) {
 
   passport.deserializeUser(async (id, done) => {
     try {
-      const [rows] = await dbpromise.execute("SELECT * FROM users_oauth WHERE id = ?", [id]);
+      const [rows] = await dbpromise.execute(
+        "SELECT * FROM users_oauth WHERE id = ?",
+        [id],
+      );
       if (rows.length === 0) {
         return done(new Error("User not found"));
       }

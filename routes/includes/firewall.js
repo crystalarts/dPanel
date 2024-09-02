@@ -16,16 +16,16 @@ router.post("/save", async (req, res) => {
   try {
     if (!id) {
       query = `
-                INSERT INTO firewall (\`on\`, type, interfaces, direction, protocol, comment)
-                VALUES (?, ?, ?, ?, ?, ?)
-            `;
+        INSERT INTO firewall (\`on\`, type, interfaces, direction, protocol, comment)
+        VALUES (?, ?, ?, ?, ?, ?)
+      `;
       await db.query(query, queryParams);
     } else {
       query = `
-                UPDATE firewall 
-                SET \`on\` = ?, type = ?, interfaces = ?, direction = ?, protocol = ?, comment = ?
-                WHERE id = ?
-            `;
+        UPDATE firewall 
+        SET \`on\` = ?, type = ?, interfaces = ?, direction = ?, protocol = ?, comment = ?
+        WHERE id = ?
+      `;
       queryParams.push(id);
       await db.query(query, queryParams);
     }
