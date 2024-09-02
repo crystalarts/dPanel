@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= __('web_title') %></title>
+
+    <link rel="stylesheet" href="/css/dashboard.css" />
+    <link rel="stylesheet" href="/css/desktop/dashboard-desktop-options.css" />
+    <link
+      rel="stylesheet"
+      href="/css/medium-desktop/dashboard-medium-desktop.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/css/small-desktop/dashboard-small-desktop.css"
+    />
+    <link rel="stylesheet" href="/css/tablet/dashboard-tablet.css" />
+    <link rel="stylesheet" href="/css/phone/dashboard-phone.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="icon" type="image/jpg" sizes="32x32" href="/img/logo.jpg" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+      defer
+    ></script>
+
+    <script src="/js/includes/dashboard/users.js"></script>
+  </head>
+  <body>
+    <%- include('../../includes/selector/navbar') %> <%-
+    include('../../includes/selector/navbar-bottom') %>
+    <div class="content">
+      <div id="content" class="content-left" style="display: flex">
+        <p id="content-text" class="active f1" style="cursor: pointer">
+          <i class="fas fa-chevron-down i1"></i
+          ><i class="fas fa-server"></i> Datacenter
+        </p>
+      </div>
+      <div class="content-right">
+        <div class="content-right-top">
+          <div class="content-right-top-left">
+            <p style="color: #999999; font-size: 14px">Datacenter</p>
+          </div>
+          <div class="content-right-top-right">
+            <a href="https://discord.gg/DRDvwDe8dD"
+              ><i class="fas fa-headset"></i> Help</a
+            >
+          </div>
+        </div>
+        <div class="content-right-bottom">
+          <div class="content-right-bottom-left">
+            <%-
+            include('../../includes/selector/content-right-bottom-left/options')
+            %>
+          </div>
+          <div class="content-right-bottom-right">
+            <%- include('../../includes/dashboard/options/options') %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    function openNav() {
+      var menu = document.getElementById("content");
+
+      if (menu.style.display === "flex") {
+        menu.style.display = "none";
+      } else {
+        menu.style.display = "flex";
+      }
+    }
+
+    function checkScreenWidth() {
+      var content = document.getElementById("content");
+      if (window.innerWidth <= 555) {
+        content.style.display = "none";
+      } else {
+        content.style.display = "flex";
+      }
+    }
+
+    window.onload = checkScreenWidth;
+
+    window.onresize = checkScreenWidth;
+  </script>
+</html>

@@ -109,6 +109,7 @@ app.use("/", require("../routes/dashboard/notes"));
 app.use("/", require("../routes/dashboard/storage"));
 app.use("/", require("../routes/dashboard/support"));
 app.use("/", require("../routes/dashboard/user"));
+app.use("/", require("../routes/dashboard/options"));
 
 // --- INCLUDES ROUTES --- \\
 app.use("/", require("../routes/includes/firewall"));
