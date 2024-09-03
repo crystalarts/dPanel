@@ -232,14 +232,14 @@
     color: #ffffff;
   }
 
-  table thead th {
+  table thead td {
     width: 0px;
     padding: 5px 5px;
     font-weight: 400;
     border-bottom: 1px solid #2f3136;
   }
 
-  table tbody td {
+  table tbody th {
     padding: 5px 5px;
     font-weight: 400;
     border-bottom: 1px solid #2f3136;
