@@ -54,7 +54,7 @@ app.use(cookies.express("a", "b", "c"));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
-app.set('trust proxy', 1);
+app.set("trust proxy", 1);
 
 app.use(express.static(`${__dirname}/public/assets`));
 app.locals.basedir = `${__dirname}/public/assets`;
