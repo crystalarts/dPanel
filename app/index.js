@@ -54,6 +54,7 @@ app.use(cookies.express("a", "b", "c"));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
+app.set('trust proxy', 1);
 
 app.use(express.static(`${__dirname}/public/assets`));
 app.locals.basedir = `${__dirname}/public/assets`;
@@ -92,6 +93,10 @@ require("../oauth/google/passport-google");
 require("../oauth/github/passport-github");
 require("../oauth/discord/passport-discord");
 // require("../oauth/microsoft/passport-microsoft");
+
+// --- SECURITY WARNING --- \\
+const floodDetector = require("../detector/FloodHTTPDetector");
+app.use(floodDetector);
 
 // --- GENERAL ROUTES --- \\
 app.use("/", require("../routes/index"));
@@ -168,7 +173,6 @@ wss.on("connection", (ws) => {
   });
 });
 
-// --- SECURITY WARNING --- \\
 // app.use(generalLimiter);
 // app.use(morgan('combined', { stream: logStream }));
 // app.use(helmet());
