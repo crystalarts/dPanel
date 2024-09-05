@@ -5,8 +5,8 @@ const convertIPv6toIPv4 = require("../tools/convertIPv6toIPv4");
 require("dotenv").config();
 
 const requestCounts = {};
-const requestLimit = 10;
-const timeWindow = 15 * 1000;
+const requestLimit = 15;
+const timeWindow = 10 * 1000;
 const blockDuration = 30 * 60 * 1000;
 
 const activeAttacks = {};
@@ -118,7 +118,7 @@ setInterval(() => {
             inline: true,
           },
           {
-            name: "➥ End Time::",
+            name: "➥ End Time:",
             value: "• __" + new Date().toLocaleString() + "__",
             inline: false,
           },
